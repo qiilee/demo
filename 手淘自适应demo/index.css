@@ -1,0 +1,72 @@
+此处省略初始化的样式
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*+height:1%;}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.baseIcon{
+    display: inline-block;
+    background: url(bgIcon.png);
+    background-size:6.666667rem 6.666667rem;
+}
+.msg-header{
+    position: relative;
+    padding: 0 0.4rem;
+    height: 1.28rem;
+    line-height: 1.28rem;
+    font-size: 0.48rem;
+    text-align: center;
+    border: 0.026667rem solid #eaeaea;
+}
+.iconBack{
+    position: absolute;
+    top: 0.373333rem;
+    left:0.373333rem;
+    width: 0.346667rem;
+    height: 0.533333rem;
+    background-position: -1.493333rem -1.066667rem;
+}
+.msg-header .clear{
+    position: absolute;
+    right: 0.266667rem;
+    font-size: 0.4rem;
+    color: #666;
+    text-decoration: none;
+}
+.media-left,
+.media-right{
+    display: table-cell;
+    vertical-align: top;
+}
+.media-right{
+    width: 100%;
+    border-bottom: 1px solid #eee;
+}
+.iconMsg{
+    width: 1.253333rem;
+    height: 1.253333rem;
+    background-position: -2.293333rem 0;
+}
+.media-left{
+    padding: 0.266667rem;
+}
+.msg-right{
+    padding: 0.266667rem;
+}
+.msg-right .title{
+    font-size: 0.426667rem;
+    color: #333;
+}
+.msg-right .date{
+    font-size: 0.293333rem;
+    color: #999;
+    font-weight: normal;
+}
+.msg-right .desc{
+    margin-top: 0.133333rem;
+    font-size: 0.346667rem;
+    color: #888;
+}
