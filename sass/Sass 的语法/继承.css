@@ -1,0 +1,14 @@
+.btn, .btn-primary, .btn-second {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  font-size: 14px; }
+
+.btn-primary {
+  background-color: #f36;
+  color: #fff; }
+
+.btn-second {
+  background-color: orange;
+  color: #fff; }
+
+/*# sourceMappingURL=%E7%BB%A7%E6%89%BF.css.map */

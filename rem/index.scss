@@ -1,0 +1,32 @@
+@function px2rem($px){
+  $rem:37.5px;
+  @return ($px / $rem) + rem;
+}
+
+.header {
+  height:px2rem(40px);
+  width:100%;
+  background-color: red;
+  padding-left:px2rem(23px);
+  .header-item {
+    float: left;
+    color:#ffcdce;
+    font-size:px2rem(16px);
+    margin-right:px2rem(20px);
+    line-height:px2rem(40px);
+    &:nth-child(2) {
+      color: #fff;
+      font-size:px2rem(17px);
+    }
+  }
+}
+
+.banner {
+  display: block;
+  width: 100%;
+  height:px2rem(190px);
+  .banner-title {
+    font-size:px2rem(16px);
+    color:#fff;
+  }
+}
