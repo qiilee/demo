@@ -143,7 +143,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, ".header {\n  height: 1.06667rem;\n  width: 100%;\n  background-color: red;\n  padding-left: 0.61333rem; }\n  .header .header-item {\n    float: left;\n    color: #ffcdce;\n    font-size: 0.42667rem;\n    margin-right: 0.53333rem;\n    line-height: 1.06667rem; }\n    .header .header-item:nth-child(2) {\n      color: #fff;\n      font-size: 0.45333rem; }\n\n.banner {\n  display: block;\n  width: 100%;\n  height: 5.06667rem; }\n  .banner .banner-title {\n    font-size: 0.42667rem;\n    color: #fff; }\n", ""]);
+exports.push([module.i, ".header {\n  height: 1.06667rem;\n  width: 100%;\n  background-color: red;\n  padding-left: 0.61333rem; }\n  .header .header-item {\n    float: left;\n    color: #ffcdce;\n    font-size: 0.42667rem;\n    margin-right: 0.53333rem;\n    line-height: 1.06667rem; }\n    .header .header-item:nth-child(2) {\n      color: #000;\n      font-size: 0.45333rem; }\n\n.banner {\n  display: block;\n  width: 100%;\n  height: 5.06667rem; }\n  .banner .banner-title {\n    font-size: 0.42667rem;\n    color: #000; }\n", ""]);
 
 // exports
 

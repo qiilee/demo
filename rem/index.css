@@ -1,0 +1,24 @@
+.header {
+  height: 1.0666666667rem;
+  width: 100%;
+  background-color: red;
+  padding-left: 0.6133333333rem; }
+  .header .header-item {
+    float: left;
+    color: #ffcdce;
+    font-size: 0.4266666667rem;
+    margin-right: 0.5333333333rem;
+    line-height: 1.0666666667rem; }
+    .header .header-item:nth-child(2) {
+      color: #000;
+      font-size: 0.4533333333rem; }
+
+.banner {
+  display: block;
+  width: 100%;
+  height: 5.0666666667rem; }
+  .banner .banner-title {
+    font-size: 0.4266666667rem;
+    color: #000; }
+
+/*# sourceMappingURL=index.css.map */
