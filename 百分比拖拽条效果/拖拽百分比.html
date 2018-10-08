@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>百分比拖拽条效果</title>
+<style type="text/css">
+	*{ padding:0; margin:0;}
+	.box{ width:400px; margin:30px auto;}
+	.box p{ text-align:center;}
+	#dragBox{ width:254px; height:30px; background:url(img/moveDragBg.jpg) no-repeat 4px 8px; position:relative; float:left;}
+	#moveBox{ width:26px; height:38px; background:url(img/moveBtn.png) no-repeat 0 0; position:absolute; top:0; left:0;}
+	.moveBox{ margin-left:40px;}
+	.moveBox .p1{ float:left; padding:6px;}
+	.moveBox .p2{ float:left; padding:6px;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oP2=document.getElementById('p2');
+		var iNum=parseInt(oP2.innerHTML);
+		var oInp=document.getElementsByTagName('input')[0];
+		var oDragBox=document.getElementById('dragBox');
+		var oMoveBox=document.getElementById('moveBox');
+		oMoveBox.onmousedown=function(ev)
+		{	var oratio=null;
+			var oEvent=ev||event;
+			var oEventLeft=oEvent.clientX;
+			var oldLeft=oEventLeft-oMoveBox.offsetLeft;
+			document.onmousemove=function(ev)
+			{
+				var oEvent=ev||event;
+				var l=oEvent.clientX-oldLeft;
+				if(l<0)
+				{
+					l=0;
+				}
+				else if(l>oDragBox.offsetWidth-oMoveBox.offsetWidth)
+				{
+					l=oDragBox.offsetWidth-oMoveBox.offsetWidth;
+				}
+				else
+				{
+					oMoveBox.style.left=l+"px";
+				}
+				oratio=l/(oDragBox.offsetWidth-oMoveBox.offsetWidth);
+				oInp.value=parseInt(oratio*iNum);
+				return false;
+			}
+			document.onmouseup=function()
+			{
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+			return false;
+		}	
+	}
+	function absXy(obj)
+	{
+		var x=obj.offsetLeft,y=obj.offsetTop;
+		while(obj=obj.offsetParent)
+		{
+			x +=obj.offsetLeft;
+			y +=obj.offsetTop;
+		}
+		var arr={"x":x,"y":y};
+		return arr;
+	}
+</script>
+</head>
+
+<body>
+	<div class="box">
+		<p><input type="text" id="value1" value="0" /> 条</p>
+		<div class="moveBox">
+			<p class="p1">0</p>
+			<div id="dragBox">
+				<div id="moveBox"></div>
+			</div>
+			<p class="p2" id="p2">18701</p>
+		</div>
+	</div>
+</body>
+</html>

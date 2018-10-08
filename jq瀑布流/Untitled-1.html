@@ -1,0 +1,244 @@
+
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>基于Jquery的瀑布流布局（绝对定位）</title> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+		ul {position:relative;font-size:12px;}
+		p {margin:10px 10px}
+		p a {text-decoration:none;color:#0088cc}
+		p a:hover {text-decoration:underline;}
+		ul li {width:250px;border:1px solid #ccc;border-radius:5px;list-style:none;position:absolute;margin:10px;height:150px;}
+		li.a {height:350px;}
+		li.b {height:100px;}
+		li.c {height:200px;}
+		li.d {height:500px;}
+		li.e {height:100px;}
+		li.f {height:50px;}
+		li.g {height:180px;}
+		li.h {height:210px;}
+		li.i {height:300px;}
+		li.j {height:100px;}
+		.red {background:red;}
+		.yellow {background:yellow;}
+		.blue {background:blue;}
+		.eee {background:#eee;}
+		.green {background:green}
+		.ccc {background:#ccc;}
+		.hide {opacity:0;filter:alpha(opacity=0)}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script id="setwaterfall">
+	(function ($) {
+		$.fn.setwaterfall = function (options) {
+			function findLowestIndex(Arr)
+							{
+								var index = 0;
+								var i;
+								for (i in Arr)
+								{
+									if(Arr[i]<Arr[index])
+									{
+										index = i;
+									}
+								}
+								return index;
+							};
+
+			function findBigestIndex(Arr)
+							{
+								var index = 0;
+								var i;
+								for (i in Arr)
+								{
+									if(Arr[i]>Arr[index])
+									{
+										index = i;
+									}
+								}
+								return index;
+							};
+
+		   var boxwidth = $(this).width()+parseInt($(this).css("paddingLeft"))*2+parseInt($(this).css("marginLeft"))*2;//li的宽度 和merginLeft paddingLeft
+		   var wrapWidth = $(this).parent().width();//ul的宽度
+		   var col = Math.floor(wrapWidth/boxwidth);
+           var wrappadding = (wrapWidth % boxwidth) /2;
+		   var row = Math.floor($(this).length/col) == $(this).length/col?$(this).length/col:(Math.floor($(this).length/col)+1);
+		   var colhigharry = [];
+		   var colpos;
+		   var leftpos;
+		   var toppos;
+		   for(var len = 0;len < col;len++)
+		   {
+				colhigharry.push(0);
+		   };
+		   $(this).each(function(index){
+					var pos = index;
+					var col1height = 0;
+					var col2height = 0;
+					var col3height = 0;
+					var col4height = 0;
+					if(pos<col)
+					{
+						leftpos = boxwidth*pos + wrappadding + "px";
+						$(this).css({"top":"0","left":leftpos});
+						colhigharry[index] = $(this).height()+parseInt($(this).css("marginTop"))*2+parseInt($(this).css("paddingTop"))+parseInt($(this).css("paddingBottom"));
+					}
+					else
+					{
+					   colpos = findLowestIndex(colhigharry);
+					   leftpos = boxwidth*colpos + wrappadding +"px";
+					   toppos = colhigharry[colpos]+"px";
+					   $(this).css({"top":toppos,"left":leftpos});
+					   colhigharry[colpos] =  colhigharry[colpos] + $(this).height()+parseInt($(this).css("marginTop"))*2+parseInt($(this).css("paddingTop"))+parseInt($(this).css("paddingBottom"));
+					}           
+		   });
+		   var wraphighindex = findBigestIndex(colhigharry);
+		   var wraphigh = colhigharry[wraphighindex]+"px";
+		   $(this).parent().height(wraphigh);           
+		   var selector = $(this).selector;
+		   window.onresize = function(){$(selector).setwaterfall();};
+			}
+	})(jQuery)
+
+	/**
+	function setwaterfall(jqobject)
+    {
+        function findLowestIndex(Arr)
+        {
+            var index = 0;
+            var i;
+            for (i in Arr)
+            {
+                if(Arr[i]<Arr[index])
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+        function findBigestIndex(Arr)
+        {
+            var index = 0;
+            var i;
+            for (i in Arr)
+            {
+                if(Arr[i]>Arr[index])
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }   
+       var $funclist = jqobject;
+       var boxwidth = $funclist.width()+parseInt($funclist.css("paddingLeft"))*2+parseInt($funclist.css("marginLeft"))*2;
+       var wrapWidth = $funclist.parent().width();
+	   console.log(boxwidth + "|" +wrapWidth);
+       var col = Math.floor(wrapWidth/boxwidth);
+       var row = Math.floor($funclist.length/col) == $funclist.length/col?$funclist.length/col:(Math.floor($funclist.length/col)+1);
+       var colhigharry = [];
+       var colpos;
+       var leftpos;
+       var toppos;
+       for(var len = 0;len < col;len++)
+       {
+            colhigharry.push(0);
+       };
+       $funclist.each(function(index){
+                var pos = index;
+                var col1height = 0;
+                var col2height = 0;
+                var col3height = 0;
+                var col4height = 0;
+                if(pos<col)
+                {
+                    leftpos = boxwidth*pos + "px";
+                    $(this).css({"top":"0","left":leftpos});
+                    colhigharry[index] = $(this).height()+parseInt($(this).css("marginTop"))*2+parseInt($(this).css("paddingTop"))*2;
+					console.log(colhigharry[index]);
+                }
+                else
+                {
+                   colpos = findLowestIndex(colhigharry);
+                   leftpos = boxwidth*colpos+"px";
+                   toppos = colhigharry[colpos]+"px";
+                   $(this).css({"top":toppos,"left":leftpos});
+                   colhigharry[colpos] =  colhigharry[colpos] + $(this).height()+parseInt($(this).css("marginTop"))*2+parseInt($(this).css("paddingTop"))*2;
+                }           
+       });
+       var wraphighindex = findBigestIndex(colhigharry);
+       var wraphigh = colhigharry[wraphighindex]+"px";
+       $funclist.parent().height(wraphigh);    
+    }
+	**/
+	</script>
+	<script>
+		$(document).ready(function(){
+		/**
+			setwaterfall($("ul li"));
+			window.onresize = function(){return setwaterfall($("ul li"));};
+		**/
+		
+
+		var obj = [];
+		obj[0]=["<li class=\"b red hide\"></li>"];
+		obj[1]=["<li class=\"e yellow hide\"></li>"];
+		obj[2]=["<li class=\"h blue hide\"></li>"];
+		obj[3]=["<li class=\"i green hide\"></li>"];
+		obj[4]=["<li class=\"j eee hide\"></li>"];
+		obj[5]=["<li class=\"k ccc hide\"></li>"];
+		$("ul li").setwaterfall();
+		$(window).scroll(function () {
+			var clienth = document.documentElement.clientHeight;
+			var scrollh = document.documentElement.scrollHeight;
+			var scrollt = document.documentElement.scrollTop + document.body.scrollTop;
+			if (clienth + scrollt + 200 > scrollh) {
+				var html = obj.join("");
+				$("ul").append(html);
+				$(".hide").animate({opacity:1},1000);
+				$("ul li").setwaterfall();
+			}
+		});
+
+		});
+
+	</script>
+</head> 
+<body> 
+
+<ul>
+<li id="a" class="a"><p>使用方法：</p>
+		   <p>1，导入jquery和setwaterfall插件，可直接查看源代码script id="setwaterfall"为该插件，或者点击<a href="setwaterfall.js">setwaterfall.js</a></p>
+		   <p>2，如$("li").setwaterfall()，li为要瀑布流化的元素</p>
+		   <p>3，设置相应的css，要求父层定位为position：relative；瀑布流的元素定位为position：absolute</p>
+		   <p>4，根据需要设置宽和高，padding和mairgin</p>
+		   <p>ps:简陋版本，仅供参考</p>
+		   </li>
+<li id="b" class="a"></li>
+<li id="c" class="b"></li>
+<li id="d" class="c"></li>
+<li id="e" class="e"></li>
+<li id="f" class="f"></li>
+<li id="g" class="g"></li>
+<li id="h" class="h"></li>
+<li id="i" class="i"></li>
+<li id="j" class="j"></li>
+<li id="k" class="k"></li>
+<li id="l" class="l"></li>
+<li id="m" class="m"></li>
+<li id="n" class="n"></li>
+<li id="o"></li>
+<li id="p"></li>
+<li id="q"></li>
+<li id="r"></li>
+<li id="s"></li>
+<li id="t"></li>
+<li id="u"></li>
+<li id="v"></li>
+<li id="w"></li>
+<li id="x"></li>
+</ul>
+</body>
+</html>

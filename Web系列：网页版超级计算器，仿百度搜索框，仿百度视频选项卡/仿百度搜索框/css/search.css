@@ -1,0 +1,75 @@
+/*文本框样式*/
+#keys{
+    border-color: #9A9A9A #CDCDCD #CDCDCD #9A9A9A;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    font: 16px arial;
+    width:474px;
+    outline: medium none;
+    padding: 4px 7px;
+    vertical-align: top;
+    margin-bottom:0px;
+}
+/*搜索按钮普通样式*/
+.btn{
+    background-color: #DDDDDD;
+    background: url("../images/button_normal.gif");
+    border: 0 none;
+    cursor: pointer;
+    height: 30px;
+    padding: 0;
+    width: 95px;
+    outline:none;
+}
+/*搜索按钮按下样式*/
+.btn_d{
+    background-color: #DDDDDD;
+    border: 1px solid #000000;
+    cursor: pointer;
+    height: 30px;
+    padding: 0;
+    width: 95px;
+    outline:none;
+}
+/*无序列表ul样式*/
+#possibilityKeys{
+    width:465px;
+    padding:0px;
+    margin-left:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding-top:8px;
+    padding-left:7px;
+    list-style-type:none;
+    border:1px solid #747275;
+    border-top:0px;
+    /*ul列表默认隐藏*/
+    display:none;
+}
+/*无序列表ul中li样式*/
+#possibilityKeys li{
+    width:400px;
+    padding-top:0px;
+    font-size:18px;
+}
+/*无序列表ul中li中a标签样式*/
+#possibilityKeys li a{
+    color:#000000;
+    /*将a标签设置为块级元素，以占据整个行*/
+    display:block;
+    font: 16px arial;
+    outline-style:none;
+    width:465px;
+    text-decoration:none;
+}
+/*无序列表ul中li中a标签鼠标移入样式*/
+#possibilityKeys li a:hover{
+    background-color:#CDCDCD;
+    font-weight:bold;
+}
+/*无序列表ul中li中a标签获得键盘样式*/
+.getKeyBoard{
+    background-color:#CDCDCD;
+    font-weight:bold;
+}

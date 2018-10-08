@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>仿百度搜索框</title>
+        <link rel="stylesheet" style="text/css" href="css/search.css"></link>
+        <script type="text/javascript" src="js/search.js"></script>
+    </head>
+    <body onload="javascript:load();">
+        <!--这里要修改成自己的提交地址-->
+        <form action="http://www.baidu.com/s" method="GET">
+            <!--输入文本框-->
+            <input type="text" id="keys" name="wd" onblur="javascript:hideul();" onclick="javascript:hideul();" />
+            <!--按钮-->
+            <input type="button" id="search" class="btn" onclick="javascript:btnSubmit();" onmouseout="this.className='btn'" onmousedown="this.className='btn_d'" onmouseup="this.className='btn'" value="百度一下" />
+            <!--匹配列表-->
+            <ul id="possibilityKeys">
+                <!--
+                <li><a href="javascript:void(0);">匹配结果1</a></li>
+                <li><a href="javascript:void(0);">匹配结果1</a></li>
+                <li><a href="javascript:void(0);">匹配结果1</a></li>
+                <li><a href="javascript:void(0);">匹配结果1</a></li>
+                -->
+            </ul>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,113 @@
+body{
+    background-color:#F4F4F4;
+}
+#mytab h2{
+    text-align:center;
+}
+/*背景box头部样式*/
+.box_top{
+    width:713px;
+    height:10px;
+    margin-bottom:0px;
+    margin-left:auto;
+    margin-right:auto;
+    background:url(../images/box_top.gif);
+    background-repeat:no-repeat;
+}
+/*背景box中间样式，可自由伸缩*/
+.box_body{
+    width:713px;
+    height:450px;
+    margin-bottom:0px;
+    margin-left:auto;
+    margin-right:auto;
+    background:url(../images/box_middle.gif);
+    background-repeat:repeat-y;
+}
+/*背景box底部样式*/
+.box_bottom{
+    width:713px;
+    height:20px;
+    margin-top:0px;
+    margin-left:auto;
+    margin-right:auto;
+    background:url(../images/box_bottom.gif);
+    background-repeat:no-repeat;
+}
+/*选项卡头部样式*/
+.tab_top{
+    padding-top:10px;
+    padding-bottom:5px;
+    width:670px;
+    margin-left:auto;
+    margin-right:auto;
+    border-bottom:1px solid #E3E0DE;
+}
+/*“电影”标题样式*/
+.tab_top .tab_title{
+    text-align:left;
+    font-weight:bold;
+    font-size:23px;
+    margin-left:2px;
+    float:left;
+}
+/*选项卡ul样式*/
+.tab_top ul{
+    list-style:none;
+    margin-top:5px;
+    margin-left:180px;
+    margin-bottom:0px;
+}
+/*选项卡中的项li样式*/
+.tab_top ul li{
+    float:left;
+    padding-top:5px;
+}
+/*li公共样式，主要用于定位*/
+.liComm{
+    float:left;
+    padding-top:5px;
+}
+/*li选中的样式，有边框，有背景色，为了挡住横线*/
+.selectedli{
+    border:1px solid #E3E0DE;
+    background-color:#F8F8F8;
+    border-bottom:0px;
+}
+/*li未被选中的样式，无边框，无背景色，防止挡住横线*/
+.unselectedli{
+    border:0px;
+    background-color:none;
+}
+/*"更多>>"按钮样式*/
+.tab_top .more{
+    margin-left:10px;
+    text-align:right;
+}
+/*"更多>>"按钮超链接样式*/
+.tab_top .more a{
+    text-decoration:none;
+}
+/*li中超链接样式*/
+.tab_top ul li a{
+    color:#000000;
+    display:block;
+    hidefocus:ture;
+    outline:none;
+    text-align:center;
+    width:60px;
+    text-decoration:none;
+}
+/*鼠标移动到li中超链接样式*/
+.tab_top ul li a:hover{
+    display:block;
+    color:#245FB3;
+}
+/*内容样式*/
+.tab_body{
+    width:670px;
+    margin-top:20px;
+    margin-left:22px;
+    float:left;
+    clear:left;
+}

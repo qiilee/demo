@@ -1,0 +1,85 @@
+/* CSS Document */
+/*common*/
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,img,div,dl,dd,dt{
+	margin:0;
+	padding:0;
+	border:0;
+	word-break:break-all;
+	font-family:Arial, Helvetica, sans-serif;
+}
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,img,div,dl,dd,dt,span,select,input,textarea{line-height:20px;font-size:12px;}
+ul{list-style-type:none;}
+li{display:block;}
+input{ vertical-align:middle;}
+
+a{text-decoration:none;}
+a:link{}
+a:visited{}
+a:hover,a:active,a:focus{}
+
+
+/*ext*/
+.arial{font-family:Arial, Helvetica, sans-serif;}
+.clearit{clear:both;}
+.clrl{clear:left;}
+.clrr{clear:right;}
+.cuts{white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;}
+.fb{font-weight:bold;}
+.f28{font-size:28px; line-height:28px;}
+.f24{font-size:24px; line-height:24px;}
+.f20{font-size:20px; line-height:22px;}
+.f18{font-size:18px; line-height:22px;}
+.f17{font-size:17px; }
+.f16{font-size:16px; }
+.f15{font-size:15px; }
+.f14{font-size:14px; }
+.f13{font-size:13px; }
+.f12{font-size:12px; }
+.f11{font-size:11px;}
+.f10{font-size:10px;}
+.f9{font-size:9px;}
+.f8{font-size:8px;}
+.f7{font-size:7px;}
+.f6{font-size:6px;}
+.flt{float:left;display:inline;}
+.frt{float:right;display:inline;}
+.hof{overflow:hidden;}
+.hide{display:none;}
+.lh20{line-height:20px;}
+.rel{position:relative;}
+.split{height:0;font-size:0;line-height:0;clear:both;overflow:hidden;display:block;visibility:hidden;}
+.tin{text-indent:2em;}
+.tac{text-align:center;}
+.trans{filter:alpha(opacity=75);-moz-opacity:.75;opacity:.75;}
+.spc{height:10px;font-size:0;line-height:0;clear:both;overflow:hidden;display:block;visibility:hidden;}
+.al_c{text-align:center;}
+.al_l{text-align:left;}
+.al_r{text-align:right;}
+.b1{border:1px solid #000000;}
+.inline{display:inline;}
+.heiti{ font-family: "黑体"}
+.center{ margin:0px auto;}
+.pointer{}
+.pointer img{cursor:pointer;}
+.table{ display:table;}
+.ht0{ height:0px;}
+.ht5{ height:5px;}
+.ht10{ height:10px;}
+.ht15{ height:15px;}
+.ht20{ height:20px;}
+.rlt{ position:relative;}
+.abs{ position:absolute;}
+.block{ display:block}
+.table{ display:table;}
+
+/*link*/
+.ano a:link,.ano a:visited{text-decoration:none;}
+.ano a:hover,.ano a:active{text-decoration:none;}
+.a01,.a01 a:link,.a01 a:visited{color:#000;}
+.a01 a:hover,.a01 a:active{color:#c00;}
+.r1 {
+	text-align: right;
+}
+.t1 {
+	text-align: justify;
+}

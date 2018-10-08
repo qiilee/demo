@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>canvans简单行星模拟</title>
+</head>
+<body style="background: #000">
+<!--预先载入所有的原图像-->
+<div style="display: none">
+    <img src="sun.png" id="sun">
+    <img src="moon.png" id="moon">
+    <img src="earth.png" id="earth">
+</div>
+
+<canvas id="canvas" width="300" height="300" style="margin: 100px;">您的浏览器不支持canvas元素</canvas>
+<script>
+//初始化要使用的一系列图像
+    var imgs = {sun:null,moon:null,earth:null};
+//    等待窗口完全载入
+    window.onload=function(){
+        //从文当中载入所有的图像
+        for(var i in imgs){
+            imgs[i]=document.getElementById(i);
+            //美妙绘制十次
+            setInterval(draw,100);
+        }
+    };
+    function draw(){
+        //获得我们所需要的实践间隔
+        var time = new Date();
+        var s =((Math.PI*2)/6)*time.getSeconds();
+        var m = ((Math.PI*2)/6000)*time.getMilliseconds();
+        //获得canvas对象上下文
+        var ctx = document.getElementById('canvas').getContext('2d');
+        //清空canvas
+        ctx.clearRect(0,0,300,300);
+        //新内容总在旧内容之下绘制（以实现阴影）；
+        //在限制函数save（）后开始绘制。重要
+        ctx.save();
+        //现在在0,0点绘制等于在150,150点绘制，因为使用了translate（）方法把画布的开始点移动到了150,150，见下面的代码
+        ctx.translate(150,150);
+        //将canvas向地球的位置旋转
+        ctx.rotate((s+m)/10);
+        //向外移动105像素
+        ctx.translate(105,0);
+        //填充阴影半透明状态
+        ctx.fillStyle = 'rgba(0,0,0,0.4)';
+        ctx.strokeStyle='rgba(0,153,255,0.4)';
+        //绘制阴影区域（不甚完美，不过也算接近）
+        ctx.fillRect(0,-12,50,24);
+        //绘制地球
+        ctx.drawImage(imgs.earth,-12,-12);
+        ctx.save();
+        //相对地球的旋转来移动canvas；
+        ctx.rotate(s+m);
+        //将月球放入轨道
+        ctx.translate(0,28.5);
+        //绘制月球图案
+        ctx.drawImage(imgs.moon,-3.5,-3.5);
+        //restore()方法和sava配合使用表示一个限制的范围
+        ctx.restore();
+        ctx.restore();
+        //绘制地球轨道
+        ctx.beginPath();
+        //arc方法语法context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+        //x,y委员的中心，r为半径，sAngle，eAngle为开始角和结束角，Math.PI*2为一周，counterclockwise为true则是顺时针绘制false为逆时针绘制。
+        ctx.arc(150,150,150,0,Math.PI*2,false);
+        ctx.stroke();
+        //绘制静态的太阳
+        ctx.drawImage(imgs.sun,0,0);
+    }
+</script>
+</body>
+</html>

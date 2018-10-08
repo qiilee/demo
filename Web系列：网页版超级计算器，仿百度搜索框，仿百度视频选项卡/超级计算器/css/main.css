@@ -1,0 +1,41 @@
+html {
+    background: url("../images/background.jpg") repeat-x scroll 0 0 #FFFFFF;
+}
+body {
+    color: #333333;
+    font: 12px/1.8 Tahoma,Geneva,'ËÎÌו';
+    margin: 0;
+    padding:0;
+}
+
+table{width:500px;height:350px;border-collapse:collapse;border-spacing:0;border-left:1px solid #888;border-top:1px solid #888;}
+th,td{border-right:1px solid #888;border-bottom:1px solid #888;padding:5px 15px;}
+th{font-weight:bold;}
+
+#txtScreenFrame{
+    text-align:right;
+    font-size:40px;
+    background:url(../images/screen.png);
+}
+.headTitle{
+    font-size:30px;
+    color:#efefef;
+}
+img{
+    border:0px;
+}
+#poetry{
+    float:left;
+    margin-top:80px;
+}
+#copyright{
+    text-align:center;
+    margin-top:50px;
+    font-size:20px;
+}
+ul,li{
+    list-style-type:none;
+}
+a{
+    text-decoration:none;
+}

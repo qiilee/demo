@@ -1,0 +1,93 @@
+<html>
+	<head>
+		<title>超级计算器 Power By 开辟</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"></link>
+		<script type="text/javascript" src="js/counter.js"></script>
+	</head>
+	<body onload="javascript:loadScreen();">
+        <!--献上一首小诗-->
+        <div id="poetry">
+            <ul>
+                <li>你见，或者不见我</li>
+                <li>我就在那里</li>
+                <li>不悲不喜</li>
+                <li>&nbsp;</li>
+                <li>你念，或者不念我</li>
+                <li>情就在那里</li>
+                <li>不来不去</li>
+                <li>&nbsp;</li>
+                <li>你爱，或者不爱我</li>
+                <li>爱就在那里</li>
+                <li>不增不减</li>
+                <li>&nbsp;</li>
+                <li>你跟，或者不跟我</li>
+                <li>我的手就在你手里</li>
+                <li>不舍不弃</li>
+                <li>&nbsp;</li>
+                <li>来我的怀里</li>
+                <li>或者</li>
+                <li>让我住进你的心里</li>
+                <li>默然 相爱</li>
+                <li>寂静 欢喜</li>
+                <li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    Then End
+                </li>
+            </ul>
+		</div>
+		
+		<!--计算器布局-->
+		<div id="calculator">
+            <center><h2 class="headTitle">超级计算器</h2></center>
+            <hr width="40%">
+            <table align="center">
+                <tr align="center">
+                    <td colspan="5">
+                        <!--<input type="text" id="txtScreen" size="30" value="0" readonly/>-->
+                        <div id="txtScreenFrame">
+                            <span id="txtScreen">0</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td><a href="javascript:inputC();"><img src="images/c.png" alt="退格" title="退格" /></a></td>
+                    <td><a href="javascript:inputCE();"><img src="images/ce.png" alt="清空" title="清空" /></td>
+                    <td><a href="javascript:inputValue('(');"><img src="images/left.png" alt="左括号"  title="左括号"/></td>
+                    <td><a href="javascript:inputValue(')');"><img src="images/right.png" alt="右括号" title="右括号"/></td>
+                    <td rowspan="5"><a href="javascript:inputResult();"><img src="images/result.png" alt="等于" title="等于"/></td>
+                </tr>
+                <tr align="center">
+                    <td><a href="javascript:inputValue(7);"><img src="images/7.png" alt="数字7" title="数字7" /></a></td>
+                    <td><a href="javascript:inputValue(8);"><img src="images/8.png" alt="数字8" title="数字8" /></a></td>
+                    <td><a href="javascript:inputValue(9);"><img src="images/9.png" alt="数字9" title="数字9" /></a></td>
+                    <td><a href="javascript:inputValue('/');"><img src="images/div.png" alt="除" title="除" /></a></td>
+                </tr>
+                <tr align="center">
+                    <td><a href="javascript:inputValue(4);"><img src="images/4.png" alt="数字4" title="数字4" /></a></td>
+                    <td><a href="javascript:inputValue(5);"><img src="images/5.png" alt="数字5" title="数字5" /></a></td>
+                    <td><a href="javascript:inputValue(6);"><img src="images/6.png" alt="数字6" title="数字6" /></a></td>
+                    <td><a href="javascript:inputValue('*');"><img src="images/mul.png" alt="乘" title="乘" /></a></td>
+                </tr>
+                <tr align="center">
+                    <td><a href="javascript:inputValue(1);"><img src="images/1.png" alt="数字1" title="数字1" /></a></td>
+                    <td><a href="javascript:inputValue(2);"><img src="images/2.png" alt="数字2" title="数字2" /></a></td>
+                    <td><a href="javascript:inputValue(3);"><img src="images/3.png" alt="数字3" title="数字3" /></a></td>
+                    <td><a href="javascript:inputValue('-');"><img src="images/sub.png" alt="减" title="减" /></a></td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2"><a href="javascript:inputValue(0);"><img src="images/0.png" alt="数字0" title="数字1" /></a></td>
+                    <td><a href="javascript:inputValue('.');"><img src="images/point.png" alt="点" title="点" /></a></td>
+                    <td><a href="javascript:inputValue('+');"><img src="images/add.png" alt="加" title="加" /></a></td>
+                </tr>
+            </table>
+		</div>
+		
+		<!--底部版权信息-->
+		<div id="copyright">
+            <span>作者：杨元|转载注明版权|严禁用于商业用途</span>
+            <p><a href="http://www.cnblogs.com/iyangyuan/">欢迎访问我的博客</a></p>
+		</div>
+		
+	</body>
+</html>
