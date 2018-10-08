@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{ padding:0; margin:0; font-size:12px; font-family:"微软雅黑";}
+	#box{ width:592px; margin:10px auto 0;}
+	.bigbox{ width:578px; height:600px; overflow:hidden; float:left; position:relative; border:1px solid #CCC;}
+	.move_bigbox{ width:578px; position:absolute; top:0;}
+	.scr_box{ width:12px; float:left; height:600px; position:relative; background:url(img/mid.jpg) repeat-y 0 10px;}
+	.move_box{ width:12px; height:172px; background:url(img/auto.png) no-repeat 0 0; position:absolute; top:0; cursor:pointer; z-index:1;}
+	.scr_box .top{ width:12px; height:6px; position:absolute; top:0; left:0; background:url(img/top.jpg) no-repeat 0 0;}
+	.scr_box .bot{ width:12px; height:6px; position:absolute; bottom:0; -bottom:-12px; left:0; background:url(img/bot.jpg) no-repeat 0 0;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('box');
+		var oP=getClass(oBox,"move_bigbox")[0];//文章内容
+		var oBtn=getClass(oBox,"move_box")[0];//滚动条按钮
+		
+		oBtn.onmouseover=function()
+		{
+			this.style.background="url(img/active.png) no-repeat 0 0";
+		}
+		oBtn.onmouseout=function()
+		{
+			this.style.background="url(img/auto.png) no-repeat 0 0";
+		}
+		
+		
+		oBtn.onmousedown=function(ev)
+		{
+			oEvent=ev||event;
+			var disY=oEvent.clientY-this.offsetTop;
+			document.onmousemove=function(ev)
+			{
+				oEvent=ev||event;
+				var t=oEvent.clientY-disY;
+				
+				if(t<0)
+				{
+					t=0;
+				}
+				else if(t>428)
+				{
+					t=428;
+				}
+				
+				var per=t/428;
+				oP.style.top=-(oP.offsetHeight-600)*per+"px";
+				oBtn.style.top=t+"px";
+				oBtn.style.background="url(img/active.png) no-repeat 0 0";
+				document.title=per;
+				return false;
+			}
+			document.onmouseup=function()
+			{
+				document.onmousemove=null;
+				document.onmousemup=null;
+				oBtn.style.background="url(img/auto.png) no-repeat 0 0";
+			}
+			return false;
+		}
+	};
+	//通过class选取对象
+	function getClass(oParen,iClass)
+	{
+		var result=[];
+		var aAll=oParen.getElementsByTagName('*');
+		for(i=0;i<aAll.length;i++)
+		{
+			if(aAll[i].className==iClass)
+			{
+				result.push(aAll[i]);
+			}
+		}
+		return result;
+	}
+</script>
+</head>
+
+<body>
+	<div id="box">
+		<div class="bigbox">
+			<p class="move_bigbox">重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息
+			重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息
+			重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息
+			重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息
+			重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 重新打开已关闭选项卡 查看启动 Internet Explorer 后关闭的选项卡。 百度搜索_小说 无标题文档 全部打开 重新打开上次浏览会话 使用 InPrivate 浏览 浏览 Web 但不存储有关浏览会话的数据。 打开 InPrivate 浏览窗口 使用加速器 打开含有已从网页中复制的文本的 Web 服务。 显示已复制的文本 使用此文本: move_box 使用 百度 搜索 使用 Windows Live 撰写博客 使用 Bing 地图 使用 Bing 翻译 -------------------------------------------------------------------------------- 了解有关选项卡和选项卡快捷方式、加速器和 InPrivate 浏览的更多信息 </p>
+		</div>
+		<div class="scr_box">
+			<div class="top"></div>
+			<div class="move_box"></div>
+			<div class="bot"></div>
+		</div>
+	</div>
+	<div style="width:400px; position:absolute; bottom:0; left:500px; font-size:24px; color:#CC0000;"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端开发交流群：149044724</div>
+</body>
+</html>

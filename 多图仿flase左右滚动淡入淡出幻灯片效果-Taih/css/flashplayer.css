@@ -1,0 +1,15 @@
+*{padding: 0; margin: 0;}
+body{ background: #000;}
+#flaseplayer{ width: 980px; position: absolute; top: 100px; left: 200px;}
+#flaseplayer .leftBtn,#flaseplayer .rightBtn{ position: absolute; width: 60px; height: 60px; top: 260px;}
+#flaseplayer .leftBtn{left: 0px;}
+#flaseplayer .rightBtn{ right: 0px;}
+#flaseplayer ul{ width: 600px; list-style: none; position: relative; top: 30px; left: 200px;}
+#flaseplayer ul li{ position: absolute; width: 600px; height: 400px;}
+#flaseplayer ul li a img{ border: 0; width:100%; height: 100%;}
+
+#flaseplayer ul .pic1{width:600px; height: 400px; z-index: 3;}
+#flaseplayer ul .pic5{width:500px; height:350px; z-index: 2; left:-60px; opacity:0.6; filter: alpha(opacity:60);}
+#flaseplayer ul .pic2{width:500px; height:350px; z-index: 2; left:150px; opacity:0.6; filter: alpha(opacity:60);}
+#flaseplayer ul .pic4{width:400px; height:300px; z-index: 1; left: -100px; opacity:0.3; filter: alpha(opacity:30);}
+#flaseplayer ul .pic3{width:400px; height:300px; z-index: 1; left:300px; opacity:0.3; filter: alpha(opacity:30);}

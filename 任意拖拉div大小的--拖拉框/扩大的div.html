@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{ padding:0; margin:0;}
+	#box{ width:100px; height:100px; background:#CCCCCC; border:1px solid #990033; position:absolute;}
+	#box .kd{ width:10px; height:10px; background:#FF0000; position:absolute; top:90px; left:90px; cursor:se-resize; background:url(1.jpg) no-repeat 0 0;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('box');
+		var oRrsize=getClass(oBox,'kd')[0];
+		
+		
+		getMove(oBox);
+		getMove(oRrsize);
+	};
+	
+	//拖拽
+	function getMove(obj)
+	{
+		obj.onmousedown=function(ev)
+		{
+			var oBox=document.getElementById('box');
+			oEvent=ev||event;
+			var disX=oEvent.clientX-this.offsetLeft;
+			var disY=oEvent.clientY-this.offsetTop;
+			oEvent.cancelBubble=true;
+			document.onmousemove=function(ev)
+			{
+				oEvent=ev||event;
+				var oRrsizeX=oEvent.clientX-disX;
+				var oRrsizeY=oEvent.clientY-disY;
+				obj.style.left=oRrsizeX+"px";
+				obj.style.top=oRrsizeY+"px";
+				if(obj==getClass(oBox,'kd')[0])
+				{
+					if(oRrsizeX<10)
+					{
+						oRrsizeX=10;
+					}
+					if(oRrsizeY<10)
+					{
+						oRrsizeY=10;
+					}
+					oBox.style.width=oRrsizeX+obj.offsetWidth+"px";
+					oBox.style.height=oRrsizeY+obj.offsetHeight+"px";
+					obj.style.left=oRrsizeX+"px";
+					obj.style.top=oRrsizeY+"px";
+				}
+					
+				return false;
+			}
+			document.onmouseup=function()
+			{
+				document.onmousemove=null;
+				document.onnouseup=null;
+			}
+			return false;
+		}
+	}
+	
+	
+	//通过class获取对象
+	function getClass(paren,iClass)
+	{
+		result=[];
+		var oAll=paren.getElementsByTagName('*');
+		var i=0;
+		for(i=0;i<oAll.length;i++)
+		{
+			if(oAll[i].className==iClass)
+			{
+				result.push(oAll[i]);
+			}
+		}
+		return result;
+	}
+</script>
+</head>
+
+<body>
+	<div id="box">
+		<div class="kd">
+		
+		</div>
+	</div>
+</body>
+</html>

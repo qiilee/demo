@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>渐变头像效果</title>
+<style>
+	#img1{ width:40px; margin:40px auto; position:relative;}
+	#img1 img{ position:absolute; top:0; left:0;}
+	#img1 .imgon{ opacity:0; filter:alpha(opacity:0); z-index:1;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('img1');
+		var oImg=oBox.getElementsByTagName('img')[1];
+		oImg.onmouseover=function()
+		{
+			stratMove(100);
+		}
+		oImg.onmouseout=function()
+		{
+			stratMove(0);
+		}	
+	}
+	var timer=null;
+	function stratMove(iTarge)
+	{
+		clearInterval(timer);
+		timer=setInterval(function(){doMove(iTarge)},30);
+	}
+	var oPac=0;
+	function doMove(iTarge)
+	{
+		iSpeed=0;
+		var oBox=document.getElementById('img1');
+		var oImg=oBox.getElementsByTagName('img')[1];
+
+		if(oPac<iTarge)
+		{
+			iSpeed=10;
+		}
+		else
+		{
+			iSpeed=-10;
+			
+		}
+		if(oPac==iTarge)
+		{
+			clearInterval(timer);
+		}
+		else
+		{
+			oPac+=iSpeed;
+			oImg.style.filter="alpha(opacity:"+oPac+")";
+			oImg.style.opacity=oPac/100;
+			document.title=oPac;
+		}
+	}
+	function getStyle(obj,attr)
+	{
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
+	}
+</script>
+</head>
+
+<body>
+	<div id="img1">
+		<img src="2.jpg" />
+		<img src="1.jpg" class="imgon" />
+	</div>
+</body>
+</html>

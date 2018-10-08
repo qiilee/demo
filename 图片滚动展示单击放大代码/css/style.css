@@ -1,0 +1,12 @@
+@charset "utf-8";
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+/* infopic */
+.infopic{width:700px;height:200px;position:relative;overflow:hidden;margin:15px auto;}
+.piclist{height:200px;position:absolute;top:0;left:0;}
+.piclist li{height:200px;margin-right:15px;float:left;overflow:hidden;}
+.piclist li img{height:200px;}
+.pic_prev,.pic_next{width:30px;height:50px;background:url(../images/icon.png) no-repeat;position:absolute;top:75px;cursor:pointer;}
+.pic_prev{background-position:0 0;left:0;}
+.pic_next{background-position:0 -60px;right:0;}

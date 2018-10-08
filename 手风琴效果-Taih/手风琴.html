@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>手风琴效果</title>
+<style type="text/css">
+	*{ padding:0px; margin:0px; font-family:"微软雅黑";}
+	ul{ width:100%; list-style:none;}
+	#box{ width:412px; height:182px; margin:40px auto 0;}
+	#box li{ position:relative; width:22px; height:182px; float:left; overflow:hidden;}
+	#box li p{ width:22px; height:162px; color:#FFF; padding-top:20px; text-align:center; position:absolute; left:0; top:0;}
+	.bg1{ background:#666699;}
+	.bg2{ background:#336699;}
+	.bg3{ background:#996699;}
+	.bg4{ background:#667799;}
+	.bg5{ background:#653699;}
+	.bg6{ background:#623459;}
+	#box .active{ width:302px;}
+	.qun{ width:300px; margin:20px auto;}
+</style>
+
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('box');
+		var oLi=document.getElementsByTagName('li');
+		var timer=null;
+		var i=0;
+		
+		for(i=0;i<oLi.length;i++)
+		{
+			oLi[i].onmouseover=function()
+			{
+				var obj=this;
+				clearInterval(timer);
+				timer=setInterval(function()
+				{
+					var num=0;
+					for(i=0;i<oLi.length;i++)
+					{
+						var iSpeed=(22-oLi[i].offsetWidth)/6;
+						iSpeed=Math.floor(iSpeed);
+						oLi[i].style.width=oLi[i].offsetWidth+iSpeed+"px";
+					}
+					
+					for(i=0;i<oLi.length;i++)
+					{
+						if(oLi[i]!=obj)
+						{
+							num+=oLi[i].offsetWidth;
+						}
+					}
+					obj.style.width=oBox.offsetWidth-num+"px";
+				},30);
+			}
+		}
+		
+	};
+</script>
+</head>
+
+<body>
+	<div id="box">
+		<ul>
+			<li class="active">
+				<p class="bg1">网页作品1</p>
+				<img src="images/zp1.jpg" />
+			</li>
+			<li>
+				<p class="bg1">网页作品2</p>
+				<img src="images/zp2.jpg" />
+			</li>
+			<li>
+				<p class="bg1">网页作品3</p>
+				<img src="images/zp3.jpg" />
+			</li>
+			<li>
+				<p class="bg1">网页作品4</p>
+				<img src="images/zp4.jpg" />
+			</li>
+			<li>
+				<p class="bg1">网页作品5</p>
+				<img src="images/zp5.jpg" />
+			</li>
+			<li>
+				<p class="bg1">网页作品6</p>
+				<img src="images/zp6.jpg" />
+			</li>
+		</ul>
+	</div>
+	<div class="qun"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端技术交流群：149044724</div>
+</body>
+</html>

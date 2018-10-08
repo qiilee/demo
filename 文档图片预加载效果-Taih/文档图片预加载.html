@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片预加载</title>
+<style type="text/css">
+	*{ padding:0; margin:0;}
+	#box{ width:620px; margin:0 auto;}
+	li{ width:300px; height:300px; overflow:hidden; float:left; margin:0px 0 0 10px; background:url(1.gif) no-repeat center;}
+	li img{display:none; width:300px; height:300px;}
+</style>
+<script type="text/javascript">
+	var arr=["http://q.chinasspp.com/uploadimg/ZoneOtherPic/2007121113466235.jpg","http://www.baobaolo.com/LackPic/lack989.jpg","http://pic8.nipic.com/20100731/3101644_214108073368_2.jpg","http://hiphotos.baidu.com/uaq10/pic/item/688848ef59204c832e2e21c7.jpg","http://pic.nipic.com/2007-12-07/200712713242811_2.jpg","http://hiphotos.baidu.com/lfqdkxnc/pic/item/badfc6f84c73a2704f4aea84.jpg"];
+	window.onload=function()
+	{
+		var oBox=document.getElementById('box');
+		var aLi=oBox.getElementsByTagName('li');
+		var aImg=[];
+		var aNewImg=[];
+		for(var i=0;i<aLi.length;i++)
+		{
+			var oImg=aLi[i].getElementsByTagName('img')[0];
+			aImg.push(oImg);
+			var newImg=new Image();
+			aNewImg.push(newImg);
+		}
+		for(var i=0;i<aNewImg.length;i++)
+		{
+			aNewImg[i].index=i;
+			aNewImg[i].onload=function()
+			{
+				aImg[this.index].src=this.src;
+				aImg[this.index].style.display="block";
+			}
+			aNewImg[i].onerror=function(){alert('图片出错');}
+			aNewImg[i].src=arr[i];
+		}
+	};
+</script>
+</head>
+
+<body>
+<div style="width:400px; position:absolute; right:0; top:0; font-size:24px; color:red; font-family:'微软雅黑';">web前端开发交流2群：166284209</div>
+	<ul id="box">
+		<li><img src="1.gif"/>1</li>
+		<li><img src="1.gif"/>2</li>
+		<li><img src="1.gif"/>3</li>
+		<li><img src="1.gif"/>4</li>
+		<li><img src="1.gif"/>5</li>
+		<li><img src="1.gif"/>6</li>
+	</ul>
+</body>
+</html>

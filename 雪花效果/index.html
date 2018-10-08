@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="jquery-1.6.2.min.js"></script>
+<body>
+<canvas id="myCanvas" width="800" height="800" style="border:1px solid #c3c3c3;">  
+	Fallback content, in case the browser does not support Canvas.  
+</canvas>
+<script>
+var EasyJs={
+	version:"1.1",
+	developers:"Xue Zhimei"
+};
+
+/**
+将config对象的所有属性拷贝到obj对象。
+参数: 
+obj : Object 
+接收属性的对象 
+config : Object 
+提供属性的对象 
+defaults : Object 
+一个不同的对象，属性可以作为默认值被拷贝
+*/
+//object\ object \ object
+EasyJs.apply = function(o, c, defaults){
+    if(defaults){
+        EasyJs.apply(o, defaults);
+    }
+    if(o && c && typeof c == 'object'){
+        for(var p in c){
+            o[p] = c[p];
+        }
+    }
+    return o;
+};
+(function(){
+		var ua = navigator.userAgent.toLowerCase(),toString=Object.prototype.toString,
+        check = function(r){
+            return r.test(ua);
+        },
+        DOC = document,
+        docMode = DOC.documentMode,
+        isStrict = DOC.compatMode == "CSS1Compat",
+        isOpera = check(/opera/),
+		isFirefox= check(/firefox/),
+        isChrome = check(/\bchrome\b/),
+        isWebKit = check(/webkit/),
+		isTheWorld = check(/theworld/);
+        isSafari = !isChrome && check(/safari/),
+        isSafari2 = isSafari && check(/applewebkit\/4/), // unique to Safari 2
+        isSafari3 = isSafari && check(/version\/3/),
+        isSafari4 = isSafari && check(/version\/4/),
+        isIE = !isOpera && check(/msie/),
+        isIE7 = isIE && (check(/msie 7/) || docMode == 7),
+        isIE8 = isIE && (check(/msie 8/) && docMode != 7),
+        isIE6 = isIE && !isIE7 && !isIE8,
+        isGecko = !isWebKit && check(/gecko/),
+        isGecko2 = isGecko && check(/rv:1\.8/),
+        isGecko3 = isGecko && check(/rv:1\.9/),
+        isBorderBox = isIE && !isStrict,
+        isWindows = check(/windows|win32/),
+        isMac = check(/macintosh|mac os x/),
+        isAir = check(/adobeair/),
+        isLinux = check(/linux/),
+        isSecure = /^https/i.test(window.location.protocol);
+		EasyJs.apply(EasyJs,{
+			isFirefox:isFirefox,
+			isStrict:isStrict,
+			isOpera:isOpera,
+			isChrome:isChrome,
+        	isWebKit:isWebKit,
+        	isSafari:isSafari,
+        	isSafari2 : isSafari2, // unique to Safari 2
+        	isSafari3 : isSafari3,
+        	isSafari4 : isSafari4,
+        	isIE : isIE,
+        	isIE7 :isIE7,
+        	isIE8 : isIE8,
+        	isIE6 : isIE6,
+        	isGecko : isGecko,
+			isGecko2 : isGecko2,
+			isGecko3 : isGecko3,
+			isBorderBox : isBorderBox,
+			isWindows : isWindows,
+			isMac : isMac,
+			isAir : isAir,
+			isLinux : isLinux,
+			isSecure : isSecure,
+			isTheWorld:isTheWorld,
+			extend : function(){
+				var io = function(o){
+					for(var m in o){
+						this[m] = o[m];
+					}
+				};
+				var oc = Object.prototype.constructor;	
+				return function(sb, sp, overrides){
+					if(typeof sp == 'object'){
+						overrides = sp;
+						sp = sb;
+						sb = overrides.constructor != oc ? overrides.constructor : function(){sp.apply(this, arguments);};
+					}
+					var F = function(){},
+						sbp,
+						spp = sp.prototype;
+	
+					F.prototype = spp;
+					sbp = sb.prototype = new F();
+					sbp.constructor=sb;
+					sb.superclass=spp;
+					if(spp.constructor == oc){
+						spp.constructor=sp;
+					}
+					sb.override = function(o){
+						EasyJs.override(sb, o);
+					};
+					sbp.superclass = sbp.supr = (function(){
+						return spp;
+					});
+					sbp.override = io;
+					EasyJs.override(sb, overrides);
+					sb.extend = function(o){return EasyJs.extend(sb, o);};
+					return sb;
+				};
+		}(),
+		override : function(origclass, overrides){
+            if(overrides){
+                var p = origclass.prototype;
+                EasyJs.apply(p, overrides);
+                if(EasyJs.isIE && overrides.hasOwnProperty('toString')){
+                    p.toString = overrides.toString;
+                }
+            }
+        },
+        getBody : function(){
+            return EasyJs.get(DOC.body || DOC.documentElement);
+        },
+		isEmpty : function(v, allowBlank){
+            return v === null || v === undefined || ((Ext.isArray(v) && !v.length)) || (!allowBlank ? v === '' : false);
+        },
+		isArray : function(v){
+            return toString.apply(v) === '[object Array]';
+        },
+		isDate : function(v){
+            return toString.apply(v) === '[object Date]';
+        },
+		isObject : function(v){
+            return !!v && Object.prototype.toString.call(v) === '[object Object]';
+        },
+		isPrimitive : function(v){
+            return Ext.isString(v) || Ext.isNumber(v) || Ext.isBoolean(v);
+        },
+		isFunction : function(v){
+            return toString.apply(v) === '[object Function]';
+        },
+		isNumber : function(v){  //isFinite 指明数字是否是有限的
+            return typeof v === 'number' && isFinite(v);
+        },
+		isString : function(v){
+            return typeof v === 'string';
+        },
+		isBoolean : function(v){
+            return typeof v === 'boolean';
+        },
+		isDefined : function(v){
+            return typeof v !== 'undefined';
+        }
+	});	
+})();
+EasyJs.Component=function(config){
+	config=config||{};
+	if((typeof config)!="object"){
+		return;
+	}
+	EasyJs.apply(this, config);
+	EasyJs.Component.superclass.constructor.call(this);	
+};
+EasyJs.extend(EasyJs.Component,Object,{});
+</script>
+<script>
+	
+	/////////////////////////////////////
+	/**
+	 * 精灵对象类似flash中的精灵
+	 * 所有的动画元素都必须继承自此对象，继承之后自动拥有move、speed等方法和属性
+	 * 每个动画元素都必须拥有一个自己的特殊的draw()方法的实现，这个方法用来在渲染每一帧的时候指定自己如何实现在canvas帧画布上
+	 * 注意这里的“帧画布”不是指原生的canvas元素，而是指下面定义的一个Canvas对象
+	 * ，此对象的意义就是一个帧，他负责把需要在这一帧上呈现的图像画到canvas上，然后每一帧开始的时候清除上次画得，类似flash中的帧的概念
+	 */
+	//创建精灵
+	EasyJs.Sprite=function(config){
+		EasyJs.Sprite.superclass.constructor.call(this,config);
+	}
+	EasyJs.extend(EasyJs.Sprite,EasyJs.Component,{
+		speed:{x:1,y:1},
+		/**
+		 * 每个精灵都有自己的draw实现
+		 */
+		draw:function(){},
+		/**
+		 * 精灵移动
+		 */
+		move:function(datatime){
+			this.x+=((this.speed.x/40)*datatime);
+			this.y+=((this.speed.y/40)*datatime);
+			if(this.childs!=null&&this.childs.length>0){
+				for(var i=0;i<this.childs.length;i++){
+					this.childs[i].speed=this.speed;
+					this.childs[i].move();
+				}
+			}
+		},
+		/**
+		 * 添加一个子精灵
+		 */
+		appendChild:function(childSprite){
+			if(this.childs==null){
+				this.childs=[];
+			}
+			this.childs.push(childSprite);
+		},
+		/**
+		 * 渲染子精灵
+		 */
+		drawChilds:function(){
+			if(this.childs!=null&&this.childs.length>0){
+				for(var i=0;i<this.childs.length;i++){
+					this.childs[i].draw();
+				}
+			}
+		},
+		/**
+		 * 生命周期（生成日期和存活时间）,单位是毫秒
+		 */
+		lifeCycle:{productionTime:(new Date()).getTime(),survivalTime:10000},
+		/**
+		 * 消失
+		 */
+		disappear:function(){
+			this.death=true;
+			//由继承子类改写
+		},
+		/**
+		 * 标注是否死亡，如死亡将被回收
+		 */
+		death:false
+		
+		
+	});
+	/**
+	 * 帧对象，没隔一段时间重画自己一次，累世flash中的帧概念
+	 * 原理就是每到一定时间就清除canvas，然后调用当前帧里的所有的动画元素的draw()方法，
+	 * 将所有的动画元素按照新的配置重画
+	 * 从而生成动画，之后程序无需关心元素的重画，只需要调整元素属性即可，
+	 * 这个对象会自动管理元素的渲染
+	 */
+	EasyJs.Canvas=function(config){
+		EasyJs.Canvas.superclass.constructor.call(this,config);
+	}
+	EasyJs.extend(EasyJs.Canvas,EasyJs.Component,{
+		/**
+		 * 刷新时间
+		 */
+		FPS:40,
+		/**
+		 * 刷新器
+		 */
+		interval:null,
+		/**
+		 * 精灵数组
+		 */
+		sprites:[],
+		/**
+		 * 上一次刷新时间，毫秒
+		 */
+		lastFrame:(new Date()).getTime(),
+		/**
+		 * 开始画图
+		 */
+		begin:function(factory){
+			this.interval=setInterval((function(param){
+				return function(){param.render(factory);}
+			})(this),this.FPS);
+		},
+		/**
+		 * 渲染   factory调用的精灵工厂
+		 */
+		render:function(factory){
+			this.ctx.clearRect(-800,-800,1600,1600);
+			/**
+			 * 当期帧时间（毫秒）
+			 */
+			var thisFrame = new Date().getTime();
+			/**
+			 *和上一帧的时间间隔 （毫秒）
+			 */
+			var dt = (thisFrame - this.lastFrame);
+			this.lastFrame=thisFrame;
+			/**
+			 * 先让精灵工厂生成精灵
+			 */
+			factory.output(this,5,1000);
+			for (var i in this.sprites  ) {
+			  if(typeof(this.sprites[i])=="function"){
+			  		continue;
+			  }
+			  this.sprites[i].draw();
+			  this.sprites[i].move(dt);
+			};
+		},
+		stop:function(){
+			clearInterval(this.interval);
+		},
+		addSprite:function(name,sprite){
+			this.sprites[name]=sprite;
+		}
+	});
+	
+	/**
+	 * 雪花
+	 * @param ctx canvas的实例
+	 * @param x x坐标
+	 * @param y y坐标
+	 * @param radius 半径
+	 */
+	EasyJs.Snowflake=function(config){
+		EasyJs.Snowflake.superclass.constructor.call(this,config);
+	}
+	EasyJs.extend(EasyJs.Snowflake,EasyJs.Sprite,{
+		draw:function(){
+			var ctx=this.ctx;
+			ctx.beginPath(); 
+			for (var i=0; i < 6; i++) {
+				var hd=i*(Math.PI*2/6)
+				ctx.strokeStyle=this.strokeStyle;
+				ctx.moveTo(this.x,this.y);
+			  	ctx.lineTo(this.x+Math.cos(hd)*this.radius,this.y+Math.sin(hd)*this.radius); 
+
+			};
+			ctx.stroke();
+			this.drawChilds();
+		},
+		strokeStyle:"#000",
+		lineWidth:"1",
+		disappear:function(){
+			EasyJs.Snowflake.superclass.disappear.call(this); 
+			this.strokeStyle="#CCCCCC";
+			this.lineWidth="0.5";
+		}
+	});
+	/**
+	 * 雪花的生产工厂，设置雪花的大小，速度，初始位置等
+	 */
+	EasyJs.SnowflakeFactory=function(config){
+		EasyJs.SnowflakeFactory.superclass.constructor.call(this,config);
+	}
+	EasyJs.extend(EasyJs.SnowflakeFactory,EasyJs.Component,{
+		spriteNameFactor:1,
+		/**
+		 * 上一次精灵生成的时间 lastTime
+		 * 输出精灵  canvas（渲染面板） max 每次生成的数量  time多久生成一次
+		 */
+		output:function(canvas,max,time){
+			var thisTime = new Date().getTime();
+			if(this.lastTime==null){
+				this.lastTime=0;
+			}
+			if((thisTime-this.lastTime)>(time-1)){			
+				this.lastTime=thisTime;
+				if(max==null){
+					max=10;
+				}
+				this.recover(canvas,800,800);
+				var factor={x:800,y:-10};
+				for(var i=0;i<max;i++){
+					var location=this.initSpriteLocation(factor);
+					var life=this.initLife();
+					var snowflake=new EasyJs.Snowflake({ctx:canvas.ctx,x:location.x,y:location.y,radius:this.initRadius(),lifeCycle:life});
+					snowflake.speed={x:Math.random()*2,y:Math.random(10)*2};
+					canvas.addSprite(this.spriteNameFactor+"sprite+"+i,snowflake);
+				}			
+				this.spriteNameFactor++;
+			}
+		},
+		initSpriteLocation:function(factor){
+			factor.x=Math.floor(Math.random()*factor.x);
+			factor.y=Math.floor(Math.random()*factor.y);
+			return factor;
+		},
+		//初始雪花大小
+		initRadius:function(){
+			var r=Math.random()*10;
+			if(r<2){
+				r=2;
+			}
+			return r;
+		},
+		//初始雪花生命周期
+		initLife:function(){
+			var left={};
+			left.productionTime=(new Date()).getTime();
+			left.survivalTime=Math.floor(Math.random()*5000)+5000;
+			return left;
+		},
+		/**
+		 * 雪花回收
+		 */
+		recover:function(canvas,xMax,yMax){
+			var sprites=canvas.sprites;
+			if(sprites.length>50){
+				//alert(5);
+			}
+			for(var i in sprites){
+				var sprite=sprites[i];
+				if(typeof(sprites[i])=="function"){
+					continue;
+				}
+				if(sprite.x>xMax&&sprite.y>yMax){
+					sprites[i].death=true;
+				}
+				if(sprite.death==true){
+					delete sprites[i];
+					continue;
+				}
+				var currentTime=(new Date()).getTime();
+				if(currentTime-sprite.lifeCycle.productionTime>sprite.lifeCycle.survivalTime){
+					sprites[i].disappear();
+				}
+			}	
+
+		}
+	});
+	
+	var c=document.getElementById("myCanvas");
+	var context=c.getContext("2d");
+	var can=new EasyJs.Canvas({ctx:context,FPS:40});
+	var fc=new EasyJs.SnowflakeFactory({canvasObj:c});
+	can.begin(fc);
+</script>
+</body>
+</html>

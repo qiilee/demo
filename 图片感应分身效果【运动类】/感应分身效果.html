@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>【图片感应·分身效果】-Taih</title>
+<style type="text/css">
+	*{ padding:0; margin:0; list-style:none; font-style:normal;}
+	body{ background:#23272a; height:400px; position:relative;}
+	ul{ position:relative; top:40%; left:50%; width:920px; height:390px; margin:0 0 0 -460px;}
+	ul li{ position:absolute; top:0; left:240px;}
+	.li1{ z-index:1;}
+	.li2{ z-index:2;}
+	.li3{ z-index:3;}
+	.li4{ z-index:5;}
+	.li5{ z-index:4;}
+	a img{ border:0;}
+	h3{ width:300px; height:40px; line-height:40px; font-size:14px; color:#FFF; font-family:"微软雅黑"; margin:0 auto;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var aUl=document.getElementById('box');
+		var aLI=aUl.getElementsByTagName('li');
+		var i=0;
+		aUl.onmouseover=function()
+		{
+			stratMove(aLI[0],40,-90)
+			stratMove(aLI[1],140,-50)
+			stratMove(aLI[3],340,50)
+			stratMove(aLI[4],440,90)
+		}
+		aUl.onmouseout=function()
+		{
+			stratMove(aLI[0],240,0)
+			stratMove(aLI[1],240,0)
+			stratMove(aLI[3],240,0)
+			stratMove(aLI[4],240,0)
+		}
+	};
+	function stratMove(obj,itargrtX,itargrtY)
+	{
+		
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){doMove(obj,itargrtX,itargrtY);},30);
+	}
+	function doMove(obj,itargrtX,itargrtY)
+	{
+		
+		var iSpeedX=(itargrtX-obj.offsetLeft)/5;
+		var iSpeedY=(itargrtY-obj.offsetTop)/5;
+		iSpeedY=iSpeedY>0?Math.ceil(iSpeedY):Math.floor(iSpeedY);
+		iSpeedX=iSpeedX>0?Math.ceil(iSpeedX):Math.floor(iSpeedX);
+		if(obj.offsetLeft==itargrtX && obj.offsetTop==itargrtY)
+		{
+			clearInterval(obj.timer);
+		}
+		else
+		{
+			obj.style.left=iSpeedX+obj.offsetLeft+"px";
+			obj.style.top=iSpeedY+obj.offsetTop+"px";
+		}
+	}
+	function getStyle(obj,attr)
+	{
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
+	}
+</script>
+</head>
+
+<body>
+	<h3>鼠标移到图片上 试试  O(∩_∩)O~</h3>
+	<div style="width:400px; position:absolute; right:0; font-size:24px; color:red; font-family:'微软雅黑';">web前端开发交流群：149044724</div>
+	<ul id="box">
+		<li class="li1"><a href="http://www.imtaih.com" target="_blank"><img src="img/1.png" /></a></li>
+		<li class="li2"><a href="http://www.imtaih.com" target="_blank"><img src="img/2.png" /></a></li>
+		<li class="li3"><a href="http://www.imtaih.com" target="_blank"><img src="img/3.png" /></a></li>
+		<li class="li5"><a href="http://www.imtaih.com" target="_blank"><img src="img/5.png" /></a></li>
+        <li class="li4"><a href="http://www.imtaih.com" target="_blank"><img src="img/4.png" /></a></li>
+	</ul>
+</body>
+</html>

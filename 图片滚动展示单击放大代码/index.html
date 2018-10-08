@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片滚动展示单击放大代码（prettyPhoto）</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body>
+
+<!--图片滚动-->
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="js/script.js"></script>
+
+<div class="infopic">
+	<div class="picbox">
+		<ul class="gallery piclist">
+			<li><a href="images/pic_1.jpg" rel="prettyPhoto[]"><img src="images/pic_1.jpg" /></a></li>
+			<li><a href="images/pic_2.jpg" rel="prettyPhoto[]"><img src="images/pic_2.jpg" /></a></li>
+			<li><a href="images/pic_3.jpg" rel="prettyPhoto[]"><img src="images/pic_3.jpg" /></a></li>
+			<li><a href="images/pic_4.png" rel="prettyPhoto[]"><img src="images/pic_4.png" /></a></li>
+			<li><a href="images/pic_5.jpg" rel="prettyPhoto[]"><img src="images/pic_5.jpg" /></a></li>
+			<li><a href="images/pic_6.png" rel="prettyPhoto[]"><img src="images/pic_6.png" /></a></li>
+			<li><a href="images/pic_7.jpg" rel="prettyPhoto[]"><img src="images/pic_7.jpg" /></a></li>
+			<li><a href="images/pic_8.jpg" rel="prettyPhoto[]"><img src="images/pic_8.jpg" /></a></li>
+			<li><a href="images/pic_9.jpg" rel="prettyPhoto[]"><img src="images/pic_9.jpg" /></a></li>
+		</ul>
+	</div>
+	<div class="pic_prev"></div>
+	<div class="pic_next"></div>
+</div><!--infopic end-->
+
+
+
+<!-- 弹出层调用 -->
+
+<link type="text/css" href="css/prettyPhoto.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){	
+	$("area[rel^='prettyPhoto']").prettyPhoto();
+	$(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'fast',slideshow:10000, hideflash: true});
+})
+</script>
+
+</body>
+</html>

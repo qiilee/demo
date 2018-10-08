@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>苹果导航菜单效果-Taih</title>
+<style>
+	*{ padding:0; margin:0; list-style:none;}
+	#box{ width:800px; height:300px;position:absolute; bottom:200px; left:400px;}
+	#box ul{ margin:0 auto; width:500px;}
+	#box li{ float:left; width:64px;}
+	#box li img{ border:0; width:100%;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		
+		var oInp=document.getElementsByTagName('input');
+		var oBox=document.getElementById('box');
+		var oLi=oBox.getElementsByTagName('li');
+		
+		oBox.onmousemove=function(ev)
+		{
+			oEvent=ev||event;
+			var i=0;
+			for(i=0;i<oLi.length;i++)
+			{
+				var disX=oLi[i].offsetLeft+oBox.offsetLeft+oLi[i].offsetWidth/2;
+				var disY=oLi[i].offsetTop+oBox.offsetTop+oLi[i].offsetHeight/2;
+				
+				var a=disX-oEvent.clientX;
+				var b=disY-oEvent.clientY;
+				
+				var c=Math.sqrt(a*a+b*b);
+				var scale=1-c/150;//感应指数
+				if(scale<0.5)
+				{
+					scale=0.5;
+				}
+				oLi[i].style.width=128*scale+"px";
+				oInp[i].value=scale.toFixed(2);
+				//document.title=oLi[0].offsetWidth+","+oLi[0].offsetHeight;
+			}
+		}
+	};
+</script>
+</head>
+
+<body><div id="box">
+		<div style="display:none;">
+			<input type="text" />
+			<input type="text" />
+			<input type="text" />
+			<input type="text" />
+			<input type="text" />
+		</div>	
+		<ul>
+			<li><a href="http://www.imtaih.com" target="_blank"><img src="images/1.png" /></a></li>
+			<li><a href="http://www.imtaih.com" target="_blank"><img src="images/2.png" /></a></li>
+			<li><a href="http://www.imtaih.com" target="_blank"><img src="images/3.png" /></a></li>
+			<li><a href="http://www.imtaih.com" target="_blank"><img src="images/4.png" /></a></li>
+			<li><a href="http://www.imtaih.com" target="_blank"><img src="images/5.png" /></a></li>
+		</ul>
+	</div>
+	<div style="width:400px; position:absolute; bottom:0; left:500px; font-size:24px; color:red; font-family:'微软雅黑';"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端开发交流群：149044724</div>
+</body>
+</html>
