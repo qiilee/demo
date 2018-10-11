@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+      function getOs() {
+
+          var OsObject = "";
+		  if (navigator.userAgent.indexOf("TheWorld") > 0) {
+		  
+              return "世界之窗";
+          }
+
+          if (navigator.userAgent.indexOf("MSIE 8.0") > 0) {
+		  
+              return "IE 8.0";
+          }
+		  if (navigator.userAgent.indexOf("MSIE 7.0") > 0) {
+
+              return "IE 7.0";
+          }
+		  if (navigator.userAgent.indexOf("MSIE 6.0") > 0) {
+
+              return "IE 6.0";
+          }
+
+          if (isFirefox = navigator.userAgent.indexOf("Firefox") > 0) {
+
+              return "Firefox";
+          }
+
+		  if (isChrome = navigator.userAgent.indexOf("Chrome") > 0) {
+
+              return "Chrome";
+          }
+		  
+          if (isSafari = navigator.userAgent.indexOf("Safari") > 0) {
+
+			  alert(navigator.userAgent);
+              return "Safari";
+          }
+
+          if (isCamino = navigator.userAgent.indexOf("Camino") > 0) {
+
+              return "Camino";
+
+          }
+
+          if (isMozilla = navigator.userAgent.indexOf("Gecko/") > 0) {
+
+              return "Gecko";
+				Opera
+          }
+		  
+		  if (isOpera = navigator.userAgent.indexOf("Presto/") > 0) {
+
+              return "Opera";
+          }
+		  
+		  
+		  else
+		  {
+		  	alert("木有啊");
+			return "未添加类型"
+		  }
+
+      }
+	window.onload=function()
+	{
+		 alert("您的浏览器类型为:" + getOs());
+	}
+     
+
+     /* switch (getOs()) {
+          case "Firefox":
+
+              document.write("<link rel='stylesheet' type='text/css' href='ff.css' />");
+
+              break;
+
+          case "Safari":
+
+              document.write("<link rel='stylesheet' type='text/css' href='sa.css' />");
+
+              break;
+
+          case "Camino":
+
+              document.write("<link rel='stylesheet' type='text/css' href='ca.css' />");
+
+              break;
+
+          case "Gecko":
+
+              document.write("<link rel='stylesheet' type='text/css' href='ge.css' />");
+
+              break;
+
+          default:
+
+              document.write("<link rel='stylesheet' type='text/css' href='ie.css' />");
+
+              break;
+
+      }
+*/
+</script>
+</head>
+<body>
+</body>
+</html>

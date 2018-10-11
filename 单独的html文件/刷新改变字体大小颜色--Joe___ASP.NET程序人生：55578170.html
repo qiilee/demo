@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('a.tagadelic').each(function(){
+      $(this).addClass('level'+Math.round(Math.random()*10));//随机添加class，level1-10
+  });
+});
+</script>
+
+<style type="text/css">
+.tagadelic {margin-right: 1em;text-align: justify;-moz-transition: all 0.5s linear 0s;-o-transition-delay: 0;-o-transition-duration: 0.5s;-o-transition-property: all;-o-transition-timing-function: cubic-bezier(0, 0, 1, 1);}
+a.tagadelic:hover {-moz-box-shadow: 0 0 5px #CCCCCC;-moz-transform: rotate(20deg) scale(1.5);background: none repeat scroll 0 0 #FFFFFF;position: relative;z-index: 99;}
+.level1 {font-size: 1em;}
+.level2 {color: #FEAA0A;font-size: 1.1em;}
+.level3 {color: #006666;font-size: 1.2em;}
+.level4 {color: #333366;font-size: 1.3em;}
+.level5 {color: #5D6AB8;font-size: 1.4em;}
+.level6 {color: #4F790A;font-size: 1.5em;}
+.level7 {color: #F80F78;font-size: 1.6em;}
+.level8 {color: #FF9900;font-size: 1.7em;}
+.level9 {color: #3F97E1;font-size: 1.8em;}
+.level10 {color: #B5D439;font-size: 1.9em;}
+</style>
+
+</head>
+
+
+<body>
+
+<div>
+<a class="tagadelic" href="#">地下城与勇士</a>
+<a class="tagadelic" href="#">大明龙权</a>
+<a class="tagadelic" href="#">大海战2</a>
+<a class="tagadelic" href="#">大航海时代</a>
+<a class="tagadelic" href="#">大话水浒</a>
+<a class="tagadelic" href="#">大话西游2</a>
+<a class="tagadelic" href="#">大话西游外传</a>
+<a class="tagadelic" href="#">大话西游3</a>
+<a class="tagadelic" href="#">大唐豪侠</a>
+<a class="tagadelic" href="#">大唐豪侠外传</a>
+<a class="tagadelic" href="#">刀剑英雄</a>
+<a class="tagadelic" href="#">刀剑英雄2</a>
+<a class="tagadelic" href="#">东游记</a>
+<a class="tagadelic" href="#">大唐无双</a>
+<a class="tagadelic" href="#">大话仙剑</a>
+<a class="tagadelic" href="#">弹头奇兵</a>
+<a class="tagadelic" href="#">独孤九剑</a>
+</div>
+
+</body>
+</html>

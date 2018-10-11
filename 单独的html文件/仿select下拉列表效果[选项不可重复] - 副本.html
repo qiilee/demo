@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>仿select下拉列表效果[选项不可重复]-web前端菜鸟团</title>
+<style type="text/css">
+	*{ padding:0; margin:0;}
+	
+	.theSel{ position:relative; font-size:12px;}
+	.theSel .TheShowBox{ width:150px; height:30px; line-height:30px; color:#333; text-align:center; border:1px solid #CCC; cursor:pointer; float:left;}
+	.theSel ul{ list-style:none; width:150px; border:1px solid #999; position:absolute; top:30px; left:0; z-index:10;}
+	.theSel ul li{ height:24px; line-height:24px; text-align:center; background:#EEE; border-bottom:1px solid #CCC; cursor:pointer;}
+	.theSel ul .tit{ background:#75A54B; color:#FFF; cursor:auto;}
+	.nullBtn{ width:40px; height:30px; line-height:30px; text-align:center; cursor:pointer; float:left;}
+	
+	.clear{ clear:both; height:1px; line-height:1px; overflow:hidden;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var aTheSel=getClass(document,'theSel');//每一个select模拟外边的框
+		for(var i=0;i<aTheSel.length;i++)
+		{
+			selectFn(aTheSel[i]);
+		}
+	}
+	
+	function selectFn(obj)
+	{
+		var oParBox=obj.parentNode;
+		var TheShowBox=getClass(obj,'TheShowBox')[0];//请选择
+		var TheUlBox=obj.getElementsByTagName('ul')[0];
+		var aTheShowBox=getClass(oParBox,'TheShowBox');
+		var theInp=getClass(obj,'theInp')[0];
+		var oTur=false;//判断是否点击过
+		var clasthis=null;//存取上次点击的class名称
+		
+		//添加清空按钮
+		var oNullBtn=getClass(obj,'nullBtn')[0];
+		
+		//显示下拉项
+		TheShowBox.onclick=function(ev)
+		{
+			var oEvent=ev||event;
+			TheUlBox.style.display='block';
+			
+			var aLi=TheUlBox.getElementsByTagName('li');
+			for(var i=0;i<aLi.length;i++)
+			{
+				aLi[i].onclick=function()
+				{
+					var re=new RegExp('\\btit\\b');
+					if(!re.test(this.className))
+					{
+						//获取隐藏域值
+						theInp.value=TheShowBox.innerHTML=this.innerHTML;
+						//var clasthis=this.className;
+						
+						switch(this.className)
+						{
+							case 'dy' :
+							PdFn('dy');
+							break;
+							
+							case 'time' :
+							PdFn('time');
+							break;
+							
+							case 'sd' :
+							PdFn('sd');
+							break;
+							
+							case 'source' :
+							PdFn('source');
+							break;
+							
+							case 'originality' :
+							PdFn('originality');
+							break;
+							
+							case 'nr' :
+							PdFn('nr');
+							break;
+						}
+
+						TheUlBox.style.display='none';
+						
+					}
+					
+					
+					
+					oTur=true;
+					clasthis=this.className;
+					
+					oNullBtn.onclick=function()
+					{
+						theInp.value='';
+						TheShowBox.innerHTML='- 请选择 -';
+						
+						for(var i=0;i<getClass(oParBox,clasthis).length;i++){
+							getClass(oParBox,clasthis)[i].style.display='block';
+						}
+					}
+					
+					
+					function PdFn(iClass1)
+					{
+						var aDy=getClass(oParBox,iClass1);
+						if(oTur){
+							for(var i=0;i<getClass(oParBox,clasthis).length;i++){
+								getClass(oParBox,clasthis)[i].style.display='block';
+							}
+						}
+						for(var i=0;i<aDy.length;i++)
+						{
+							aDy[i].style.display='none';
+						}	
+						var aTheDy=getClass(TheUlBox,iClass1);
+						for(var i=0;i<aTheDy.length;i++)
+						{
+							aTheDy[i].style.display='block';
+						}
+					}
+				}
+				
+			}
+			oEvent.cancelBubble=true;
+			document.onclick=function()
+			{
+				TheUlBox.style.display='none';
+			}
+		}
+	}
+	function getClass(oPar,iClass)
+	{
+		var arr=[];
+		var aobj=oPar.getElementsByTagName('*');
+		var re=new RegExp('\\b'+iClass+'\\b','i');
+		for(var i=0;i<aobj.length;i++)
+		{
+			if(re.test(aobj[i].className))
+			{
+				arr.push(aobj[i]);
+			}
+		}
+		return arr;
+	}
+	
+	Array.prototype.indexOf=function(val)
+	{
+		for(var i=0;i<this.length;i++)
+		{
+			if(this[i]==val)return i;
+		}
+		return -1;
+	}
+	
+	Array.prototype.remove=function(val)
+	{
+		var index=this.indexOf(val);
+		if(index>-1)
+		{
+			this.splice(index,1);
+		}
+	}
+</script>
+</head>
+
+<body>
+	<div class="selectBox">
+		<div class="theSel">
+			<input type="hidden" class="theInp" />
+			<div class="TheShowBox">- 请选择 -</div>
+            <div class="nullBtn">清空</div>
+            <div class="clear"></div>
+			<ul style="display:none;">
+				<li class="tit dy">地域</li>
+				<li class="dy">省</li>
+				<li class="dy">市</li>
+				<li class="tit time">时间</li>
+				<li class="time">月</li>
+				<li class="time">周</li>
+				<li class="time">天</li>
+				<li class="tit sd">时段</li>
+				<li class="sd">小时</li>
+				<li class="tit source">来源</li>
+				<li class="source">媒体</li>
+				<li class="source">频道</li>
+				<li class="source">版位</li>
+				<li class="source">关键词分组</li>
+				<li class="source">关键词</li>
+				<li class="tit originality">创意</li>
+				<li class="originality">创意</li>
+				<li class="tit nr">网站内容</li>
+				<li class="nr">整站</li>
+				<li class="nr">监测点</li>
+			</ul>
+		</div>
+		<div class="theSel">
+			<input type="hidden" class="theInp" />
+			<div class="TheShowBox">- 请选择 -</div>
+            <div class="nullBtn">清空</div>
+            <div class="clear"></div>
+			<ul style="display:none;">
+				<li class="tit dy">地域</li>
+				<li class="dy">省</li>
+				<li class="dy">市</li>
+				<li class="tit time">时间</li>
+				<li class="time">月</li>
+				<li class="time">周</li>
+				<li class="time">天</li>
+				<li class="tit sd">时段</li>
+				<li class="sd">小时</li>
+				<li class="tit source">来源</li>
+				<li class="source">媒体</li>
+				<li class="source">频道</li>
+				<li class="source">版位</li>
+				<li class="source">关键词分组</li>
+				<li class="source">关键词</li>
+				<li class="tit originality">创意</li>
+				<li class="originality">创意</li>
+				<li class="tit nr">网站内容</li>
+				<li class="nr">整站</li>
+				<li class="nr">监测点</li>
+			</ul>
+		</div>
+		<div class="theSel">
+			<input type="hidden" class="theInp" />
+			<div class="TheShowBox">- 请选择 -</div>
+            <div class="nullBtn">清空</div>
+            <div class="clear"></div>
+			<ul style="display:none;">
+				<li class="tit dy">地域</li>
+				<li class="dy">省</li>
+				<li class="dy">市</li>
+				<li class="tit time">时间</li>
+				<li class="time">月</li>
+				<li class="time">周</li>
+				<li class="time">天</li>
+				<li class="tit sd">时段</li>
+				<li class="sd">小时</li>
+				<li class="tit source">来源</li>
+				<li class="source">媒体</li>
+				<li class="source">频道</li>
+				<li class="source">版位</li>
+				<li class="source">关键词分组</li>
+				<li class="source">关键词</li>
+				<li class="tit originality">创意</li>
+				<li class="originality">创意</li>
+				<li class="tit nr">网站内容</li>
+				<li class="nr">整站</li>
+				<li class="nr">监测点</li>
+			</ul>
+		</div>
+	</div>
+	<a href="http://www.owebbird.com" title="web前端-菜鸟团">web前端-菜鸟团</a>
+</body>
+</html>

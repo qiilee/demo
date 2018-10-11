@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分享到-效果</title>
+<style type="text/css">
+	*{ padding:0; margin:0; list-style:none;}
+	html{overflow-x:hidden}
+	body{height:2000px;}
+	.main{ height:2000px;}
+	#share{ width:198px; height:260px; background:#CCCCCC; border:1px solid black; position:absolute; right:-200px; top:0;}
+	#btn{ cursor:pointer; width:20px; height:80px; background:#E96377; color:#660000; border:1px solid red; position:absolute; left:-20px; top:60px; padding-top:20px;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+	    var oBox=document.getElementById('share');//分享到盒子
+		var oScrTop=document.documentElement.scrollTop||document.body.scrollTop;
+		var oCliHei=document.documentElement.clientHeight;
+		oBox.style.top=(oScrTop+oCliHei-parseInt(getStyle(oBox,'height')))/2+"px"; //定位居中
+		var oBtn=document.getElementById('btn');//分享到按钮
+		
+		oBox.onmouseover=function()
+		{
+			stratMove(0);
+		}
+		oBox.onmouseout=function()
+		{
+			stratMove(-200);
+		}
+	}
+	
+	window.onscroll=function()
+	{
+		var oBox=document.getElementById('share');//分享到盒子
+		var oScrTop=document.documentElement.scrollTop||document.body.scrollTop;
+		var oCliHei=document.documentElement.clientHeight;
+		obb=oBox.style.top=oScrTop+(oCliHei-parseInt(getStyle(oBox,'height')))/2+"px";
+	}
+	var timer=null;
+	function stratMove(iTarge)
+	{
+		clearInterval(timer);
+		timer=setInterval(function()
+		{
+			doMove(iTarge);
+		},30);
+	}
+	function doMove(iTarge)
+	{
+		var oBox=document.getElementById('share');
+		var oBjL=parseInt(getStyle(oBox,'right'));
+		var iSpeed=0;
+		if(oBjL<iTarge)
+		{
+			iSpeed=10;
+		}
+		else
+		{
+			iSpeed=-10;
+		}
+		if(oBjL==iTarge)
+		{
+			clearInterval(timer);
+		}
+		else
+		{
+			oBox.style.right=oBjL+iSpeed+"px";
+		}
+	}
+	
+	function getStyle(obj,attr)
+	{
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
+	}
+</script>
+</head>
+
+<body>
+	<div id="share">
+		<div id="btn">分享到</div>
+		<p>
+			<a href="http://www.imtaih.com" target="_blank">web前端开发</a>
+			<br />
+			前端开发交流群：<span style="color:#FF0000; font-weight:bold;">149044724</span>
+		</p>
+	</div>
+	<div class="main"></div>
+</body>
+</html>

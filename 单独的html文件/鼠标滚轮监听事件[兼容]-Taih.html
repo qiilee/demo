@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<title>鼠标监听事件</title>
+	<script type="text/javascript">
+		window.onload=function()
+		{
+			var oBody=document.getElementsByTagName('body')[0];
+			mouseScroll(oBody,[/*向下滚动*/function (){alert('a');},function (){alert('b');}]);
+		};
+		
+		function mouseScroll()
+		{
+			var obj=arguments[0];
+			var funList=arguments[1];
+			function fun1 (ev) {
+			  var oEvent=ev||event;
+			  var down=false;
+			  if(oEvent.wheelDelta){down=oEvent.wheelDelta<0?true:false;}else{down=oEvent.detail<0?false:true;}
+			  if(down){funList[0]();}else{funList[1]();}
+			  if(oEvent.preventDefault){oEvent.preventDefault();}
+			  return false;
+			}
+			if(obj.addEventListener){obj.addEventListener("DOMMouseScroll",fun1,false);}
+			obj.onmousewheel=fun1;
+		}
+		
+	</script>
+</head>
+
+<body style="height: 1000px;">
+	
+</body>
+</html>

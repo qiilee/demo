@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Selects</title>
+<style type="text/css">
+*{font-size:14px;}
+select{height:20px;font-size:12px;}
+</style>    
+</head>
+<body >
+<div style='color:red'>2级联动</div>
+<div id='demo1'></div><br><br><br>
+<div style='color:red'>3级联动</div>
+<div id='demo2'></div><br><br><br>
+<div style='color:red'>4级联动</div>
+<div id='demo3'></div><br><br><br>
+<div style='color:red'>5级联动</div>
+<div id='demo4'></div><br><br><br>
+<script language="javascript">
+var Sys = (function(ua){
+        var s = {};
+        s.IE = ua.match(/msie ([\d.]+)/)?true:false;
+        s.Firefox = ua.match(/firefox\/([\d.]+)/)?true:false;
+        s.Chrome = ua.match(/chrome\/([\d.]+)/)?true:false;
+        s.IE6 = (s.IE&&([/MSIE (\d)\.0/i.exec(navigator.userAgent)][0][1] == 6))?true:false;
+        s.IE7 = (s.IE&&([/MSIE (\d)\.0/i.exec(navigator.userAgent)][0][1] == 7))?true:false;
+        s.IE8 = (s.IE&&([/MSIE (\d)\.0/i.exec(navigator.userAgent)][0][1] == 8))?true:false;
+        return s;
+})(navigator.userAgent.toLowerCase());
+Sys.IE6&&document.execCommand("BackgroundImageCache", false, true); 
+function $(Id){
+        return document.getElementById(Id);
+};
+function $$(p,e){
+        return p.getElementsByTagName(e);
+};
+function addListener(element,e,fn){
+        element.addEventListener?element.addEventListener(e,fn,false):element.attachEvent("on" + e,fn);
+};
+function removeListener(element,e,fn){
+        element.removeEventListener?element.removeEventListener(e,fn,false):element.detachEvent("on" + e,fn);
+};
+var Bind = function(object, fun) {
+        var args = Array.prototype.slice.call(arguments).slice(2);
+        return function() {
+                return fun.apply(object, args);
+        };
+};
+var BindAsEventListener = function(object, fun) {
+        var args = Array.prototype.slice.call(arguments).slice(2);
+        return function(event) {
+                return fun.apply(object, [event || window.event].concat(args));
+        };
+};
+var Extend = function(destination, source){
+        for (var property in source) {
+                destination[property] = source[property];
+        };
+};
+var Class = function(properties){
+        var _class = function(){return (arguments[0] !== null && this.initialize && typeof(this.initialize) == 'function') ? this.initialize.apply(this, arguments) : this;};
+        _class.prototype = properties;
+        return _class;
+};
+
+//=================
+var Selects = new Class({
+    initialize :function(container,data,title){
+        this.container  = container;
+        this.num = title.length;
+        this.Events = new Array(title.length-1);
+        var i,l,select;
+        for(i=0; i<this.num ; i++)
+        {
+            container.innerHTML = container.innerHTML + "　" + title[i];
+            container.appendChild(document.createElement('select'));
+        }
+        select = $$(container,'select')[0];
+        for(i=0,l=data.length;i<l;i++)
+            select.options.add(new Option(data[i].txt,i));    
+        addListener(select,'change',Bind(this,this.Change,select,data,0));
+        this.Change(select,data,0);
+    },
+    Change : function(obj,data,num){
+        if(num == this.num-1)return;        
+        var menu = data[obj.value].menu;
+        select = $$(this.container,'select')[num+1];
+        select.length = 0;        
+        if(!menu)return;
+        if(this.Events[num]!=undefined)removeListener(select,'change',this.Events[num])
+        this.Events[num] = Bind(this,this.Change,select,menu,num+1)
+        addListener(select,'change',this.Events[num]);        
+        for(var i=0,l=menu.length;i<l;i++)
+            select.options.add(new Option(menu[i].txt,i));
+        this.Change(select,menu,num+1);    
+    }
+});
+//=================
+window.onload = function(){
+    var data=[
+	{"txt":"人族","menu":[
+			{"txt":"大法师","menu":[
+				{"txt":"大法技能","menu":[
+					{"txt":"水元素","menu":[
+						{"txt":"召唤物"},{"txt":"穿刺攻击"},{"txt":"很好东西"}
+					]},
+					{"txt":"暴风雪","menu":[{"txt":"魔法攻击"},{"txt":"面积伤害"},{"txt":"很漂亮"},{"txt":"可被打断"}
+					]},
+					{"txt":"辉煌光环"},
+					{"txt":"瞬间移动"}
+				]},
+				{"txt":"英雄说明","menu":[
+					{"txt":"智力英雄"},{"txt":"强大光环"},{"txt":"辅助型"}
+				]}
+			]},
+			{"txt":"山丘之王","menu":[{"txt":"山丘技能","menu":[{"txt":"风暴之锤"},{"txt":"锥地"},{"txt":"锥晕"},{"txt":"天神下凡"}]},{"txt":"英雄说明","menu":[{"txt":"力量英雄"},{"txt":"秒杀能力"},{"txt":"个子很矮"},{"txt":"大技变态"}]}]},
+			{"txt":"圣骑士","menu":[{"txt":"圣骑技能","menu":[{"txt":"光"},{"txt":"无敌"},{"txt":"光环"},{"txt":"复活"}]},{"txt":"英雄说明","menu":[{"txt":"力量英雄"},{"txt":"辅助英雄"},{"txt":"人称奶妈"}]}]},
+			{"txt":"血法师","menu":[{"txt":"血法技能","menu":[{"txt":"火焰"},{"txt":"吸蓝"},{"txt":"虚无"},{"txt":"神鸟凤凰"}]},{"txt":"英雄说明","menu":[{"txt":"智力英雄"},{"txt":"辅助英雄"},{"txt":"长的很帅"}]}]}
+	]},	
+	{"txt":"兽族","menu":[{"txt":"贱圣","menu":[{"txt":"贱圣技能","menu":[{"txt":"疾风步"},{"txt":"影分身"},{"txt":"致命一击"},{"txt":"剑刃风暴"}]},{"txt":"英雄说明","menu":[{"txt":"敏捷英雄"},{"txt":"高攻英雄"},{"txt":"杀人越货"},{"txt":"猥亵无敌"},{"txt":"非常强大"}]}]},{"txt":"先知男","menu":[{"txt":"先知技能","menu":[{"txt":"狼"},{"txt":"日"},{"txt":"闪电链"},{"txt":"地震"}]},{"txt":"英雄说明","menu":[{"txt":"智力英雄"},{"txt":"骚扰英雄"}]}]},{"txt":"牛头人酋长","menu":[{"txt":"牛头技能","menu":[{"txt":"冲击波"},{"txt":"阵地"},{"txt":"耐久光环"},{"txt":"复活"}]},{"txt":"英雄说明","menu":[{"txt":"力量英雄"},{"txt":"魔法强大"},{"txt":"长的威猛"},{"txt":"一个肉盾"}]}]},{"txt":"小YY","menu":[{"txt":"小Y技能","menu":[{"txt":"变动物"},{"txt":"治疗波"},{"txt":"小蛇棒子"},{"txt":"全体无敌"}]},{"txt":"英雄说明","menu":[{"txt":"敏捷英雄"},{"txt":"魔法强大"},{"txt":"辅助英雄"}]}]}]},
+	{"txt":"不死族","menu":[{"txt":"死亡骑士","menu":[{"txt":"亡骑技能","menu":[{txt:"大便一拓"},{txt:"邪恶光环"},{txt:"死亡契约"},{txt:"复活亡灵"}]},{"txt":"英雄说明","menu":[{txt:"骑的是羊"},{txt:"未老先衰"},{txt:"冰霜之哀"},{txt:"啊而塞思"}]}]},{"txt":"巫妖","menu":[{"txt":"巫妖技能","menu":[{txt:"暴冰"},{txt:"冰甲"},{txt:"契约"},{txt:"死亡凋零"}]},{"txt":"英雄说明","menu":[{txt:"穿裙子"},{txt:"全是骨头"},{txt:"不男不女"}]}]},{"txt":"恐惧魔王","menu":[{"txt":"魔王技能"},{"txt":"英雄说明"}]},{"txt":"小强王子","menu":[{"txt":"王子技能"},{"txt":"英雄说明"}]}]}
+	];
+	
+    new Selects($('demo1'),data,["种族","英雄"]);
+    new Selects($('demo2'),data,["种族","英雄","介绍"]);
+    new Selects($('demo3'),data,["种族","英雄","介绍","技能"]);
+    new Selects($('demo4'),data,["种族","英雄","介绍","技能","技能说明"]);
+}
+</script>
+</body>
+</html>

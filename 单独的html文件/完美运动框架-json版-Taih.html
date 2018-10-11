@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+	*{ padding:0; margin: 0px;}
+	#box div{ width:100px; height:100px; background:#CCC; border:1px solid #blue; margin:10px; opacity:1; filter:alpha(opacity:100);}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('box');
+		var aDiv=oBox.getElementsByTagName('div');
+		var i=0;
+		for(i=0;i<aDiv.length;i++)
+		{
+			aDiv[i].onmouseover=function()
+			{
+				stratMove(this,{'width':400,'height':200},function(){stratMove(this,{'opacity':0})});
+			}
+			aDiv[i].onmouseout=function()
+			{
+				stratMove(this,{'width':100,'height':100},function(){stratMove(this,{'opacity':100})});
+			}
+		}
+		
+	};
+	//运动框架
+	function stratMove(obj,json,fn)
+	{
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){doMove(obj,json,fn);},30);
+	}
+	function doMove(obj,json,fn)
+	{
+		var iCur=0;
+		var attr=null;
+		var dope=true;
+		for(attr in json)
+		{
+			if(attr=="opacity")
+			{
+				iCur=parseInt(getStyle(obj,attr)*100);
+			}
+			else
+			{
+				iCur=parseInt(getStyle(obj,attr));
+			}
+			var iSpeed=(json[attr]-iCur)/6;
+			iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+			if(iCur != json[attr])
+			{
+				dope=false;
+			}
+			if(attr=="opacity")
+			{
+				obj.style.opacity=(iCur+iSpeed)/100;
+				obj.style.filter="alpha(opacity:"+(iCur+iSpeed)+")";
+			}
+			else
+			{
+				obj.style[attr]=iCur+iSpeed+"px";
+				document.title=obj.offsetWidth+","+obj.offsetHeight;
+			}
+		}
+		if(dope)
+		{
+			clearInterval(obj.timer);
+			if(fn)
+			{
+				obj.style.background="red";
+				fn.call(obj);
+			}
+		}
+		
+	}
+	//获取计算后样式
+	function getStyle(obj,attr)
+	{
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];;
+	}
+</script>
+<title>无标题文档</title>
+</head>
+
+<body>
+	<div id="box">
+		<div></div>
+		<div></div>
+	</div>
+	<div style="width:400px; position:absolute; bottom:0; left:500px; font-size:24px; color:red; font-family:'微软雅黑';"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端开发交流群：149044724</div>
+</body>
+</html>

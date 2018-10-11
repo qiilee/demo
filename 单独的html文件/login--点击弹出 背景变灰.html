@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>科大二手书交易平台</title>
+<script language="javascript">
+
+function bgDarken(){
+	var bg=document.getElementById("bg");
+	var iWidth = document.documentElement.clientWidth; 
+	var iHeight = document.documentElement.clientHeight; 
+	bg.style.visibility="visible";	
+	bg.style.width=iWidth+"px";
+	bg.style.height=Math.max(document.body.clientHeight, iHeight)+"px";
+};
+
+function winShow(){
+	bgDarken();
+	var win=document.getElementById("loginwin");
+	var iWidth = document.documentElement.clientWidth; 
+	var iHeight = document.documentElement.clientHeight; 
+		
+	var h=win.offsetHeight;//var h=win.style.height;为什么这样不行呢？
+	var w=win.offsetWidth;
+	win.style.visibility="visible";
+	win.style.top=(iHeight-h)/2+"px";
+	win.style.left=(iWidth-w)/2+"px";	
+};
+
+function winClose(){
+	var win=document.getElementById("loginwin");
+	win.style.visibility="hidden";	
+	var bg=document.getElementById("bg");
+	bg.style.visibility="hidden";
+
+}	
+</script>
+
+<style>
+/*变暗背景*/
+#bg {
+	position:absolute;
+	left:0px;top:0px;
+	filter:Alpha(Opacity=30);opacity:0.3;
+	background-color:#666;
+	}
+/*弹出窗口*/
+#loginwin {
+	border:1px solid #000000;
+	width:300px;
+	height:200px;
+	position:absolute;
+	visibility:hidden;
+	background:#ECF9FF;
+	z-index:1;
+	font-size: 14px;
+	}
+#logintitle span {
+	font-size: 16px;
+	float: right;
+	color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	padding-bottom: 2px;
+	cursor:pointer;
+}
+#logintitle {
+	background-color: #598FFF;
+	color: #FFFFFF;
+	padding-left: 3px;
+	font-size: 15px;
+	height: 20px;
+}
+#loginwin #loginform {
+	margin-right: auto;
+	margin-left: auto;
+	width: 250px;
+	height: 100px;
+	margin-top: 40px;
+}
+#loginform #loginbtn {
+	width: 55px;
+	height: 25px;
+	margin-left: 100px;
+	background-color: #6899FF;
+	margin-top: 20px;
+	font-size: 14px;
+	border: 1px outset #000000;
+	color: #FFFFFF;
+	cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+
+<input type="button" value="Show" onclick="winShow();" />
+	<div id="loginwin">
+		<div id="logintitle">
+			<span id="loginclose" onclick="winClose();">X</span> 登录：
+			
+		</div>
+		<form action="#" method="post" id="loginform">
+		
+			&nbsp;用户名:<input name="userText" type="text" size="20" />
+			<br/>
+			&nbsp;&nbsp;&nbsp;密码:<input name="pwd" type="text" size="20" />
+			<input name="submit" type="submit" id="loginbtn" value="登 录" />
+		</form>
+	</div>
+	<div id="bg"></div> 
+</body>
+</html>

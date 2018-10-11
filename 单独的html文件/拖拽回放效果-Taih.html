@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	#div1{ width:100px; height:100px; background:#CCCCCC; border:1px solid red; position:absolute; top:0px; left:0px;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		var oBtn=document.getElementById('btn');
+		var attr=[];
+		oDiv.onmousedown=function(ev)
+		{
+			var oEvent=ev||event;
+			var oBjX=oDiv.offsetLeft;
+			var oBjY=oDiv.offsetTop;
+			var oMouX=oEvent.clientX;
+			var oMouY=oEvent.clientY;
+			var oldx=oMouX-oBjX;
+			var oldY=oMouY-oBjY;
+			attr.push({x:oBjX,y:oBjY});
+			document.onmousemove=function(ev)
+			{
+				var oEvent=ev||event;
+				var l=oEvent.clientX-oldx;
+				var t=oEvent.clientY-oldY;
+				oDiv.style.left=l+"px";
+				oDiv.style.top=t+"px";
+				attr.push({x:l,y:t});
+				return false;
+			};
+			document.onmouseup=function()
+			{
+				document.onmouseup="null";
+				document.onmousemove="null";
+			}
+		}
+		oBtn.onclick=function()
+		{
+			var timer=null;
+			var timer=setInterval(function()
+			{
+				var lastNum=attr.pop();
+				if(!lastNum)
+				{
+					clearInterval(timer);
+				}
+				else
+				{
+					oDiv.style.left=lastNum.x+"px";
+					oDiv.style.top=lastNum.y+"px";
+				}
+			},30);
+		};
+	};
+</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+	<input type="button" value="回放" id="btn" />
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+.box{width:400px;height:200px;border:1px solid #d5d5d5;}
+</style>
+
+</head>
+<select name="" id="sel" onchange="f1()">
+	<option value="1">百度一下</option>
+	<option value="2">谷歌搜索</option>
+	<option value="3">360导航</option>
+</select>
+<body>
+<div class="box" id="box1" style="display:block;background:#0C6;">百度一下</div>
+<div class="box" id="box2" style="display:none;background:#F63;">谷歌搜索</div>
+<div class="box" id="box3" style="display:none;background:#09F;">360导航</div>
+
+<script type="text/javascript">
+function f1(){
+	//获取下拉表单的value值并赋给一个变量
+	var obj = document.getElementById("sel").value;
+	for(var i=1;i<=3;i++){			//遍历排他
+		document.getElementById("box"+i).style.display="none";
+		}
+	//确立自己
+	document.getElementById("box"+obj).style.display="block";
+	}
+</script>
+</body>
+</html>

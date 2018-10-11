@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>表格操作</title>
+<style type="text/css">
+	#tab1 tr td{ background:#FFF; text-align:center;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oTab=document.getElementById('tab1');
+		var aInp=document.getElementsByTagName('input');
+		var oSortIdBtn=oTab.tHead.rows[0].cells[0].getElementsByTagName('input')[0];
+		var oSortNameBtn=oTab.tHead.rows[0].cells[1].getElementsByTagName('input')[0];
+		var oSortAddressBtn=oTab.tHead.rows[0].cells[2].getElementsByTagName('input')[0];
+		var oNewName=document.getElementById('new_name');
+		var oNewAddress=document.getElementById('new_address');
+		var oNewPhone=document.getElementById('new_phone');
+		var oNewAbout=document.getElementById('new_about');
+		var oNewSub=document.getElementById('sub'); 
+		var nId=oTab.tBodies[0].rows.length+1;
+		//新建信息
+		oNewSub.onclick=function()
+		{		
+			var newTr=document.createElement('tr');
+			oTab.tBodies[0].appendChild(newTr);
+			var td0=document.createElement('td');
+			td0.innerHTML=nId++;
+			newTr.appendChild(td0);
+			var td1=document.createElement('td');
+			td1.innerHTML=oNewName.value;
+			newTr.appendChild(td1);
+			var td2=document.createElement('td');
+			td2.innerHTML=oNewAddress.value;
+			newTr.appendChild(td2);
+			var td3=document.createElement('td');
+			td3.innerHTML=oNewPhone.value;
+			newTr.appendChild(td3);
+			var td4=document.createElement('td');
+			td4.innerHTML=oNewAbout.value;
+			newTr.appendChild(td4);
+			var td5=document.createElement('td');
+			newTr.appendChild(td5);
+			var newXiugaiBtn=document.createElement('input');
+			newXiugaiBtn.type="button";
+			newXiugaiBtn.value="修改";
+			newXiugaiBtn.onclick=function()
+			{
+				amend(this);
+			}
+			td5.appendChild(newXiugaiBtn);
+			var td6=document.createElement('td');
+			newTr.appendChild(td6);
+			var newDelateBtn=document.createElement('input');
+			newDelateBtn.type="button";
+			newDelateBtn.value="删除";
+			newDelateBtn.onclick=function()
+			{
+				fDelate(this);
+			}
+			td6.appendChild(newDelateBtn);
+		}
+		
+		oSortIdBtn.onclick=function()
+		{
+			fTabSort(oTab,0);
+		}
+		oSortNameBtn.onclick=function()
+		{
+			fTabSort(oTab,1);
+		}
+		oSortAddressBtn.onclick=function()
+		{
+			fTabSort(oTab,2);
+		}
+		
+		for(i=0;i<aInp.length;i++)
+		{
+			if(aInp[i].value=="修改")
+			{
+				aInp[i].onclick=function()
+				{
+					amend(this);
+				}
+			}
+		}
+		
+		//删除
+		for(j=0;j<aInp.length;j++)
+		{
+			if(aInp[j].value=="删除")
+			{
+				aInp[j].onclick=function()
+				{
+					fDelate(this);
+				}
+			}
+		}
+	};
+	var bear=true;
+	var arr=[];
+	
+	//排序/正序、倒序
+	function fTabSort(obj,cellNum)
+	{
+		for(i=0;i<obj.tBodies[0].rows.length;i++)
+		{
+			arr[i]=obj.tBodies[0].rows[i];
+		}
+		arr.sort(function(row1,row2)
+		{
+			if(cellNum==0)
+			{
+				var num1=parseInt(row1.cells[cellNum].innerHTML);
+				var num2=parseInt(row2.cells[cellNum].innerHTML);
+			}
+			else
+			{
+				var num1=row1.cells[cellNum].innerHTML;
+				var num2=row2.cells[cellNum].innerHTML;
+			}
+			if(bear)
+			{
+				if(typeof(num1)=='number')
+				{
+					return num1-num2;
+				}
+				else
+				{
+					return num1.localeCompare(num2);//排序中文
+				}
+			}
+			//倒序功能
+			else
+			{
+				if(typeof(num1)=='number')
+				{
+					return num2-num1;
+				}
+				else
+				{
+					return num2.localeCompare(num1);
+				}
+			}
+		});
+		for(i=0;i<arr.length;i++)
+		{
+			obj.tBodies[0].appendChild(arr[i]);
+		}
+		bear =! bear;
+	}
+	//修改
+	function amend(obj)
+	{
+		var oRow=obj.parentNode.parentNode;
+		var oldName=oRow.cells[1].innerHTML;
+		var oldAddress=oRow.cells[2].innerHTML;
+		var oldPhone=oRow.cells[3].innerHTML;
+		var oldAmendBtn=oRow.cells[5].innerHTML;
+		
+		var newInp1=document.createElement('input');
+		newInp1.value=oRow.cells[1].innerHTML;
+		oRow.cells[1].innerHTML="";
+		oRow.cells[1].appendChild(newInp1);
+		var newInp2=document.createElement('input');
+		newInp2.value=oRow.cells[2].innerHTML;
+		oRow.cells[2].innerHTML="";
+		oRow.cells[2].appendChild(newInp2);
+		var newInp3=document.createElement('input');
+		newInp3.value=oRow.cells[3].innerHTML;
+		oRow.cells[3].innerHTML="";
+		oRow.cells[3].appendChild(newInp3);
+		var newInp4=document.createElement('input');
+		newInp4.value=oRow.cells[4].innerHTML;
+		oRow.cells[4].innerHTML="";
+		oRow.cells[4].appendChild(newInp4);
+		newInp1.type=newInp2.type=newInp3.type=newInp4.type="text";
+		
+		obj.style.display="none";
+		var newBtn1=document.createElement('input');
+		newBtn1.type="button";
+		newBtn1.value="确定";
+		oRow.cells[5].appendChild(newBtn1);
+		var newBtn2=document.createElement('input');
+		newBtn2.type="button";
+		newBtn2.value="取消";
+		oRow.cells[5].appendChild(newBtn2);
+		
+		newBtn1.onclick=function()
+		{
+			oRow.cells[1].innerHTML=newInp1.value;
+			oRow.cells[2].innerHTML=newInp2.value;
+			oRow.cells[3].innerHTML=newInp3.value;
+			oRow.cells[4].innerHTML=newInp4.value;
+			oRow.cells[5].removeChild(newBtn1);
+			oRow.cells[5].removeChild(newBtn2);
+			obj.style.display="block";
+			obj.style.margin="0 0 0 30px";
+		}
+		newBtn2.onclick=function()
+		{
+			oRow.cells[1].innerHTML=oldName;
+			oRow.cells[2].innerHTML=oldAddress;
+			oRow.cells[3].innerHTML=oldPhone;
+			oRow.cells[4].innerHTML=newInp4.value;
+			oRow.cells[5].removeChild(newBtn1);
+			oRow.cells[5].removeChild(newBtn2);
+			obj.style.display="block";
+			obj.style.margin="0 0 0 30px";
+		}
+	}
+	//删除
+	function fDelate(obj)
+	{
+		var oTbody=obj.parentNode.parentNode.parentNode;
+		oTbody.removeChild(obj.parentNode.parentNode);
+	}
+	
+</script>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC" id="tab1">
+	<thead>
+	  <tr>
+		<td width="16%" align="center" valign="middle" bgcolor="#FFFFFF">ID 
+	    <input type="button" value="ID排序" style="text-align:right" /></td>
+		<td width="21%" align="center" valign="middle" bgcolor="#FFFFFF">用户名 
+	      <input type="button" value="用户名排序" style="text-align:right" /></td>
+		<td width="21%" align="center" valign="middle" bgcolor="#FFFFFF">单位名称 
+	      <input type="button" value="单位名称排序" style="text-align:right" /></td>
+		<td width="16%" align="center" valign="middle" bgcolor="#FFFFFF">联系方式</td>
+	    <td width="14%" align="center" valign="middle" bgcolor="#FFFFFF">备注</td>
+	    <td width="8%" align="center" valign="middle" bgcolor="#FFFFFF">修改</td>
+	    <td width="4%" align="center" valign="middle" bgcolor="#FFFFFF">删除</td>
+	  </tr>
+	</thead>
+	<tbody>
+      <tr>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">2</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">happy</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">联想</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">010-685165</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">无</td>
+        <td align="left" valign="middle" bgcolor="#FFFFFF"><input type="button" value="修改" /></td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><input type="button" value="删除" /></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">3</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">smile</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">百度</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">010-685165</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">无</td>
+        <td align="left" valign="middle" bgcolor="#FFFFFF"><input type="button" value="修改" /></td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><input type="button" value="删除" /></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">1</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">red</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">搜狐</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">010-685165</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">无</td>
+        <td align="left" valign="middle" bgcolor="#FFFFFF"><input type="button" value="修改" /></td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><input type="button" value="删除" /></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">4</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">push</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">新浪</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">010-685165</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">无</td>
+        <td align="left" valign="middle" bgcolor="#FFFFFF"><input type="button" value="修改" /></td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><input type="button" value="删除" /></td>
+      </tr>
+	   <tr>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">5</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">touch</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">淘宝</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">010-685165</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF">无</td>
+        <td align="left" valign="middle" bgcolor="#FFFFFF"><input type="button" value="修改" /></td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><input type="button" value="删除" /></td>
+      </tr>
+	</tbody>
+</table>
+<h3>添加信息：</h3>
+<table width="26%" border="0" cellpadding="5">
+  <tr>
+    <td align="right">用户名：</td>
+    <td><input type="text" id="new_name" /></td>
+  </tr>
+  <tr>
+    <td align="right">单位名称：</td>
+    <td><input type="text" id="new_address" /></td>
+  </tr>
+  <tr>
+    <td align="right">联系方式：</td>
+    <td><input type="text"  id="new_phone"/></td>
+  </tr>
+  <tr>
+    <td height="91" align="right">备注：</td>
+    <td><textarea style="height:100px; width:100%;" id="new_about"></textarea></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><input type="button" value="提交" id="sub" /></td>
+  </tr>
+</table>
+<div style="width:400px; position:absolute; bottom:0; left:500px; font-size:24px; color:red; font-family:'微软雅黑';"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端开发交流群：149044724</div>
+</body>
+</html>

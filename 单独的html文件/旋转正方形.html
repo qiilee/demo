@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Disposition" content="attachment;">
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script> 
+<title>旋转正方形</title>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  display: flex;
+  background: #fc0;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.box {
+  width: 20vw;
+  height: 20vw;
+  background: linear-gradient(to right bottom, hsla(30,100%, 50%, 0.3), hsla(90,100%, 50%, 0.3) );
+  border: 5px dashed rgba(0,0,0,0.7);
+  animation: spin 6s ease-in-out infinite;
+}
+
+@keyframes spin {
+  33.33% {
+    transform: rotateZ(45deg);
+  }
+  66.66% {
+    transform: rotateZ(-45deg);
+  }
+}
+.box:nth-child(odd) {
+/*   animation-direction: reverse; */
+}
+</style>
+</head> 
+<body> 
+ 
+ 
+ <div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+
+ </body> 
+ 
+</html>
+

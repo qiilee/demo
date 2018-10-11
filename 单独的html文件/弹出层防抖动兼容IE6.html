@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+html {
+	_background-image: url(about:blank);     /*用浏览器空白页面作为背景*/
+	_background-attachment: fixed;           /* prevent screen flash in IE6 确保滚动条滚动时，元素不闪动*/
+}
+#input1{ margin:100px;}
+#login{ width:200px; height:200px; border:1px #000000 solid; background:white; position:fixed; z-index:2; _position:absolute; _top:expression(eval(document.documentElement.scrollTop + 135));}
+#close{ position:absolute; top:2px; right:2px; cursor:pointer;}
+#mark{ position:absolute; background:black; filter:alpha(opacity=50);opacity:0.5; top:0; left:0; z-index:1;}
+</style>
+<script>
+window.onload = function(){
+	var oInput = document.getElementById('input1');
+	oInput.onclick = function(){
+		var oMark = document.createElement('div');
+		oMark.id = 'mark';
+		document.body.appendChild(oMark);
+		oMark.style.width = viewWidth() + 'px';
+		oMark.style.height = documentHeight() + 'px';
+		
+		var oLigin = document.createElement('div');
+		oLigin.id = 'login';
+		oLigin.innerHTML += '<p>用户名：<input type="text" /></p>';
+		oLigin.innerHTML += '<p>密码：<input type="password" /></p>';
+		oLigin.innerHTML += '<div id="close">X</div>';
+		document.body.appendChild(oLigin);
+		oLigin.style.left = (viewWidth() - oLigin.offsetWidth)/2 + 'px';
+		
+		var oClose = document.getElementById('close');
+		oClose.onclick = function(){
+			document.body.removeChild(oMark);
+			document.body.removeChild(oLigin);
+		};
+	};
+	window.onscroll = window.onresize = function(){
+		var oLogin = document.getElementById('login');
+		var oMark = document.getElementById('mark');
+		if(oLogin){
+			
+			oLogin.style.left = (viewWidth() - oLogin.offsetWidth)/2 + 'px';
+			oMark.style.width = viewWidth() + 'px';
+			oMark.style.height = documentHeight() + 'px';
+		}
+		
+	};
+};
+function viewWidth(){
+	return document.documentElement.clientWidth;
+}
+function viewHeight(){
+	return document.documentElement.clientHeight;
+}
+function documentHeight(){
+	return Math.max(document.documentElement.scrollHeight || document.body.scrollHeight,document.documentElement.clientHeight);
+}
+function scrollY(){
+	return document.documentElement.scrollTop || document.body.scrollTop;
+}
+</script>
+</head>
+
+<body style="height:2000px;">
+<input type="button" value="登录" id="input1" />
+<!--<div id="login">
+	<p>用户名：<input type="text" /></p>
+    <p>密码：<input type="password" /></p>
+    <div id="close">X</div>
+</div>
+<div id="mark"></div>-->
+</body>
+</html>

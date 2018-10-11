@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>控制鼠标滚轮兼容写法-Taih</title>
+<style>
+	#box{ width:100px; height:60px; background:#CCC; margin:0 auto; color:#FFFFFF; font-size:12px; font-family:"微软雅黑"; text-align:center;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('box');
+		addEvent(oBox,'mousewheel',mouseScroll);
+		addEvent(oBox,'DOMMouseScroll',mouseScroll);
+		
+		function mouseScroll(ev)
+		{
+			var oEvent=ev||event;
+			if(oEvent.wheelDelta)
+			{
+				if(oEvent.wheelDelta>0)
+				{
+					oBox.style.height=oBox.offsetHeight-10+"px";
+				}
+				else
+				{
+					oBox.style.height=oBox.offsetHeight+10+"px";
+				}
+			}
+			else
+			{
+				if(oEvent.detail>0)
+				{
+					oBox.style.height=oBox.offsetHeight+10+"px";
+				}
+				else{
+					oBox.style.height=oBox.offsetHeight-10+"px";
+				}
+			}
+			if(oEvent.preventDefault)
+			{
+				oEvent.preventDefault();
+			}
+		}
+	};
+	
+	//事件绑定
+	function addEvent(obj,sj,fn)
+	{
+		if(obj.attachEvent)
+		{
+			obj.attachEvent('on'+sj,fn);
+		}
+		else{
+			obj.addEventListener(sj,fn,false);
+		}
+	}
+</script>
+</head>
+
+<body style="height:2000px">
+	<div id="box">
+		用鼠标轮滚一下我~ O(∩_∩)O~
+	</div>
+	<div style="width:400px; position:absolute; bottom:0; left:500px; font-size:24px; color:red; font-family:'微软雅黑';"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端开发交流群：149044724</div>
+</body>
+</html>

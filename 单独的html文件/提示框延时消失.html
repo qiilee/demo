@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>弹出框延时消失</title>
+<style>
+	body{ background:#ccc;}
+	#popup{ width:400px; height:300px; border:5px solid #9E25A5; border-radius:5px; background:#FFF; display:none; position:relative;}
+	#qr{ position:absolute; bottom:10px; left:150px;width:60px; border:1px solid red; cursor:pointer; text-align:center;}
+</style>
+
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBtn=document.getElementById('btn');
+		var oPop=document.getElementById('popup');
+		var oQr=document.getElementById('qr');
+		var oTime=document.getElementById('otime');
+		var timer1=null;
+		var timer2=null;
+		
+		oBtn.onclick=function()
+		{
+			oTime.innerHTML=5;
+			oPop.style.display="block";
+			clearInterval(timer1);
+			clearInterval(timer2);
+			timer1=setInterval(dNone,5000);
+			timer2=setInterval(function (){
+			
+				if(oTime.innerHTML==0)
+				{
+					clearInterval(timer1);
+					clearInterval(timer2);
+				}
+				var num=parseInt(oTime.innerHTML);
+				num--;
+				oTime.innerHTML=num;
+			},1000);
+			
+			
+		}
+		oQr.onclick=function  dNone()
+		{
+			oPop.style.display="none";
+			
+		}
+		
+		
+	};
+</script>
+</head>
+
+<body>
+	<input type="button" value="弹出" id="btn" />
+	<div id="popup">
+		<p>如不做操作，弹出框将在<span id="otime"></span>秒后消失</p>
+		<div id="qr">确认</div>
+	</div>
+</body>
+</html>

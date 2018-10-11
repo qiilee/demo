@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>移动APP中rem适配-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<style>
+div {
+	font-size:0.3rem;
+	text-align:center;
+	padding-top:1rem;
+}
+</style>
+</head>
+<body>
+<div>Hello World！</div>
+<script>
+
+	remFn(10);
+	window.onresize = function() {
+		remFn(10);
+	}
+
+	function remFn(num) {
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / num + 'px';
+	};
+	
+</script>
+</body>
+</html>

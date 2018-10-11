@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{ padding:0; margin:0;}
+.box{ width:500px; height:300px; border:1px solid red;}
+.box2{ width:200px; height:200px; margin-left:100px; border:6px solid blue;}
+.box3{ width:100px; height:50px; background:#CCC; margin-left:10px; border:12px solid yellow;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oDiv=document.getElementsByTagName('div')[2];
+		
+		//方法1
+		//alert(absXy(oDiv).x);
+		//方法2
+		getAbsPoint(oDiv);
+	};
+	function absXy(obj)
+	{
+		var x=obj.offsetLeft,y=obj.offsetTop;
+		while(obj=obj.offsetParent)
+		{
+			x +=obj.offsetLeft;
+			y +=obj.offsetTop;
+		}
+		var arr={"x":x,"y":y};
+		return arr;
+	}
+	
+	//方法2
+	function   getAbsPoint(obj)     
+	{     
+	var   x,y;     
+	oRect   =   obj.getBoundingClientRect();
+	x=oRect.left     
+	y=oRect.top     
+	alert("("+x+","+y+")")     
+	}  
+</script>
+</head>
+
+<body>
+	<div class="box">
+		<div class="box2">
+			<div class="box3">这是一个盒子</div>
+		</div>
+	</div>
+</body>
+</html>

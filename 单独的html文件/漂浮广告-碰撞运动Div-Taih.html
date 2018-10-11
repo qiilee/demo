@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	body{ height:2000px;}
+	#fly_box{ width:98px; height:98px; border:1px solid black; position:absolute; top:50px; left:200px;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var	fly_box=document.getElementById('fly_box');
+		var oScroll=document.documentElement.scrollTop||document.body.scrollTop;
+		var oClientHeight=oScroll+document.documentElement.clientHeight-fly_box.offsetHeight;
+		var oClientWidth=document.documentElement.clientWidth-fly_box.offsetWidth;
+		var timer=0;
+		var iSpeed_X=2;
+		var iSpeed_Y=4;
+		
+		stratMove(fly_box,{'top':oClientHeight,'left':oClientWidth});
+		fly_box.onmouseover=function()
+		{
+			clearInterval(timer);
+		}
+		fly_box.onmouseout=function()
+		{
+			stratMove(fly_box,{'top':oClientHeight,'left':oClientWidth});
+		}
+		
+		window.onscroll=function()
+		{
+			oScroll=document.documentElement.scrollTop||document.body.scrollTop;
+		}
+		function stratMove()
+		{
+			clearInterval(timer);
+			timer=setInterval(function(){doMove();},30);
+		}
+		function doMove()
+		{
+			oClientHeight=oScroll+document.documentElement.clientHeight-fly_box.offsetHeight;
+			oClientWidth=document.documentElement.clientWidth-fly_box.offsetWidth;
+			var t=parseInt(getStyle(fly_box,'top'))+iSpeed_Y;
+			var l=parseInt(getStyle(fly_box,'left'))+iSpeed_X;
+			if(t>=oClientHeight)
+			{
+				t=oClientHeight;	
+				iSpeed_Y*=-1;
+			}
+			else if(t<=oScroll)
+			{
+				t=oScroll;
+				iSpeed_Y*=-1;
+			}
+			if(l>=oClientWidth)
+			{
+				l=oClientWidth;
+				iSpeed_X*=-1;
+			}
+			else if(l<=0)
+			{
+				l=0;
+				iSpeed_X*=-1;	
+			}
+			fly_box.style.top=t+"px";
+			fly_box.style.left=l+"px";
+		}
+		function getStyle(obj,attr)
+		{
+			return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
+		}
+	}
+	
+</script>
+
+</head>
+
+<body>
+	<div id="fly_box"><div style="font-size:14px; color:red; font-family:'微软雅黑';"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端开发交流群：149044724</div></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{ padding:0px; margin:0px; list-style:none; font-family:Arial, Helvetica, sans-serif; font-size:12px;}
+	#box{ width:400px; margin:0 auto;}
+	#box li{ position:relative;}
+	input{ border:1px solid #ccc; height:24px; line-height:24px;margin-top:10px; width:200px;}
+	span{ line-height:24px; position:absolute; left:210px; top:12px; display:none;}
+	
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('box');
+		var aInp=document.getElementsByTagName('input');
+		var aSpan=null;
+		var i=0;
+		
+		for(i=0;i<aInp.length;i++)
+		{
+			aInp[i].onfocus=function()
+			{
+				this.style.borderColor="red";
+				aSpan=this.parentNode.getElementsByTagName('span')[0];
+				aSpan.style.display="block";
+			}
+			aInp[i].onblur=function()
+			{
+				this.style.borderColor="";
+				aSpan.style.display="none";
+			}
+		};
+		
+	};
+</script>
+</head>
+
+<body>
+	<ul id="box">
+    	<li><input type="text" /><span>在这写下你的名字</span></li>
+        <li><input type="text" /><span>在这随便你写什么</span></li>
+        <li><input type="text" /><span>在这想写什么写什么</span></li>
+    </ul>
+</html>

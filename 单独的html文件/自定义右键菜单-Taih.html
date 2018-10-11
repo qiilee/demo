@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oMyMenu=document.getElementById('menu');
+		
+		document.oncontextmenu=function(ev)
+		{
+			var oEvent=ev||event;
+			
+			oMyMenu.style.display="block";
+			oMyMenu.style.left=oEvent.clientX;
+			oMyMenu.style.top=oEvent.clientY;
+			//return false; //不阻止也成？~
+			//oEvent.cancelBubble=true;
+			var oLi=oMyMenu.getElementsByTagName('li');
+			var i=0;
+			
+			for(i=0;i<oLi.length;i++)
+			{
+				oLi[i].onmousemove=function()
+				{
+					for(i=0;i<oLi.length;i++)
+					{
+						oLi[i].className="";
+					}
+					this.className="active";
+				}
+			}
+		}
+		document.onclick=function()
+		{
+			oMyMenu.style.display="none";
+		};
+		
+	};
+</script>
+<style type="text/css">
+	*{ padding:0px; margin:0px; list-style:none; font-size:12px; color:#333333; font-family:Arial, Helvetica, sans-serif;}
+	#menu{ position:absolute; display:none; border:1px solid #CCC;}
+	#menu li{ padding:5px 20px; cursor:pointer;}
+	a{text-decoration:none;}
+	.active { background:#FF0000;}
+	.active a{ color:#FFFFFF; text-decoration:underline; }
+</style>
+</head>
+
+<body>
+	点击右键
+    <br />
+    前端开发技术交流群：149044724
+	<ul id="menu">
+    	<li><a href="http://www.imtaih.com/index.html">关于我</a></li>
+        <li><a href="http://www.imtaih.com/about.html">了解我</a></li>
+        <li><a href="http://www.imtaih.com/plus/guestbook.php">联系我</a></li>
+    </ul>
+</body>
+</html>

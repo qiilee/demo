@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	ul{list-style:none;}
+	div ul li{width:70px;height:30px;text-align:center;line-height:30px;background:lightgreen;float:left;cursor:pointer;}
+	div .active{background:lightblue;}
+	.abc{background:pink;}
+</style>
+</head>
+
+<body>
+
+<div>
+   <ul id="myul">
+      <li><a href="javascript:;">1111</a></li>
+      <li><a href="javascript:;">1111</a></li>
+      <li><a href="javascript:;">1111</a></li>
+      <li><a href="javascript:;">1111</a></li>
+   </ul>
+
+
+</div>
+<script>
+var oli = document.getElementsByTagName("li");
+for(var i=0;i<oli.length;i++){
+	  oli[i].onclick=function(){
+			  for(var i=0;i<oli.length;i++){
+				     oli[i].className="abc";
+				 }	
+               this.className="active"
+		  }
+	}
+
+
+</script>
+</body>
+</html>

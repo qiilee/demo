@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>抽奖</title>
+<style type="text/css">
+*{ margin:0; padding:0;}
+a img{ border:none;}
+.contain{ height:483px; width:723px; border:5px solid #e1d2b0; margin:20px auto; position:relative;}
+.sub_product{ position:absolute; border-right:1px solid #e1d2b0; border-bottom:1px solid #e1d2b0; height:120px; width:120px;}
+.sub_product a{ display:block; font-size:0;}
+.sub_product a img{ display:block; height:120px; width:120px;}
+.product_0{ top:0; left:0;}
+.product_1{ top:0; left:121px;}
+.product_2{ top:0; left:242px;}
+.product_3{ top:0; left:361px;}
+.product_4{ top:0; left:482px;}
+.product_5{ top:0; left:603px;}
+.product_6{ top:121px; left:0;}
+.product_7{ top:121px; left:121px;}
+.product_8{ top:121px; left:482px;}
+.product_9{ top:121px; left:603px;}
+.product_10{ top:242px; left:0;}
+.product_11{ top:242px; left:121px;}
+.product_12{ top:242px; left:482px;}
+.product_13{ top:242px; left:603px;}
+.product_14{ top:363px; left:0;}
+.product_15{ top:363px; left:121px;}
+.product_16{ top:363px; left:242px;}
+.product_17{ top:363px; left:361px;}
+.product_18{ top:363px; left:482px;}
+.product_19{ top:363px; left:603px;}
+.begin{ left:242px; top:121px; height:241px; width:241px;}
+.begin a img{ height:241px; width:241px;}
+.mask_layer{ position: absolute; top:0; left:0; width:100%; height:100%; opacity:0.3; background-color:#000; display:none;}
+.select{ z-index:10;}
+</style>
+<script type="text/javascript" src="js/jquery-1.6.4.js"></script>
+</head>
+
+<body>
+<div class="contain">
+	<div class="sub_product product_0 J_product"><a href="#"><img src="images/images/1.png" /></a></div>
+   	<div class="sub_product product_1 J_product"><a href="#"><img src="images/images/2.png" /></a></div>
+    <div class="sub_product product_2 J_product"><a href="#"><img src="images/images/3.png" /></a></div>
+    <div class="sub_product product_3 J_product"><a href="#"><img src="images/images/4.png" /></a></div>
+    <div class="sub_product product_4 J_product"><a href="#"><img src="images/images/5.png" /></a></div>
+    <div class="sub_product product_5 J_product"><a href="#"><img src="images/images/6.png" /></a></div>
+    <div class="sub_product product_9 J_product"><a href="#"><img src="images/images/2.png" /></a></div>
+    <div class="sub_product product_13 J_product"><a href="#"><img src="images/images/6.png" /></a></div>
+    <div class="sub_product product_19 J_product"><a href="#"><img src="images/images/8.png" /></a></div>
+    <div class="sub_product product_18 J_product"><a href="#"><img src="images/images/3.png" /></a></div>
+    <div class="sub_product product_17 J_product"><a href="#"><img src="images/images/2.png" /></a></div>
+    <div class="sub_product product_16 J_product"><a href="#"><img src="images/images/1.png" /></a></div>
+    <div class="sub_product product_15 J_product"><a href="#"><img src="images/images/6.png" /></a></div>
+    <div class="sub_product product_14 J_product"><a href="#"><img src="images/images/7.png" /></a></div>
+    <div class="sub_product product_10 J_product"><a href="#"><img src="images/images/3.png" /></a></div>
+    <div class="sub_product product_6 J_product"><a href="#"><img src="images/images/7.png" /></a></div>
+    <div class="sub_product product_7 J_product"><a href="#"><img src="images/images/8.png" /></a></div>
+    <div class="sub_product product_8 J_product"><a href="#"><img src="images/images/1.png" /></a></div>
+    <div class="sub_product product_12 J_product"><a href="#"><img src="images/images/5.png" /></a></div>
+    <div class="sub_product product_11 J_product"><a href="#"><img src="images/images/4.png" /></a></div>
+    <div class="sub_product begin" id="begin"><a href="#"><img src="images/images/0.png" /></a></div>
+    <div class="mask_layer"></div>
+</div>
+<script type="text/javascript">
+var i=0; //开始的位置
+var timer;
+var randomNum; //随机数控制最大间隔时间
+var speedTime=200; //间隔时间
+var len=$(".J_product").length;
+var flag; //判断是否开始减速
+function drawGift(){
+	if(!flag){
+		if(speedTime>=randomNum){
+			speedTime=Math.floor(speedTime-randomNum/10);
+		}else{
+			flag=true;
+			
+		}
+	}else{
+		speedTime=Math.floor(speedTime+randomNum/20);
+	}
+	
+	if(speedTime>200)
+	{
+		clearTimeout(timer);
+		//$(".mask_layer").hide();
+		
+	}else{
+		$(".J_product").removeClass("select");
+	$(".J_product").eq(i%len).addClass("select");
+	i++;
+	timer=setTimeout(drawGift,speedTime);
+	}
+}
+$(function(){
+	$("#begin").click(function(){
+		$(".mask_layer").css("opacity",0.3);
+		$(".mask_layer").show();
+		flag=false;
+		randomNum=parseInt(100*Math.random());
+		if(Math.random()<50){
+			randomNum=50;
+		}
+		drawGift();
+		return false;
+	});
+});
+</script>
+</body>
+</html>

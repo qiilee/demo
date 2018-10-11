@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>js屏蔽源代码测试</title>
+</head>
+
+<body>
+
+<script type="text/javascript">
+//=======================================================
+//IE下测试禁止查看源代码
+//Ghost 14-03-07
+//Email:1434831689@qq.com
+//=======================================================
+function init(){
+	var source = document.body.innerHTML;			//获取文档的原有内容
+	document.open();								//打开文档
+	document.write("<h1>禁止查看源代码</h1>");		//输出提示内容
+	document.close();								//关闭文档
+	document.title="看不到源代码";					//文档标题
+	source = document.body.innerHTML;				//重新写入就内容
+	}
+	window.onload=init;
+</script>
+
+</body>
+</html>

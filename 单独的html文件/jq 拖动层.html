@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>jQuery -拖动层 q1140215489</title>
+<script type="text/javascript" src="jquery-1.6.2.min.js"></script>
+<script type="text/javascript">
+	  
+	$(function(){		
+		var x0=0,y0=0,x1=0,y1=0; 
+		var moveable=false; 
+		//开始拖动; 
+		function startDrag(e){ 
+			x0 = e.clientX; 
+			y0 = e.clientY; 
+			y1=$("#d1").offset().top;
+			x1=$("#d1").offset().left;
+			moveable = true; 
+		} 
+		//拖动; 
+		function drag(e){ 
+			if(moveable){ 
+				$("#d1").css({top:y1 + e.clientY - y0,left:x1 + e.clientX - x0});	
+			} 
+		}
+		//停止拖动; 
+		function stopDrag(e){ 
+			if(moveable){ 
+				moveable = false; 
+			}  	
+		}
+		
+        $("#d1").mousedown(function (e){startDrag(e);});		
+        $("#d1").mousemove(function (e){drag(e);});		
+        $("#d1").mouseup(function (e){stopDrag(e);});					
+	});
+
+</script>
+
+</head>
+
+<body>
+问题：<br/>
+1.在谷歌里，每拖一下就会有一声警报声；<br/>
+2.在火狐中把块中的文字去掉后再拖动，会有奇迹发生；<br/>
+3.在拖动的实现原理上，能不能绕过自定义的布尔值变量moveable，只判断一个mousemove事件，如果鼠标移动时，左键按下状态，则改变div的位置；<br/>
+<div id="d1" style="position:absolute;width:200px;height:100px;background:green;">拖动
+</div>
+</body>
+</html>

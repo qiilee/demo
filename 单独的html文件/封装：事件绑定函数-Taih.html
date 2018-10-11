@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{ padding:0px; margin:0px; list-style:none;}
+	#div1{ width:40px; height:30px; background:#CCC; text-align:center; line-height:30px; font-size:12px; color:#660066; margin:10px auto; cursor:pointer;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		fnBound(oDiv,'click',doA);
+		fnBound(oDiv,'click',doB);
+	};
+	function fnBound(obj,ev,fn)
+	{
+		if(obj.attachEvent)
+		{
+			obj.attachEvent("on"+ev,fn);
+		}
+		else
+		{
+			obj.addEventListener(ev,fn,false);
+		}
+	}
+	function doA()
+	{
+		alert('这是A事件');
+	}
+	function doB()
+	{
+		alert('这是B事件');
+	}
+</script>
+</head>
+
+<body>
+	<div id="div1">点我</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>幻灯片无缝滚动-web前端菜鸟团</title>
+<style type="text/css">
+	*{ padding:0; margin:0; list-style:none;}
+	.SeamlessHandover{ width:540px; height:100px; position:relative; border:1px solid #333; margin:0 auto; overflow:hidden;}
+	.SeamlessHandover_ul{ position:absolute; top:0; left:0;}
+	.SeamlessHandover_ul li{ width:100px; height:100px; margin-right:10px; background:#ccc; color:#333; text-align:center; font-size:20px; line-height:100px; float:left;}
+</style>
+<script type="text/javascript" src="http://www.owebbird.com/webPage/js/move_json.js"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		
+		var iSeamlessHandover=document.getElementById('SeamlessHandover');
+		var iSeamlessHandover_ul=SeamlessHandover.getElementsByTagName('ul')[0];
+		var aSeamlessHandover_li=iSeamlessHandover_ul.getElementsByTagName('li');
+		var iLiW=aSeamlessHandover_li[0].offsetWidth+10;
+		var bBtn=true;
+		getWidth()
+		//设置ul宽度
+		function getWidth()
+		{
+			iSeamlessHandover_ul.style.width=aSeamlessHandover_li.length*iLiW+'px';	
+		}
+		
+		var iNum=1;//当前一次循环的个数
+		document.getElementById('btn1').onclick=function(){
+			toMove('l')
+		};
+		document.getElementById('btn2').onclick=function(){
+			toMove('r')
+		};
+			
+		function toMove(direction)
+		{
+			if(bBtn)
+			{
+				bBtn=false;
+				if(direction=='l')
+				{
+					for(var i=0; i<iNum ;i++){
+						var aNewLi=aSeamlessHandover_li[i].cloneNode(true);
+						iSeamlessHandover_ul.appendChild(aNewLi);
+						getWidth();
+					}
+					
+					stratMove(iSeamlessHandover_ul,{left:-iNum*iLiW},function(){
+						for(var i=0;i<iNum;i++){
+							iSeamlessHandover_ul.removeChild(aSeamlessHandover_li[0]);
+						}
+						iSeamlessHandover_ul.style.left=0;
+						bBtn=true;
+					});		
+				}else{
+					for(var i=0; i<iNum ;i++){
+						var aAllNum=aSeamlessHandover_li.length;
+						var aNewLi=aSeamlessHandover_li[aAllNum-1-i].cloneNode(true);
+						iSeamlessHandover_ul.insertBefore(aNewLi,aSeamlessHandover_li[0]);
+						iSeamlessHandover_ul.style.left=-iLiW*iNum+'px';
+						getWidth();
+					}
+					
+					stratMove(iSeamlessHandover_ul,{left:0},function(){
+						for(var i=0;i<iNum;i++){
+							iSeamlessHandover_ul.removeChild(aSeamlessHandover_li[aAllNum-i]);
+						}
+						iSeamlessHandover_ul.style.left=0;
+						bBtn=true;
+					});	
+				}
+			}	
+		}
+		
+	}
+</script>
+</head>
+
+<body>
+	<a href="http://www.owebbird.com" target="_blank">web前端菜鸟团</a> web前端开发交流3群：257741411<br />
+	<div style="width:100px; margin:10px auto;">
+    	<input type="button"  value="左滚" id="btn1"/>
+    	<input type="button"  value="右滚" id="btn2"/>
+    </div>
+	<div class="SeamlessHandover" id="SeamlessHandover">
+        <ul class="SeamlessHandover_ul">
+            <li>01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+            <li>05</li>
+        </ul>
+    </div>
+</body>
+</html>

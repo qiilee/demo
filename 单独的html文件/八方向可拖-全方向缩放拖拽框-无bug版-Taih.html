@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{ padding:0; margin:0;}
+	#div1{ width:300px; height:300px; position:relative; top:100px; left:400px; background:#CCCCCC; overflow:hidden;}
+	.top_left,.top_right,.bot_left,.bot_right{ width:10px; height:10px; background:#FF0000; position:absolute; z-index:1;}
+	.top_left{ cursor:nw-resize;}
+	.top_right{ right:0; cursor:ne-resize;}
+	.bot_left{ bottom:0; cursor:sw-resize;}
+	.bot_right{ bottom:0; right:0; cursor:se-resize;}
+	.top,.bot,.left,.right{ position:absolute;}
+	.left,.right{ width:10px; height:280px; background:#00CC99;}
+	.top,.bot{ width:280px; height:10px; background:#FF9966;}
+	.left{ top:10px; cursor:w-resize;}
+	.right{ top:10px; right:0; cursor:w-resize}
+	.top{ left:10px;cursor:n-resize}
+	.bot{ left:10px; bottom:0;cursor:n-resize}
+	
+	.top_nav{ width:100%; height:30px; line-height:30px; padding:10px; cursor:move; border-bottom:1px dashed #CCFF99;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('div1');
+		var oTL=getClass(oBox,'top_left')[0];
+		var oTR=getClass(oBox,'top_right')[0];
+		var oBL=getClass(oBox,'bot_left')[0];
+		var oBR=getClass(oBox,'bot_right')[0];
+		var oT=getClass(oBox,'top')[0];
+		var oR=getClass(oBox,'right')[0];
+		var oL=getClass(oBox,'left')[0];
+		var oB=getClass(oBox,'bot')[0];
+		drag(oTL,true,true,false,false);
+		drag(oTR,false,true,true,false);
+		drag(oBL,true,false,false,true);
+		drag(oBR,false,false,true,true);
+		
+		drag(oT,false,true,false,false);
+		drag(oR,false,false,true,false);
+		drag(oL,true,false,false,false);
+		drag(oB,false,false,false,true);
+		
+		var oTop_nav=getClass(oBox,'top_nav')[0];
+		
+		oTop_nav.onmousedown=function(ev)
+		{
+			
+			oEvent=ev||event;
+			var disX=oEvent.clientX-oBox.offsetLeft;
+			var disY=oEvent.clientY-oBox.offsetTop;
+			document.onmousemove=function(ev)
+			{
+				oEvent=ev||event;
+				var l=oEvent.clientX-disX;
+				var t=oEvent.clientY-disY;
+				
+				oBox.style.left=l+"px";
+				oBox.style.top=t+"px";
+				return false;
+			}
+			document.onmouseup=function()
+			{
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+			return false;
+		};
+	};
+	
+	//拖拽效果
+	function drag(obj,bLeft,bTop,bRight,bBot)
+	{		
+		var oBox=document.getElementById('div1');
+		var oT=getClass(oBox,'top')[0];
+		var oR=getClass(oBox,'right')[0];
+		var oL=getClass(oBox,'left')[0];
+		var oB=getClass(oBox,'bot')[0];
+		
+		obj.onmousedown=function(ev)
+		{
+			oEvent=ev||event;
+			var disX=oEvent.clientX-this.offsetLeft;
+			var disY=oEvent.clientY-this.offsetTop;
+			
+			var oOldBoxWidth=oBox.offsetWidth;
+			var oOldBoxHeight=oBox.offsetHeight;
+			var oOldBoxLeft=oBox.offsetLeft;
+			var oOldBoxTop=oBox.offsetTop;
+			
+			document.onmousemove=function(ev)
+			{
+				oEvent=ev||event;
+				var l=oEvent.clientX-disX;
+				var t=oEvent.clientY-disY;
+				var w=0;
+				var h=0;
+					
+				//横向拖拽条自动拉长/剪短
+				function shousuoW()
+				{
+					if(oBox.offsetWidth>260)
+					{
+						oT.style.width=oOldBoxWidth+Math.abs(l)+"px";
+						oB.style.width=oOldBoxWidth+Math.abs(l)+"px";
+					}
+				}
+				
+				//纵向拖拽条自动拉长/剪短
+				function shousuoH()
+				{
+					if(oBox.offsetHeight>260)
+					{
+						oL.style.height=oOldBoxHeight+Math.abs(t)+"px";
+						oR.style.height=oOldBoxHeight+Math.abs(t)+"px";
+					}
+				}
+				
+				if(bLeft)
+				{
+					oBox.style.left=oOldBoxLeft+l+"px";
+					w=oOldBoxWidth-l;
+					h=oBox.offsetHeight;
+					shousuoW();
+				}
+				if(bTop)
+				{
+					oBox.style.top=oOldBoxTop+t+"px";
+					h=oOldBoxHeight-t;
+					w=oBox.offsetWidth;
+					shousuoH();
+				}
+				if(bRight)
+				{
+					w=obj.offsetWidth+l;
+					h=oBox.offsetHeight;
+					shousuoW();
+				}
+				if(bBot)
+				{
+					h=obj.offsetHeight+t;
+					w=oBox.offsetWidth;
+					shousuoH();
+				}
+				
+				
+				if(bLeft && bTop)
+				{
+					oBox.style.left=oOldBoxLeft+l+"px";
+					oBox.style.top=oOldBoxTop+t+"px";
+					w=oOldBoxWidth-l;
+					h=oOldBoxHeight-t;
+					shousuoW();
+					shousuoH();
+				}
+				if(bRight && bTop)
+				{
+					oBox.style.top=oOldBoxTop+t+"px";
+					w=l+obj.offsetWidth;
+					h=oOldBoxHeight-t;
+					shousuoW();
+					shousuoH();
+				}
+				if(bLeft && bBot)
+				{
+					oBox.style.left=oOldBoxLeft+l+"px";
+					w=oOldBoxWidth-l;
+					h=t+obj.offsetHeight;
+					shousuoW();
+					shousuoH();
+				}
+				if(bRight && bBot)
+				{
+					w=l+obj.offsetWidth;
+					h=t+obj.offsetHeight;
+					shousuoW();
+					shousuoH();
+				}
+
+				if(w<100)
+				{
+					w=100;
+				}
+				if(h<100)
+				{
+					h=100;
+				}
+				oBox.style.width=w+"px";
+				oBox.style.height=h+"px";
+				return false;
+			}
+			document.onmouseup=function()
+			{
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+			return false;
+		}
+	};
+	
+	//通过class获取
+	function getClass(oParent,iClass)
+	{
+		var arr=[];
+		var aAll=oParent.getElementsByTagName('*');
+		for(i=0;i<aAll.length;i++)
+		{
+			if(aAll[i].className==iClass)
+			{
+				arr.push(aAll[i]);
+			}
+		}
+		return arr;
+	}
+</script>
+</head>
+
+<body>
+	<div id="div1">
+		<div class="top_left"></div>
+		<div class="top_right"></div>
+		<div class="bot_left"></div>
+		<div class="bot_right"></div>
+		<div class="top"></div>
+		<div class="bot"></div>
+		<div class="left"></div>
+		<div class="right"></div>
+		<div class="top_nav">可拖拽的DIV</div>
+		<div style="width:100%; text-align:center; margin-top:50px; font-size:24px; color:#CC0000;"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端开发交流群：149044724</div>
+	</div>
+</body>
+</html>

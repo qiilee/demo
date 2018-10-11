@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{ padding:0; margin:0; list-style:none;}
+	ul li{ width:100px; height:100px; background:#993366; margin:20px;}
+	.opa{opacity:1; filter:alpha(opacity:100);}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oBox=document.getElementById('box');
+		var oBoxLi=oBox.getElementsByTagName('li');
+		
+		oBoxLi[0].onmouseover=function()
+		{
+			stratMove(this,'height',300);
+		}
+		oBoxLi[0].onmouseout=function()
+		{
+			stratMove(this,'height',100);
+		}
+		oBoxLi[1].onmouseover=function()
+		{
+			stratMove(this,'width',300);
+		}
+		oBoxLi[1].onmouseout=function()
+		{
+			stratMove(this,'width',100);
+		}
+		
+		oBoxLi[2].onmouseover=function()
+		{
+			stratMove(this,'opacity',30);
+		}
+		oBoxLi[2].onmouseout=function()
+		{
+			stratMove(this,'opacity',100);
+		}
+		
+		//运动框架
+		function stratMove(obj,attr,iTarget,endfun)
+		{
+			clearInterval(obj.timer);
+			obj.timer=setInterval(function(){doMove(obj,attr,iTarget,endfun)},30);
+		}
+		
+		function doMove(obj,attr,iTarget,endfun)
+		{
+			var iCou=0;
+			
+			if(attr=="opacity")
+			{
+				iCou=parseInt(parseFloat(getStyle(obj,'opacity'))*100);
+			}
+			else{
+				iCou=parseInt(getStyle(obj,attr));
+			}
+			
+			var iSpeed=(iTarget-iCou)/8;
+			iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+			
+			if(iCou==iTarget)
+			{
+				clearInterval(obj.timer);
+				if(endfun)
+				{
+					endfun();
+				}
+			}
+			else{
+				if(attr=="opacity")
+				{
+					obj.style.opacity=(iCou+iSpeed)/100;
+					obj.style.filter="alpha(opacity:"+(iCou+iSpeed)+")";
+				}
+				else{
+					obj.style[attr]=iCou+iSpeed+"px";
+				}
+			}
+		}
+		
+		function getStyle(obj,attr)
+		{
+			return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
+		}
+	};
+</script>
+</head>
+
+<body>
+	<ul id="box">
+		<li></li>
+		<li></li>
+		<li class="opa"></li>
+	</ul>
+</body>
+</html>

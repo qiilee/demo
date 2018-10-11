@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>拖拽列表到指定区域[封装版]</title>
+<style type="text/css">
+	*{ padding:0; margin:0; font-family:"微软雅黑"; list-style:none;}
+	.nr{ margin:10px auto; width:800px;}
+	.gragBox{ margin:10px;}
+	.listBox{ width:200px; border:1px solid #CCC; float:left;}
+	.listBox li{ cursor:move;}
+	.rightBox{ width:600px; height:100px; border:1px solid #ccc; float:left; margin-left:10px; display:inline; overflow:hidden;}
+	.oNewBox{ width:100px; height:22px; line-height:22px; text-align:center; border:2px dashed red; position:absolute; top:0; left:0; cursor:pointer;}
+	.oNewList{height:22px; line-height:22px; text-align:center;  border:1px solid #999; float:left; margin:6px 0 0 6px; padding-left:6px; display:inline;}
+	.oNewList a{border:1px solid #CCC;}
+	.oNewList a:hover{ color:#0066FF; border:1px solid #33CCFF;}
+	.active{ background:#CCCCCC;}
+	
+	.clear{zoom:1;}
+	.clear:after{content:'\20'; clear:both; display:block;}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var aListBoxLi=getClass(document,'listBox')[0].getElementsByTagName('li');
+		var aListBoxLi2=getClass(document,'listBox')[1].getElementsByTagName('li');
+		for(var i=0;i<aListBoxLi.length;i++)
+		{
+			drag(aListBoxLi[i]);
+		}
+		for(var i=0;i<aListBoxLi2.length;i++)
+		{
+			drag(aListBoxLi2[i]);
+		}
+	};
+	
+	function drag(obj)
+	{
+		var oRightBox=getClass(obj.parentNode.parentNode,'rightBox')[0];
+		obj.onmousedown=function(ev)
+		{
+			obj.className="active";
+			var oEvent=ev||event;
+			var objL=getAbsPoint(obj).x;
+			var objT=getAbsPoint(obj).y;
+			var oMouseL=oEvent.clientX;
+			var oMouseT=oEvent.clientY;
+			var oldL=oMouseL-objL;
+			var oldT=oMouseT-objT;
+			var oNewBox=document.createElement('div');
+			oNewBox.className="oNewBox";
+			oNewBox.innerHTML=obj.innerHTML;
+			document.body.appendChild(oNewBox);
+			
+			document.onmousemove=function(ev)
+			{
+				var oEvent=ev||event;
+				var l=oEvent.clientX-oldL;
+				var t=oEvent.clientY-oldT;
+				oNewBox.style.left=l+"px";	
+				oNewBox.style.top=t+"px";
+				return false;
+			}
+			document.onmouseup=function()
+			{
+				obj.className="";
+				document.onmousemove=null;
+				document.onmouseup=null;
+				if(hit(oNewBox,oRightBox))
+				{
+					oNewBox.className="oNewList";
+					oNewBox.innerHTML=obj.innerHTML+" <a href='javascript:;' class='closeBtn'>X</a>";
+					oRightBox.appendChild(oNewBox);
+					var aCloseBtn=getClass(oRightBox,'closeBtn');
+					for(var i=0;i<aCloseBtn.length;i++)
+					{
+						aCloseBtn[i].onclick=function()
+						{
+							oRightBox.removeChild(this.parentNode);
+						}
+					}
+				}
+				else
+				{
+					document.body.removeChild(oNewBox);
+				}
+					
+			}
+			return false;
+		}
+	}
+	function hit(obj1,obj2)
+	{
+		var l1=getAbsPoint(obj1).x;
+		var t1=getAbsPoint(obj1).y;
+		var r1=l1+obj1.offsetWidth;
+		var b1=t1+obj1.offsetHeight;
+		
+		var l2=getAbsPoint(obj2).x;
+		var t2=getAbsPoint(obj2).y;
+		var r2=l2+obj2.offsetWidth;
+		var b2=t2+obj2.offsetHeight;
+		
+		
+		if(l1>r2 || r1<l2 || t1>b2 || b1<t2)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+	function  getAbsPoint(obj)     
+	{     
+		var   x,y;     
+		oRect   =   obj.getBoundingClientRect();
+		x=oRect.left;    
+		y=oRect.top;
+		return {'x':x,'y':y};
+	}  
+	
+	function getClass(opar,iClass)
+	{
+		var arr=[];
+		var aObj=opar.getElementsByTagName('*');
+		var re=new RegExp('\\b'+iClass+'\\b','i');
+		for(var i=0;i<aObj.length;i++)
+		{
+			if(re.test(aObj[i].className))
+			{
+				arr.push(aObj[i]);
+			}
+		}
+		return arr;
+	}
+</script>
+</head>
+
+<body>
+	<div class="nr">拖拽列表到指定区域，将列表中任意一项以拖拽形式添加到右侧div框内[封装版]</div>
+	<div class="gragBox clear">
+        <ul class="listBox">
+            <li>列表1</li>
+            <li>列表2</li>
+            <li>列表3</li>
+            <li>列表4</li>
+            <li>列表5</li>
+        </ul>
+        <div class="rightBox">
+        	
+        </div>
+    </div>
+	<div class="gragBox clear">
+        <ul class="listBox">
+            <li>列表21</li>
+            <li>列表22</li>
+            <li>列表23</li>
+            <li>列表24</li>
+            <li>列表25</li>
+        </ul>
+        <div class="rightBox">
+        	
+        </div>
+    </div>
+</body>
+</html>

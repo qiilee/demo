@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	*{ padding:0; margin:0; list-style:none; font-family:"微软雅黑"}
+	body{ background:#333;}
+	ul{ width:800px; margin:0 auto; position:relative;}
+	li{ width:256px; margin:6px 0 0 6px; float:left; display:inline; overflow:hidden;}
+	ul .active{ border:2px solid red; width:252px; height:176px;}
+</style>
+<script type="text/javascript">
+	var oBox=null;
+	var aLi=null;
+	var aPos=[];
+	window.onload=function()
+	{
+		oBox=document.getElementById('box');
+		aLi=oBox.getElementsByTagName('li');
+		var i=0;
+		for(i=0;i<aLi.length;i++)
+		{
+			aLi[i].style.left=aLi[i].offsetLeft+"px";
+			aLi[i].style.top=aLi[i].offsetTop+"px";
+			aPos[i]={x:aLi[i].offsetLeft,y:aLi[i].offsetTop};
+			aLi[i].index=i;
+		}
+		for(i=0;i<aLi.length;i++)
+		{
+			aLi[i].style.position="absolute";
+			aLi[i].style.margin="0";
+			drag(aLi[i]);
+		}
+	};
+	//拖拽
+	var iZIndex=1;
+	function drag(obj)
+	{
+		obj.onmousedown=function(ev)
+		{
+			oEvent=ev||event;
+			obj.style.zIndex=iZIndex++;
+			var disX=oEvent.clientX-obj.offsetLeft;
+			var disY=oEvent.clientY-obj.offsetTop;
+			var oNear=null;
+			document.onmousemove=function(ev)
+			{
+				oEvent=ev||event;
+				var l=oEvent.clientX-disX;
+				var t=oEvent.clientY-disY;
+				for(i=0;i<aLi.length;i++)
+				{
+					aLi[i].className="";
+				}
+				
+				oNear=finNearObj(obj);
+				
+				
+				if(oNear!=null)
+				{
+					oNear.className="active";
+				}
+				
+				obj.style.left=l+"px";
+				obj.style.top=t+"px";
+				return false;
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+				if(oNear)
+				{
+					oNear.style.zIndex=iZIndex-1;
+					stratMove(obj, aPos[oNear.index].y, aPos[oNear.index].x);
+					stratMove(oNear, aPos[obj.index].y, aPos[obj.index].x);
+					oNear.className="";
+					var cmp=0;
+					cmp=oNear.index;
+					oNear.index=obj.index;
+					obj.index=cmp;	
+				}
+				else
+				{
+					stratMove(obj,aPos[obj.index].y, aPos[obj.index].x);
+				}
+				
+			}
+			clearInterval(obj.timer);
+			return false;
+		}
+	}
+	//运动框架
+	function stratMove(obj,top,left)
+	{
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function()
+		{
+			doMove(obj,top,left);
+		},30);
+	}
+	function doMove(obj,top,left)
+	{
+		iSpeedX=(left-obj.offsetLeft)/6;
+		iSpeedX=iSpeedX>0?Math.ceil(iSpeedX):Math.floor(iSpeedX);
+		iSpeedY=(top-obj.offsetTop)/6;
+		iSpeedY=iSpeedY>0?Math.ceil(iSpeedY):Math.floor(iSpeedY);
+		if(obj.offsetLeft==left &&obj.offsetTop==top)
+		{
+			clearInterval(obj.timer);
+		}
+		else
+		{
+			obj.style.left=obj.offsetLeft+iSpeedX+"px";
+			obj.style.top=obj.offsetTop+iSpeedY+"px";
+		}
+	}
+	//寻找最近的一个对象
+	function finNearObj(obj)
+	{
+		var arr=[];
+		for(i=0;i<aLi.length;i++)
+		{
+			if(obj==aLi[i])
+			{
+				arr[i]=9999999999;
+			}
+			else
+			{
+				arr[i]=range(obj,aLi[i]);
+			}
+		}
+		var iMinNum=9999999999;
+		var iMinNdex=0;
+		for(i=0;i<arr.length;i++)
+		{
+			if(iMinNum>arr[i])
+			{
+				iMinNum=arr[i];
+				iMinNdex=i;
+			}
+		}
+		if(hit(obj,aLi[iMinNdex]))
+		{
+			return aLi[iMinNdex];
+		}
+		else
+		{
+			return null;
+		}
+			
+	}
+	//碰撞检测
+	function hit(obj1,obj2)
+	{
+		var l1=obj1.offsetLeft;
+		var r1=obj1.offsetLeft+obj1.offsetWidth;
+		var t1=obj1.offsetTop;
+		var b1=obj1.offsetTop+obj1.offsetHeight;
+		
+		var l2=obj2.offsetLeft;
+		var r2=obj2.offsetLeft+obj2.offsetWidth;
+		var t2=obj2.offsetTop;
+		var b2=obj2.offsetTop+obj2.offsetHeight;
+		
+		if(l1>r2 || r1<l2 || t1>b2 || b1<t2)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	//算俩物体间距离
+	function range(obj1,obj2)
+	{
+		var a=obj1.offsetLeft+obj1.offsetWidth/2-(obj2.offsetLeft+obj2.offsetWidth/2);
+		var b=obj1.offsetTop+obj1.offsetHeight/2-(obj2.offsetTop+obj2.offsetHeight/2);
+		return Math.sqrt(a*a+b*b);
+	}
+	//获取计算后样式
+	function getStyle(obj,attr)
+	{
+		return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];
+	}
+</script>
+</head>
+
+<body>
+	<p style="color:#FFF; text-align:center; line-height:60px;">可拖拽的照片墙</p>
+	<ul id="box">
+		<li><img src="images/zp1.jpg" /></li>
+		<li><img src="images/zp2.jpg" /></li>
+		<li><img src="images/zp3.jpg" /></li>
+		<li><img src="images/zp4.jpg" /></li>
+		<li><img src="images/zp5.jpg" /></li>
+		<li><img src="images/zp6.jpg" /></li>
+		<li><img src="images/zp7.jpg" /></li>
+		<li><img src="images/zp8.jpg" /></li>
+		<li><img src="images/zp9.jpg" /></li>
+	</ul>
+	<div style="width:400px; position:absolute; bottom:0; left:500px; font-size:24px; color:red; font-family:'微软雅黑';"><a target="_blank" href="http://qun.qq.com/#jointhegroup/gid/149044724"><img border="0" src="http://cgi.qun.qq.com/gscgi/s1/gp.do?gid=149044724" alt="点击这里加入此群" title="点击这里加入此群"></a><br />web前端开发交流群：149044724</div>
+</body>
+</html>

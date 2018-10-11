@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html ng-app="starter">
+
+	<head>
+		<title>WebGL魔方小游戏</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style>
+			* {
+				padding: 0px;
+				margin: 0px;
+				overflow: hidden;
+				background: #000;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<canvas id="canvas" width="512" height="512"></canvas>
+		<script type="text/x-glsl" id="svShader">
+			attribute vec3 position; attribute vec3 normal; attribute vec3 color; uniform mat4 mMatrix; uniform mat4 mvpMatrix; uniform mat4 mvpShadowerMatrix; uniform vec3 lVector; varying float diffuse; varying vec4 vPosition; varying vec3 vColor; void main(){ vec4 v4Position=vec4(position,1.0); vPosition=mvpShadowerMatrix*v4Position; gl_Position=mvpMatrix*v4Position; vec3 tNormal=(mMatrix*vec4(normalize(normal),0.0)).xyz; diffuse=max(-dot(tNormal,normalize(lVector)),0.4); vColor=color; }
+		</script>
+		<script type="text/x-glsl" id="sfShader">
+			precision lowp float; varying float diffuse; uniform sampler2D depthData; uniform vec2 size; varying vec4 vPosition; varying vec3 vColor; vec2 depthMap; float f(float i,float j){ float z=texture2D(depthData,depthMap+vec2(i,j)*2.0/size).z; return abs(z-vPosition.z)
+			<0.01?diffuse:0.4; } void main(){ depthMap=(vPosition.xy/vPosition.w*0.5+0.5)/512.0*size; float vDiffuse=0.0; for(float i=-2.0;i<=2.0;i++)for(float j=-2.0;j<=2.0;j++)vDiffuse+=f(i,j); vDiffuse/=25.0; gl_FragColor=vec4(vec3(vDiffuse*vColor),1.0); } </script>
+				<script type="text/x-glsl" id="pvShader">
+					attribute vec3 position; attribute vec3 normal; attribute vec3 color; uniform mat4 mvpMatrix; varying float xx; void main(){ gl_Position=mvpMatrix*vec4(position,1.0); normal;color; }
+				</script>
+				<script type="text/x-glsl" id="pfShader">
+					precision lowp float; uniform float index; void main(){ gl_FragColor=vec4(vec3(index),1.0); }
+				</script>
+				<script type="text/x-glsl" id="bvShader">
+					attribute vec3 position; uniform mat4 mvpShadowerMatrix; varying float depth; void main(){ gl_Position=mvpShadowerMatrix*vec4(position,1.0); depth=gl_Position.z; }
+				</script>
+				<script type="text/x-glsl" id="bfShader">
+					varying lowp float depth; void main(){ gl_FragColor=vec4(vec3(depth),1.0); }
+				</script>
+				<script src="http://www.web-tinker.com/files/SimpleWebGL.2.0.js"></script>
+				<script src="http://www.web-tinker.com/files/SimpleWebGL.Matrix.1.0.js"></script>
+				<script>
+					new SimpleWebGL(canvas).namespace(function(
+						Program, VertexShader, FragmentShader, ArrayBuffer,
+						Framebuffer, Renderbuffer, Texture2D, Matrix
+					) {
+						//基本函数
+						var π = Math.PI,
+							sin = Math.sin,
+							cos = Math.cos,
+							acos = Math.acos,
+							pow = Math.pow,
+							abs = Math.abs,
+							round = Math.round,
+							random = Math.random,
+							updateMvpMatrix = function() {
+								this.data.mvpMatrix = new Matrix(this.data.mMatrix).multiply(vpMatrix);
+								this.data.mvpShadowerMatrix = new Matrix(this.data.mMatrix).multiply(vpShadowerMatrix);
+							};
+						//定义方块
+						var Cube;
+						(function() {
+							var i, j, k, p, n, position = [],
+								normal = [],
+								color = [],
+								push = Array.prototype.push,
+								a = 1,
+								b = 0.9,
+								ctab = [
+									[1, 1, 0],
+									[0, 0, 1],
+									[1, 0, 0],
+									[1, 1, 1],
+									[0, 1, 0],
+									[1, 0.5, 0]
+								];
+							for(i = 0; i < 2; i++)
+								for(j = 0; j < 3; j++) { //面
+									for(k = 0; k < 4; k++)
+										p = [k >> 1 ? b : -b, k & 1 ? b : -b], p.splice(j, 0, i ? a : -a), push.apply(position, p),
+										n = [0, 0], n.splice(j, 0, i ? a : -a), push.apply(normal, n),
+										push.apply(color, ctab[i * 3 + j]);
+									push.apply(position, position.slice(-9, -3));
+									push.apply(normal, normal.slice(-9, -3));
+									push.apply(color, color.slice(-9, -3));
+								};
+							for(i = 0; i < 3; i++)
+								for(j = 0; j < 4; j++) { //棱
+									for(k = 0; k < 4; k++)
+										p = k < 2 ? [a, b] : [b, a], p[0] *= j & 2 ? 1 : -1, p[1] *= j & 1 ? 1 : -1,
+										p.splice(i, 0, (k & 1 ? 1 : -1) * b), push.apply(position, p),
+										n = [a * (j & 2 ? 1 : -1), a * (j & 1 ? 1 : -1)], n.splice(i, 0, 0), push.apply(normal, n);
+									push.apply(position, position.slice(-9, -3));
+									push.apply(normal, normal.slice(-9, -3));
+									for(k = 0; k < 6; k++) color.push(0.5, 0.5, 0.5);
+								};
+							for(i = 0; i < 8; i++)
+								for(j = 0; j < 3; j++) { //角
+									for(k = 0; k < 3; k++)
+										position.push((k == j ? a : b) * (i & 1 << k ? 1 : -1)),
+										normal.push(a * (i & 1 << k ? 1 : -1));
+									color.push(0.5, 0.5, 0.5);
+								};
+							var count = position.length / 3,
+								buffers = {
+									position: new ArrayBuffer(position),
+									normal: new ArrayBuffer(normal),
+									color: new ArrayBuffer(color)
+								};
+							Cube = function() {
+								this.data = Object.create(buffers);
+							};
+							Cube.prototype = {
+								update: updateMvpMatrix,
+								valueOf: function() {
+									return count;
+								}
+							};
+						})();
+						//生成操作对象
+						var cubes = [],
+							ground;
+						cubes.dimension = 3,
+							cubes.translation = Matrix.model([0, 2, 0]);
+						cubes.rotation = Matrix.model([]).pitch(60).yaw(40).pitch(10);
+						cubes.wMatrix = new Matrix(cubes.rotation).multiply(cubes.translation);
+						(function(d) {
+							var i, j, k, o, e = (cubes.dimension - 1) / 2;
+							for(i = 0; i < d; i++)
+								for(j = 0; j < d; j++)
+									for(k = 0; k < d; k++)
+										cubes.push(o = new Cube()),
+										o.location = [i, j, k], o.rotation = new Matrix(4),
+										o.translation = [i * 2 - d + 1, j * 2 - d + 1, k * 2 - d + 1],
+										o.m = Matrix.model(o.translation),
+										o.data.mMatrix = new Matrix(o.m).multiply(cubes.wMatrix),
+										o.rotate = function(m, r) {
+											this.location = Matrix.model(this.location).move(-e, -e, -e)[m](r * 90).move(e, e, e).slice(-4, -1).map(round);
+											this.m = Matrix.model(this.translation).multiply(this.rotation[m](r * 90));
+										};
+						})(cubes.dimension);
+						(function(i, j, k) {
+
+							ground = {
+								update: updateMvpMatrix,
+								data: {
+									position: new ArrayBuffer([-i, 0, -j, -i, 0, j, i, 0, -j, i, 0, j, -i, 0, j, i, 0, -j]),
+									normal: new ArrayBuffer([0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0]),
+									color: new ArrayBuffer([].concat(k, k, k, k, k, k)),
+									mMatrix: Matrix.model([0, -7, -9])
+								},
+								valueOf: function() {
+									return 6;
+								}
+							};
+						})(7, 12, [0.5, 0.5, 0.5]);
+						//打乱
+						(function shuffle(c) {
+							var d = cubes.dimension,
+								dir = random() * d | 0,
+								m = ["pitch", "yaw", "roll"][dir],
+								r = random() * 3 + 1 | 0,
+								cur = random() * d | 0,
+								offset = (d - 1) / 2,
+								group = [],
+								i, o;
+							for(i = 0; o = cubes[i]; i++)
+								if(o.location[dir] == cur) group.push(o);
+							for(i = 0; o = group[i]; i++) o.rotate(m, r), o.data.mMatrix = new Matrix(o.m).multiply(cubes.wMatrix);
+							if(c-- > 0) shuffle(c);
+						})(30);
+						//定义矩阵
+						var vpMatrix = Matrix.view([0, 0, 32]).multiply(
+								Matrix.projection(30, canvas.width / canvas.height, 0.01, 200)
+							),
+							lVector = [-0, -8, -8],
+							vpShadowerMatrix = Matrix.view( //光
+								[-lVector[0], -lVector[1], -lVector[2]],
+								acos(-lVector[2] / pow(pow(lVector[0], 2) + pow(lVector[2], 2), 0.5)) / π * 180, -acos(-lVector[2] / pow(pow(lVector[1], 2) + pow(lVector[2], 2), 0.5)) / π * 180
+							).multiply(new Matrix(4).data(2, 2, -1 / 32).data(3, 3, 9).data(3, 1, -1.2));
+						//初始化着色器
+						var picker = new Program(new VertexShader(pvShader), new FragmentShader(pfShader)).link(),
+							shadower = new Program(new VertexShader(bvShader), new FragmentShader(bfShader)).link(),
+							stage = new Program(new VertexShader(svShader), new FragmentShader(sfShader)).link();
+						stage.use().data({
+							size: [canvas.width, canvas.height],
+							lVector: lVector
+						});
+						//初始化缓冲区
+						var frameTexture = new Texture2D(null, "RGBA", 512, 512).bind(0),
+							framebuffer = new Framebuffer(new Renderbuffer("DEPTH_COMPONENT16", 512, 512), frameTexture).unbind();
+						//播放帧
+						var active;
+						this.play(function() {
+							var i, o, l = cubes.length;
+							for(i = 0; i < l; i++) cubes[i].update();
+							ground.update();
+							if(MBUTTON == null) {
+								framebuffer.bind(), this.clear("COLOR", "DEPTH"), picker.use();
+								for(i = 0; o = cubes[i]; i++) picker.data(o.data).data({
+									index: (i + 1) / l
+								}).draw(o);
+								active = round(frameTexture.readPixels(MX, 512 - MY)[0] / 0xFF * l - 1);
+							};
+							framebuffer.bind(), this.clear("COLOR", "DEPTH"), shadower.use();
+							for(i = 0; o = cubes[i]; i++) shadower.data(o.data).draw(o);
+							shadower.data(ground.data).draw(ground);
+							framebuffer.unbind(), this.clear("COLOR", "DEPTH"), stage.use();
+							for(i = 0; o = cubes[i]; i++) stage.data(o.data).draw(o);
+							stage.data(ground.data).draw(ground);
+						}).setting({
+							DEPTH_TEST: "LESS"
+						}).color(0, 0, 0, 1);
+						//鼠标操作
+						var MX, MY, MBUTTON;
+						(function() {
+							addEventListener("contextmenu", function(e) {
+								e.preventDefault();
+							});
+							addEventListener("mousedown", function(e) {
+								MBUTTON = e.button;
+							});
+							addEventListener("mouseup", function(e) {
+								MBUTTON = null;
+							});
+							addEventListener("mousemove", function(e) {
+								MX = e.layerX, MY = e.layerY;
+							});
+							//元素拖拽
+							var queue = [],
+								offset = (cubes.dimension - 1) / 2;
+							addEventListener("mousedown", function(e) {
+								if(e.button != 0 || active < 0) return;
+								var i, j, o, dir, mx = e.clientX,
+									my = e.clientY,
+									mousemove, mouseup,
+									groups = [
+										[],
+										[],
+										[]
+									],
+									methods = ["pitch", "yaw", "roll"],
+									mpos;
+								for(i = 0; o = cubes[i]; i++)
+									for(j = 0; j < 3; j++)
+										if(o.location[j] == cubes[active].location[j]) groups[j].push(o);
+								addEventListener("mousemove", mousemove = function(e) {
+									var ndir, group, i, j, o;
+									mpos = Matrix.model([(e.clientY - my) / 2, (e.clientX - mx) / 2, 0]).multiply(new Matrix(cubes.wMatrix).inverse()).slice(-4, -1);
+									group = groups[o = mpos.map(abs), ndir = o.indexOf(Math.max.apply(Math, o))];
+									if(dir != ndir)
+										for(i = 0; i < queue.length; i++)
+											for(j = 0; j < group.length; j++)
+												if(queue[i].indexOf(group[j]) > -1) ndir = dir, j = group.length, i = queue.length;
+									if(dir != void 0 && dir != ndir)
+										for(i = 0; o = groups[dir][i]; i++) o.data.mMatrix = new Matrix(o.m).multiply(cubes.wMatrix);
+									if(group = groups[dir = ndir])
+										for(i = 0; o = group[i]; i++)
+											o.data.mMatrix = new Matrix(o.m)[methods[dir]](mpos[dir]).multiply(cubes.wMatrix);
+								}), addEventListener("mouseup", mouseup = function() {
+									removeEventListener("mousemove", mousemove), removeEventListener("mouseup", mouseup);
+									var m = methods[dir],
+										r = round(mpos[dir] / 90) % 4,
+										group = groups[dir],
+										i, o, r;
+									if(!group) return;
+									queue.push(group);
+									for(i = 0; o = group[i]; i++) o.rotate(m, r);
+									if(r = mpos[dir] %= 90)
+										if(abs(r) > 45) r = r < 0 ? 90 - abs(r) : abs(r) - 90;
+									(function callee() {
+										if(abs(r *= 0.7) < 0.5) r = 0;
+										for(i = 0; o = group[i]; i++) o.data.mMatrix = new Matrix(o.m)[m](r).multiply(cubes.wMatrix);
+										if(r) setTimeout(callee, 16);
+										else queue.splice(queue.indexOf(group), 1);
+									})()
+								});
+							});
+							//控制方向
+							addEventListener("mousedown", function(e) {
+								if(e.button != 2) return;
+								var x = e.clientX,
+									y = e.clientY,
+									mousemove, mouseup;
+								addEventListener("mousemove", mousemove = function(e) {
+									cubes.rotation.yaw((e.clientX - x) / 2).pitch((e.clientY - y) / 2);
+									cubes.wMatrix = new Matrix(cubes.rotation).multiply(cubes.translation);
+									for(var i = 0, o; o = cubes[i]; i++) o.data.mMatrix = new Matrix(o.m).multiply(cubes.wMatrix);
+									x = e.clientX, y = e.clientY;
+								}), addEventListener("mouseup", mouseup = function(e) {
+									removeEventListener("mousemove", mousemove), removeEventListener("mouseup", mouseup);
+								});
+							});
+						})();
+
+					});
+				</script>
+	</body>
+
+</html>

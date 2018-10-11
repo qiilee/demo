@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>iframe框架展开关闭</title>
+<style type="text/css">
+	*{ padding:0; margin:0;}
+	.close{ width:100px; height:24px; text-align:center; line-height:24px; color:#333333; border:1px solid #FF9900; position:absolute; right:1px; top:3px;}
+	.open{ width:100px; height:24px; text-align:center; line-height:24px; color:#333333; border:1px solid #FF9900; position:absolute; left:3px; top:3px;}
+	.left,.right{ float:left; position:relative;}
+	.left{ width:29%;}
+	.right{ width:70%;}
+	.f1{}
+</style>
+<script type="text/javascript">
+	window.onload=function()
+	{
+		var oLeft=getClass(document,'left')[0];
+		var oRight=getClass(document,'right')[0];
+		var oClose=getClass(document,'close')[0];
+		var oOpen=getClass(document,'open')[0];
+		oClose.onclick=function()
+		{
+			oLeft.style.width="0px";
+			oRight.style.width="100%";
+		}
+		oOpen.onclick=function()
+		{
+			oLeft.style.width="29%";
+			oRight.style.width="70%";
+		}
+	};
+	function getClass(oParent,iClass)
+	{
+		var arr=[];
+		var aObj=oParent.getElementsByTagName('*');
+		for(i=0;i<aObj.length;i++)
+		{
+			if(aObj[i].className==iClass)
+			{
+				arr.push(aObj[i]);
+			}
+		}
+		return arr;
+	}
+</script>
+</head>
+
+<body>
+	<iframe style="width:100%; height:100px; border:1px solid #CCC;"></iframe>
+	<div style="width:100%;">
+		<div class="left">
+			<div class="close">关闭</div>
+			<iframe style=" width:100%;height:400px; border:1px solid #CCC;" class="f1"></iframe>
+		</div>
+		<div class="right">
+			<div class="open">展开</div>
+			<iframe style=" width:100%;height:400px; border:1px solid #CCC;" class="f2"></iframe>
+		</div>
+	</div>
+</body>
+</html>

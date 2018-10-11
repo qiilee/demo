@@ -1,0 +1,281 @@
+<!DOCTYPE html >
+<html >
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+         <meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0">
+        <title id="netTitle">乐成彩</title>
+        <link href="css/global.css" rel="stylesheet">
+        <link href="css/css.css" rel="stylesheet">
+        <link href="css/newcss.css" rel="stylesheet">
+        <link href="css/swiper.min.css" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="57x57" href="images/icon/icon-57.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/icon/icon-72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/icon/icon-114.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/icon/icon-144.png">
+    <script type="text/javascript" src="script/jquery1.7.2.js"></script>
+    <script type="text/javascript" src="script/md5.js" ></script>
+    </head>
+    <body class="new-graybg">
+    	<header class="header newheader">
+            <!-- <ul class="headMenu">
+                <li class="on"><a href="javascript:;">购彩大厅</a></li>
+                <li><a href="html/lottery.html">开奖公告</a></li>
+                <li><a href="html/recharge.html">充值中心</a></li>
+                <li><a href="html/user.html">用户中心</a></li>
+                <li><a href="html/more.html">更多</a></li>
+            </ul> -->
+
+    		<div class="new-title">
+    			<span id="qdcpTitle">乐成彩</span>
+                <a href="html/user.html" id="usercenter"><img src="images/newicon/signhead.png" alt=""></a>
+                <a href="html/downapp.html" id="down-app"><img src="images/newicon/downicon.png" alt=""></a>
+    		</div>
+    		
+            <!-- <div id="login" class="login">登录</div> -->
+    	</header>
+        <div class="body body_pading">
+        <a href="prefs:root=AIRPLANE_MODE" id="qbt"></a>
+            <!--<div class="title" id="toCustomer">致尊敬的客户</div>-->
+
+            <!-- 改版 -->
+            <div class="new-mainbox" style="bottom:10px">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        
+                    </div>
+                    <!-- <div class="swiper-button-prev" style=""></div> -->
+                    <!-- <div class="swiper-button-next" style=""></div> -->
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="new-submenu">
+                    <a style="width:24%;" href="http://wangzhan.fengyunzhongcheng.com/mobilezixun/index" ><img src="images/newicon/newszx.png" alt="">&nbsp;新闻资讯</a>
+                    <a style="width:24%;" href="html/lottery.html" ><img src="images/newicon/kaijiang.png" alt="">&nbsp;开奖信息</a>
+                    <a style="width:auto;" id="goAppDown" href="html/downapp.html" ><img src="images/newicon/downapp.png" alt="">&nbsp;下载App使用优惠券</a>
+                </div>
+                <!-- 显示余额 -->
+                <!-- <div id="betNum" class="right" style="line-height: 22px; font-size: 0.8em;"> </div> -->
+
+                <div class="caiz-list clearfix">
+                    <ul class="clearfix">
+                        <li class="fl"><a href="html/ssq/chose.html?type=dating">
+                            <img src="images/newicon/ssq.png" alt="">
+                            <p><span class="title">双色球</span><span class="small">好玩易中奖</span></p>
+                        </a><i id="ssqSaleState" class="czSaleState saleState-kaijiang"></i></li>
+                        <li class="fr"><a href="html/fc3d/chose.html?type=dating">
+                            <img src="images/newicon/fcsd.png" alt="">
+                            <p><span class="title">福彩3D</span><span class="small">轻松赢千元</span></p>
+                        </a><i id="tdSaleState" class="czSaleState saleState-tingshou"></i></li>
+                        <li class="fl"><a href="html/dlt/chose.html?type=dating">
+                            <img src="images/newicon/dlt.png" alt="">
+                            <p><span class="title">大乐透</span><span class="small">奖池数十亿</span></p>
+                        </a><i id="dltSaleState" class="czSaleState saleState-jiajiang"></i></li>
+                        <li class="fr"><a href="html/jczq/chose1.html?type=dating">
+                            <img src="images/newicon/jczq.png" alt="">
+                            <p><span class="title">竞彩足球</span><span class="small">中国杯</span></p>
+                        </a><i id="jczqSaleState" class="czSaleState"></i></li>
+                        <li class="fl"><a href="html/jclq/chose.html?type=dating">
+                            <img src="images/newicon/jclq.png" alt="">
+                            <p><span class="title">竞彩篮球</span><span class="small">NBA火热来袭</span></p>
+                        </a><i id="jclqSaleState" class="czSaleState"></i></li>
+                        <li class="fr"><a href="html/kuai3/k3.html?type=dating">
+                            <img src="images/newicon/jsks.png" alt="">
+                            <p><span class="title">江苏快三</span><span class="small">摇骰子中大奖</span></p>
+                        </a><i id="jsksSaleState" class="czSaleState"></i></li>
+                        <li class="fl"><a href="html/elevfor5/gd5.html?type=dating">
+                            <img src="images/newicon/sd115.png" alt="">
+                            <p><span class="title">山东11选5</span><span class="small">好玩易中奖</span></p>
+                        </a><i id="sdSaleState" class="czSaleState"></i></li>
+                        <li class="fr"><a href="html/elevfor5GD/gd5.html?type=dating">
+                            <img src="images/newicon/gd115.png" alt="">
+                            <p><span class="title">广东11选5</span><span class="small">好玩易中奖</span></p>
+                        </a><i id="gdSaleState" class="czSaleState"></i></li>
+                        <li class="fl"><a href="html/newssc/ssc.html?type=dating">
+                            <img src="images/newicon/ssc.png" alt="">
+                            <p><span class="title">时时彩</span><span class="small">好玩易中奖</span></p>
+                        </a><i id="sscSaleState" class="czSaleState"></i></li>
+                        <li class="fr"><a href="html/klsf/klsf.html?type=dating">
+                            <img src="images/newicon/main_klsf.png" alt="">
+                            <p><span class="title">快乐十分</span><span class="small">好玩易中奖</span></p>
+                        </a><i id="klsfSaleState" class="czSaleState"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 改版 -->
+
+            <!-- <div class="indexContent"> -->
+                <!-- <div class="betIcon">
+                    <a href="html/tog.html">
+                        <img src="images/icon/tog_buy.png" />
+                        <p>合买大厅</p>
+                    </a>
+                </div> -->
+
+                <!-- <div class="betIcon">
+                    <a href="html/ssq/chose.html?type=dating">
+                        <img src="images/icon/ssq.png" />
+                        <p>双色球</p>
+                    </a>
+                </div>
+
+                <div class="betIcon">
+                    <a href="html/fc3d/chose.html">
+                        <img src="images/icon/ddd.png" />
+                        <p>福彩3D</p>
+                    </a>
+                </div>
+
+                <div class="betIcon">
+                    <a href="html/dlt/chose.html?type=dating">
+                        <div class="imgBox">
+                            <img src="images/icon/dlt.png" />
+                        </div>
+                        <p>大乐透</p>
+                    </a>
+                </div> -->
+
+<!--                 <div class="betIcon">
+                    <a href="html/ssc/chose.html">
+                        <div class="imgBox">
+                            <img src="images/icon/ssc.png" />
+                            <div class="bar">加奖</div>
+                        </div>
+                        <p>时时彩</p>
+                    </a>
+                </div> -->
+                <!-- <div class="betIcon">
+                    <a href="html/jczq/chose1.html">
+                        <div class="imgBox">
+                            <img src="images/icon/jczq.png" /> -->
+                            <!--<div class="bar">加奖</div>-->
+                        <!-- </div> -->
+                        <!-- <p>竞彩足球</p> -->
+                    <!-- </a> -->
+                <!-- </div>
+                <div class="betIcon">
+                    <a href="html/jclq/chose.html">
+                        <div class="imgBox">
+                            <img src="images/icon/jclq.png" /> -->
+                            <!--<div class="bar">加奖</div>-->
+                        <!-- </div>
+                        <p>竞彩篮球</p>
+                    </a>
+                </div>
+                <div class="betIcon">
+                    <a href="html/kuai3/k3.html?source=index">
+                        <div class="imgBox">
+                            <img src="images/icon/ks.png" /> -->
+                            <!-- <div class="bar">加奖</div> -->
+                        <!-- </div>
+                        <p>新快三</p>
+                    </a>
+                </div>
+                <div class="betIcon">
+                    <a href="html/elevfor5/gd5.html?source=index">
+                        <div class="imgBox">
+                            <img src="images/icon/gd5.png" /> -->
+                            <!-- <div class="bar">加奖</div> -->
+                        <!-- </div>
+                        <p>11选5</p>
+                    </a>
+                </div> -->
+            <!-- </div> -->
+        </div>
+    	<!-- <footer class="indexFooter">
+    		<ul>
+    			<li class="active">
+    				<a href="javascript:;">
+                        <img src="images/icon/index_click.png" width="64">
+                        <p>购彩大厅</p>
+    				</a>
+    			</li>
+    			<li>
+    				<a href="html/lottery.html">
+    					<img src="images/icon/ad_normal.png" width="64">
+                        <p>开奖公告</p>
+    				</a>
+    			</li>
+    			<li>
+    				<a href="html/recharge.html">
+                        <img src="images/icon/pay_normal.png" width="64">
+                        <p>充值中心</p>
+    				</a>
+    			</li>
+    			<li>
+    				<a href="html/user.html">
+                        <img src="images/icon/user_normal.png" width="64">
+                        <p>用户中心</p>
+    				</a>
+    			</li>
+    			<li>
+    				<a href="html/more.html">
+                        <img src="images/icon/more_normal.png" width="64">
+                        <p>更多</p>
+    				</a>
+    			</li>
+    		</ul>
+    	</footer> -->
+        <div class="dialogin" id="dialog"> </div><!--登录-->
+        <script src="script/config.js"></script>
+    <script src="script/util.js"></script>
+    <script src="script/root.js"></script>
+    <script src="script/login.js"></script>
+    <script src="script/index.js"></script>
+    <script src="script/share.js"></script>
+    <script src="script/swiper.min.js"></script>
+<script>
+if(window.location.href.indexOf("lechengticaih5.fengyunzhongcheng.com/") > 0){
+    $("qdcpTitle").innerText = "乐成体彩";
+    document.title = "乐成体彩";
+    $("down-app").setAttribute("href","html/downapp-tc.html");
+    $("goAppDown").setAttribute("href","html/downapp-tc.html");
+}
+if (window.navigator.standalone == true) {
+    var lnk = document.getElementById("qbt");
+    var evt = document.createEvent('MouseEvent');
+    evt.initMouseEvent('click');
+    lnk.dispatchEvent(evt);
+}else{
+    var addObj=document.createElement("link");
+    addObj.setAttribute('rel','apple-touch-icon-precomposed');
+    addObj.setAttribute('href','http://iphone.tgbus.com/zt/homeicon/images/airplanemode.png');
+    document.getElementsByTagName("head")[0].appendChild(addObj);
+}
+var url = window.location.href.split("?");
+if(url.length>1){
+	var param=url[1].split("=");
+	if(param[0]=="n"){
+		var userno= param[1];
+		logResult({
+			"userName":userno,
+			"userno":userno,
+			"error_code" :"0000"
+		});
+	   window.location.href=url[0];
+	}
+}
+
+//Check if a new cache is available on page load.
+  window.addEventListener('load', function(e) {
+
+      window.applicationCache.addEventListener('updateready', function(e) {
+            if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+                 // Browser downloaded a new app cache.
+                 // Swap it in and reload the page to get the new hotness.
+                window.applicationCache.swapCache();
+                 // if (confirm('A new version of this site is available. Load it?')) {
+                console.log(e.type+"EventListener UPDATEREADY."+window.applicationCache.status)
+
+                window.location.reload();
+             // }
+            } else {
+                // Manifest didn't changed. Nothing new to server.
+                console.log("Manifest didn't changed. Nothing new to server.")
+            }
+      }, false);
+
+  }, false);
+</script>
+</body>
+</html>
