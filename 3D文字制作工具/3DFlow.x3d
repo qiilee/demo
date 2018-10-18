@@ -1,0 +1,67 @@
+Xara 3D
+Version : 4.331
+Background (HSV) : 0 0 0
+Shadow colour (HSV) : 0 0 0
+Background (HSV0) : 0 0 0
+Shadow colour (HSV0) : 0 0 0
+Light 1 (HSV) : 337 77 55 12 -34
+Light 1 (HSV0) : 3367 770 546 12 -34
+Lighting 1 : 3367 770 546 11.6831 -33.8958
+Light 2 (HSV) : 215 88 97 -19 -51
+Light 2 (HSV0) : 2150 878 972 -19 -51
+Lighting 2 : 2150 878 972 -18.6028 -51.1825
+Light 3 (HSV) : 298 84 97 -16 38
+Light 3 (HSV0) : 2978 835 965 -16 38
+Lighting 3 : 2978 835 965 -16.0626 37.7233
+Observer : 50331648 27 -12
+Observer2 : 0
+Size : 150
+Animation : 24 0 0
+Animation type : 1
+Frames per second : 10
+Pause : 0
+Loop : 0 1
+Axis : 2
+Animated : 0
+Text animation : 1
+Light animation : 1
+Minimum text size : 50
+Grow : 0
+Swing : 90 0 0
+Fade : 1 0
+Frame duration : 50
+Shadow : 0 2.5 -2.5
+Shadow style : 0
+Shadow transparency : 75
+Shadow blur : 12
+Shadow plane : 8388608
+Button : 0 0 100 100
+Button gloss : 1
+Button bevel : 1 30
+Button extrude : 30 0
+Button text colour : 0 0 0
+Button colours : 0 0 666 0 0 666
+Button text scaling : 100 0 0 0
+Compact : 0
+Tint : 0
+Text texture scaling : 100 0 0 0
+Texture offsets : 0 0
+Text texture : 0
+Texture : 0
+Text : X3D
+Text (UNICODE) : X3D
+Text colour (HSV) : 161 72 12
+Text colour (HSV0) : 1606 719 121
+Font name : Balthazar
+Font attributes : 100 0 0
+Justify : 1
+Line spacing : 100
+Character spacing : -10
+Outline : 0 16
+Outline width : 40
+Gloss : 1
+Extrude : 150 1 1 0
+Bevel : 18 20
+Bevel depth : 50
+Fancy text : \{FOBalthazar}\{LS100}\{CS-10}\{OW40}\{ED150}\{BD50}\{BT18}\{CL160607190121}\{SC038805871000}X
+Fancy text : \{SZ40}3D

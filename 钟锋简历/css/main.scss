@@ -1,0 +1,628 @@
+$white:#fff;
+$blue:#55C1E5;
+$white_blue:#9eddf2;
+$dark_blue:#1c7795;
+$light_blue:#80d6f2;
+$light_black:#b3b3b3;
+$dark_black:#666666;
+$black:#333333;
+$grey:#e5e5e5;
+$grey_blue:#5b98ac;
+$light_grey:#F4F4F4;
+$dark_grey:#cccccc;
+$dark_blue:#474d5d;
+$red:#E86064;
+$blue:#5BA4E8;
+
+@import "animation.scss";
+@font-face{
+	font-family: 'youyuan';
+	src:url("../fonts/youyuan.TTF");
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	@include box-sizing();
+	font-family: 'youyuan';
+	font-weight: normal;
+}
+
+html{
+	font-size: 62.5%;
+	width: 100%;
+	overflow: hidden;
+}
+body{
+	font-size: 1.4rem;
+	overflow: hidden;
+}
+a{
+	color: #fff;
+}
+h1{
+	margin: 30px 0 50px;
+	font-size: 3rem;
+}
+h2{
+	margin: 20px 0;
+	
+}
+h3{
+	margin: 20px 0;
+}
+table{
+	border-collapse:collapse;
+}
+input,textarea,button{
+	outline: none;
+	padding: 12px;
+	font-size: 1.4rem;
+	border: 1px solid $grey;
+	background: none;
+}
+.clear_both{
+	clear: both;
+}
+
+section{
+	width: 100%;
+
+}
+section.page_one{
+	background: url(../images/bg1.png) no-repeat center center;
+	animation:0.4s myscale 1;	
+	color: $white;	
+}
+section.page_two .con_wrap,section.page_three .con_wrap,section.page_four .con_wrap,section.page_five .con_wrap,section.page_six .con_wrap{
+	@include translateY(200px);
+	@include opacity(0);
+	animation:1s mytranslateY;
+	@include animation-fill-mode(forwards);
+}
+
+.page_one{
+	display: none;
+}
+.page_two{
+	display: none;
+	background: $light_grey;
+}
+.page_three{
+	display: none;
+	background: $white;
+}
+.page_four{
+	display: none;
+	background: $light_grey;
+}
+
+.page_five{
+	display: none;
+	background: $white;
+}
+
+.con_wrap{
+	width: 60%;
+	margin: 0 auto 0;
+	padding: 2rem 0;
+	overflow: hidden;
+}
+.tit_wrap{
+	text-align: center;
+	h1{
+		width: 100%;
+		margin: 30px auto 50px;
+		position: relative;
+		line-height: 4.2rem;
+	}
+	h1:after{
+		content:"";
+		width: 100%;
+		position: absolute;
+		bottom: -20px;
+		left: 0;
+		border: 1px dashed $white_blue;
+		@include animation(25s,left_widthsmaller,linear,1s,infinite);
+	}
+	.scissors{
+		width: 0%;
+		height: 20px;
+		position: absolute;
+		top: 113px;
+		right: 0;
+		@include animation(25s,left_widthbigger,linear,1s,infinite);
+		span{
+			width: 20px;
+			height: 20px;
+			float: left;
+			background:url(../images/sprite_img.png) no-repeat -37px -50px;
+		}
+	}
+	h2{
+		margin: 60px 0 0 0 ;
+	}
+}
+.tit_wrap+div{
+	margin: 40px 0 0 0 ;
+}
+aside{
+	width: 40px;		
+	display: block;
+	position: fixed;
+	top: 42%;
+	right: 10px;
+	@include transform_translate(-42%,0);
+	a{
+		width: 14px;
+		height: 14px;
+		display: block;
+		position: relative;
+		margin: 25px 0;
+		border-radius: 50%;
+		background: #d9d9d9;
+		cursor: pointer;
+		span{
+			width: 60px;
+			height: 20px;
+			display: none;
+			position: absolute;
+			top: -2px;
+			color: $light_blue;
+			right: 25px;
+			font-size: 1.6rem;
+			text-align: right;
+		}
+	}
+	a:hover span{
+		display: block;
+	}
+
+	.cur_a{
+		background:$light_blue;
+	}
+	.cur_a span{
+		color: $light_blue;
+		text-decoration: underline;
+	}
+}
+
+// page1
+nav{
+	width: 100%;
+	position: relative;
+	.nav_wrap{
+		width: 80%;
+		margin: 0 auto;
+		padding: 2.4rem 0;
+		overflow: hidden;
+	}
+}
+.resume_logo{
+	width: 20%;
+	float: left;
+	a{
+		font-size: 5rem;
+	}
+}
+.nav_bar{
+	width: 60%;
+	float: right;
+	ul{
+		li{
+			width: 20%;
+			float: left;
+			font-size: 1.8rem;
+			
+			a{
+				display: block;
+				padding: 2rem 0;
+				margin: 0 1.4rem;
+				text-align: center;
+				color: $white; 
+				position: relative;
+				@include transition(color,0.5s,ease-in);
+				
+			}
+			a:hover{
+				color: $light_blue;
+			}
+			a:after{
+				width: 0;
+				height: 1px;
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 10px;
+				background:$light_blue;
+				@include transition(width,0.5s,ease-in);
+			}
+			a:hover:after{
+				width: 100%;
+			}
+		}
+		li:after{
+			
+		}
+	}
+}
+.cen_con{
+	width: 50%;
+	height: 60%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform_translate(-50%,-50%);
+	text-align: center;
+	overflow: hidden;
+
+}
+.portrait {
+    height: 32%;
+    margin: 0 auto 8%;
+    padding: 6px;
+    text-align: center;    
+    img {
+    height: 100%;
+    vertical-align: middle;
+    border-radius: 50%;
+	}
+}
+
+.cen_text{
+	height: 60%;
+	// background: rgba($grey, 0.1);
+	h2{
+		height: 18%;
+		min-height:38px;
+		margin: 0;
+	}
+	h3{
+		height: 18%;
+		min-height: 32px;
+		margin: 0;
+	}
+	hr{
+		width: 100%;
+		height:1px;
+		background: #999999;
+		border: 0;
+		margin: 0 auto 5% auto;
+		@include opacity(1);
+		@include animation(1s,to_width,ease-in,0s,1);
+		@include animation-fill-mode(forwards);
+	}
+}
+.down_arrow{
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	bottom: 0px;
+	left: 0;
+	a{
+		width: 51px;
+		height: 51px;
+		border-radius: 50%;
+		border: 1px solid $white;
+		display: block;
+		margin: 0 auto;
+		cursor: pointer;		
+		span{
+			width: 18px;
+			height: 18px;
+			display: block;
+			margin: 15px;
+			background: url(../images/sprite_img.png) no-repeat -18px -50px;
+			@include transition(background,0.5s,ease-in);
+		}
+	}
+	a:hover{
+		border: 1px solid $light_blue;
+		span{
+			background: url(../images/sprite_img.png) no-repeat -18px -50px;	
+		}
+		
+		
+	}
+}
+
+// page2
+
+.myinfo{
+	width: 100%;
+	float: left;
+	padding: 0 20px;
+	table{
+		width: 100%;
+		margin: 20px auto;
+		tr{
+			td{
+				font-size: 1.8rem;
+				padding: 15px 15px 15px 30px;
+				text-align: left;
+				img{
+					border-radius: 50%;
+				}
+				span{
+					width: 30px;
+					height: 30px;
+					display: block;
+				}
+				a{
+					color: $dark_black;
+				}
+			}
+		}
+		tr:last-child td{
+			p{
+				padding: 10px 0 0 0;
+			}
+		}
+	}
+}
+
+// page3
+.skill_con{
+	width: 100%;
+	
+	overflow: hidden;
+}
+.canvas_wrap{
+	width:50%;
+	float: left;
+	overflow: hidden;
+	padding: 30px 0 0 0;
+}
+.text_wrap{
+	width: 50%;
+	float: left;
+	padding: 30px 0 0 20px;
+	p{
+		font-size: 1.8rem;
+		line-height: 24px;
+		padding: 10px 0;
+	}
+}
+.canvas_con{
+	width: 160px;
+	height: 160px;
+	margin: 10px 15px;
+	float: left;
+	position: relative;
+}
+.text_con{
+	width: 160px;
+	height: 80px;
+	position: absolute;
+	top: 25px;
+	left: 0;
+	text-align: center;
+	padding: 20px;
+	p{
+		font-size: 2.4rem;
+		line-height: 2.9rem;
+		font-weight: bold;
+	}
+}
+
+
+// page4
+.work_con{
+	position: relative;
+}
+.work_text{
+	width: 100%;
+	padding: 0 0 47px 159px;
+	position: relative;
+	
+}
+.work_text:nth-child(2){
+	padding: 10px 0 47px 159px;
+}
+.work_text:after{
+	width: 100%;
+	height: 100%;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 140px;
+	border-left: solid 1px $light_blue;
+}
+
+.work_con:last-child .work_text{
+	padding-bottom:0px;
+}
+.programe{
+	position: relative;
+	overflow: hidden;
+}
+.work_time{
+	width:120px;
+	height:120px;
+	float: left;
+	padding:40px 0 40px 0;
+	font-size:1.7rem;
+	color:#fff;
+	background:$red;
+	text-align:center;
+	-webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+.triangle-left {   
+	width:0;   
+	height:0;   
+	border-top:15px solid transparent;   
+	border-bottom:15px solid transparent;   
+	border-right:15px solid $white;
+	position: absolute;
+	top: 20px;
+	left: 160px;
+}
+
+
+.arrowpart{
+	float:left;
+	width:15px;
+	height:50px;
+	background:url(../images/arrow-left.png) no-repeat 0 23px;
+}
+.exCon{
+	background:$white;
+	border-bottom:solid 4px $grey;
+	padding:22px 47px 20px 47px;
+	margin-left:15px;
+	text-align:left;
+}
+
+
+.exCon h4{
+	color:$dark_black;
+	padding-bottom:3px;
+}
+.exCon h5{
+	color:$dark_black;
+}
+.exCon p{
+	color:$dark_black;
+	line-height:21px;
+}
+
+// page6
+ul.con_style{
+	overflow: hidden;
+	padding:0 0 20px 0;
+	li{
+		width: 33.33%;
+		float:left;
+		margin: 20px 0;
+		overflow: hidden;
+		span{
+			width: 50px;
+			height: 50px;
+			display: block;
+			margin: 0 auto 20px;
+			background: url("../images/sprite_img.png") 
+		}
+		p{
+			text-align: center;
+			font-size: 1.8rem;
+			a{
+				color: $black;
+			}
+		}
+	} 
+	li:nth-child(1) span{
+		background-position:0 -70px;
+	}
+	li:nth-child(2) span{
+		background-position:-50px -70px;
+	}
+	li:nth-child(3) span{
+		background-position:-100px -70px;
+	}   	
+}
+
+.contact_info{
+	width: 100%;
+	form{
+		width: 100%;
+		overflow: hidden;
+		padding: 5px 0;
+		label{
+			width: 33.33%;
+			padding: 0 10px 0 0;
+			height: 70px;
+			float: left;
+			p{
+				color: red;
+				line-height: 2rem;
+				padding: 0 12px;
+			}
+		}
+		label:nth-child(3){
+			padding: 0;
+		}
+		label:nth-child(4){
+			width: 100%;
+			height: 215px;
+			padding: 0;
+		}
+		input[type="text"]{
+			width: 100%;
+			float: left;
+		    background: #ffffff;
+		    color: $black;		    
+		}
+		
+		textarea {
+		    width: 100%;
+		    height: 180px;
+		    background: #ffffff;
+		    resize:none;
+		    color: $black;	
+		}
+		button{
+		    color: $white;
+		    padding: 0.6em 1.4em;
+		    font-size: 1.4rem;
+		    border-radius: 4px;
+		    cursor: pointer;
+		    border: 1px solid $blue;
+		    background: $blue;
+	
+		}
+	}
+}
+
+
+@media screen and (max-width: 1370px){
+	.con_wrap{
+		width: 80%;
+		padding: 1rem 0;
+	}
+	.tit_wrap+div{
+		margin: 10px 0 0 0 ;
+	}
+	.tit_wrap h2{
+		margin: 0;
+	}
+	.myinfo{
+		table{
+			tr:last-child td{
+				p{
+					padding: 0;
+				}
+			}
+		}
+	}
+	.canvas_wrap{
+		width: 50%;
+		float: left;
+		overflow: hidden;
+	}
+	.text_wrap{
+		width: 50%;		
+		float: left;
+		p{
+			display: inline-block;
+			font-size: 1.8rem;
+			line-height: 24px;
+		}
+	}
+	.tit_wrap .scissors{	
+		top: 101px;		
+	}
+	.text_wrap{
+		p{	
+			padding:4px 0;
+		}
+	}
+	.canvas_con{
+		margin: 5px 10px;
+	}
+}
