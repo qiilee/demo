@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jQuery响应式线条滑出列表特效</title>
+
+<script  type="text/javascript"src="js/jquery.min.js"></script>
+
+</head>
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+/* box */
+.box{width:700px;margin:0 auto;padding-top:50px;height:300px;}
+.border_animation{border:1px solid #eee;width:220px;height:260px;float:left;margin-right:10px;position:relative;}
+.border_animation .border_top{
+	position:absolute;height:1px;width:0;font-size:0;background:#666666;top:0;left:0;
+	
+	-webkit-transition:all 0.5s ease-out;
+	-o-transition:all 0.5s ease-out;
+	transition:all 0.5s ease-out;
+}
+.border_animation .border_right{
+	position:absolute;height:0px;width:1px;font-size:0;background:#666666;bottom:0;right:0;
+	
+	-webkit-transition:all 0.5s ease-out;
+	-o-transition:all 0.5s ease-out;
+	transition:all 0.5s ease-out;
+}
+.border_animation .border_bottom{
+	position:absolute;height:1px;width:0px;font-size:0;background:#666666;right:0;bottom:0;
+	
+	-webkit-transition:all 0.5s ease-out;
+	-o-transition:all 0.5s ease-out;
+	transition:all 0.5s ease-out;
+}
+.border_animation .border_left{
+	position:absolute;height:0px;width:1px;font-size:0;background:#666666;left:0;top:0;
+	
+	-webkit-transition:all 0.5s ease-out;
+	-o-transition:all 0.5s ease-out;
+	transition:all 0.5s ease-out;
+}
+.box .hover .border_top,.box .hover .border_bottom{width:220px}
+.box .hover .border_left,.box .hover .border_right{height:260px}
+</style>
+<body>
+
+<div class="box">
+
+	<div class="border_animation">
+		<div class="border_top"></div>
+		<div class="border_right"></div>
+		<div class="border_bottom"></div>
+		<div class="border_left"></div>
+		<div><a href="#"><img width="220" height="260" alt="" src="images/1.jpg"></a></div>
+	</div>
+	
+	<div class="border_animation">
+		<div class="border_top"></div>
+		<div class="border_right"></div>
+		<div class="border_bottom"></div>
+		<div class="border_left"></div>
+		<div><a href="#"><img width="220" height="260" alt="" src="images/2.jpg"></a></div>
+	</div>
+	
+	<div class="border_animation">
+		<div class="border_top"></div>
+		<div class="border_right"></div>
+		<div class="border_bottom"></div>
+		<div class="border_left"></div>
+		<div><a href="#"><img width="220" height="260" alt="" src="images/3.jpg"></a></div>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+$(function(){
+	$(".border_animation").mouseenter(function(){
+		$(this).addClass("hover");
+	});
+	$(".border_animation").mouseleave(function(){
+		$(this).removeClass("hover");
+	});
+});
+</script>
+
+</body>
+</html>
