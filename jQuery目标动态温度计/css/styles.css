@@ -1,0 +1,27 @@
+body {
+    
+    margin:0px;
+    background-color:#36393b;
+    background: -webkit-gradient(radial, left top, left bottom, from(#669), to(#262a2d)); /* Saf4+, Chrome */
+    background: -webkit-radial-gradient(center, circle, #669, #262a2d); /* Chrome 10+, Saf5.1+ */
+   
+    background: -moz-radial-gradient(center, circle, #669, #262a2d); /* FF3.6+ */
+    background: -ms-radial-gradient(center, circle, #669, #262a2d); /* IE10 */
+    background: -o-radial-gradient(center, circle, #333333, #323232); /* Opera 11.10+ */
+    background: radial-gradient(center, circle, #669, #262a2d); /* W3C */
+
+
+    background: -webkit-radial-gradient(50% 50%, circle ,#669, #262a2d); /* Chrome 10+, Saf5.1+ */
+ 
+}
+body, html {
+    height: 100%;
+}
+
+#centered{
+    width:175px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:150px;
+    height:100%;
+}
