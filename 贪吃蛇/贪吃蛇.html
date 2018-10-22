@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	body{text-align: center;}
+	.col{display:inline-block;*display:inline;*zoom:1;margin-top:70px;background:#aaa;font-size: 0px;}
+	.col div{display:inline-block;*display:inline;*zoom:1;width:10px;height:10px;}
+	.col div.snake{background:#666;}
+	.col div.food{background:#333;}
+	.grade{font:18px/60px "Microsoft YaHei";color:#666;}
+	.grade span{color:#ff4444;font-size:30px;}
+</style>
+</head>
+<body>
+	<div class="col">
+	</div>
+	<div class="grade"> 
+		您的分数是<span>0</span>分
+	</div>
+	<script type="text/javascript" src="jquery-1.4.2.js"></script>
+	<script type="text/javascript">
+		//面向对象贪吃蛇
+		
+		//参数:	1.  30*20  
+		//		2.	初始速度级别
+		//		3.	游戏容器selector
+		//		4.	选择级别selector
+		
+		//属性	1.  width
+		//		2.	height
+		//		3.	初始速度级别
+		//		4.	游戏容器
+		//		5.	选择级别select
+		//		6.	界面布局二维数组
+		//		7.  蛇数组
+		//		8.	是否下次移动变长
+		//		9.	移动方向
+		//		10.	定时器
+		//		11.	分数
+		//		12.	分数显示容器
+		
+		//函数: 1.inter		构造游戏界面
+		//		2.bindKey	绑定键盘事件,方向,暂停
+		//		3.changeLv	绑定select change事件函数 级别
+		//		4.result	移动结果函数
+		//		5.buildFood	创建食物数组
+		//		6.move		移动函数
+		//		7.secondSnake	判断不能移动的方向
+		//		8.gameOver		游戏结束
+		function Snake(area,level,col,lvSel,gradeCol){
+			if(typeof area == "string"){
+				var areArray = area.split("*");
+				this.wid = parseInt(areArray[0])<30?30:parseInt(areArray[0]);
+				this.hei = parseInt(areArray[1])<20?20:parseInt(areArray[1]);
+			}else{
+				this.wid = 30;
+				this.hei = 20;
+			}
+			this.level = level;
+			this.col = $(col);
+			this.lvSel = $(lvSel);
+			this.childs= [];
+			this.snake = [[3,5],[3,4],[3,3],[3,2],[3,1],[3,0]];
+			this.toLong = false;
+			this.dir = "r";
+			this.timer = null;
+			this.grade = 0;
+			this.gradeCol = $(gradeCol);
+			this.buildInter();
+			this.buildFood();
+			this.bindKey();
+			this.move();
+		}
+		Snake.prototype = {
+			buildInter:function(){
+				var wid = this.wid,hei = this.hei,col = this.col,elm = $("<div></div>"),br = $("<br/>"),snake = this.snake,childs = this.childs;
+				for(var t=0;t<hei;t++){
+					childs[t] = [];
+					for(var l=0;l<wid;l++){
+						this.childs[t][l] = elm.clone(true).addClass(t+"-"+l);
+						col.append(this.childs[t][l]);
+					}
+					col.append(br.clone(true));
+				}
+				for(var i = 0,len = snake.length,elms = col.children();i < len;i++){
+					elms.filter("."+snake[i][0]+"-"+snake[i][1]).addClass("snake");
+				}
+			},
+			bindKey:function(){
+				var _this = this;
+				$(document).keydown(function(e){
+					var code = e.keyCode,noDir = _this.secondSnake(),keyDir = "";
+					switch(code){
+						case 37:
+							keyDir = "l";
+							break;
+						case 38:
+							keyDir = "t";
+							break;
+						case 39:
+							keyDir = "r";
+							break;
+						case 40:
+							keyDir = "b";
+							break;
+					}
+					if(keyDir!=noDir){
+						_this.dir = keyDir||_this.dir;
+					}
+					if(code==32){
+						if(_this.timer == null){
+							_this.move();
+						}else{
+							clearInterval(_this.timer);
+							_this.timer = null;
+						}
+					}
+					
+				});
+			},
+			changeLv:function(){
+				var _this = this;
+			},
+			result:function(){
+				var snake = this.snake,top = snake[0][0],left = snake[0][1],hei = this.hei,wid=this.wid;
+				if(top>=hei||top<0||left>=wid||left<0){
+					return false;
+				}
+				for(var i = 1,len = snake.length;i<len;i++){
+					if(snake[i][0]==top&&snake[i][1]==left){
+						return false;
+					}
+				}
+				if(this.childs[top][left].hasClass("food")){
+					this.toLong = true;
+					this.grade++;
+					this.gradeCol.html("您的分数是<span>"+this.grade+"</span>分");
+					this.buildFood();
+				}
+				return true;
+			},
+			buildFood:function(){
+				var elms = this.col.children("div:not(.snake):not(.food)"),ramdonElm = Math.floor(elms.length*Math.random());
+				elms.eq(ramdonElm).addClass("food");
+			},
+			move:function(){
+				var _this = this,childs = _this.childs,snake = _this.snake;
+				_this.timer = setInterval(function(){
+					var dir = _this.dir,head = _this.snake[0],top = head[0],left = head[1];
+					if(dir=="l"){
+						left--;
+					}else if(dir=="r"){
+						left++;
+					}else if(dir=="t"){
+						top--;
+					}else if(dir=="b"){
+						top++;
+					}
+					snake.unshift([top,left]);
+					if(!_this.toLong){
+						var tail = snake.pop();
+						childs[tail[0]][tail[1]].removeClass("snake");
+					}else{
+						_this.toLong = false;
+					}
+					if(_this.result()){
+						childs[snake[0][0]][snake[0][1]].addClass("snake").removeClass("food");
+					}else{
+						_this.gameOver();
+						_this.gradeCol.html("你死了渣渣!! 才<span>"+_this.grade+"</span>分");
+					}
+				},_this.level);
+			},
+			secondSnake:function(){
+				var snake = this.snake,snake1 = snake[0],snake2 = snake[1],
+				dir = snake1[1]-snake2[1]>0?
+				"l":snake1[1]-snake2[1]<0?
+				"r":snake1[0]-snake2[0]>0?
+				"t":"b";
+				return dir;
+			},
+			gameOver:function(){
+				clearInterval(this.timer);
+				this.timer = null;
+				$(document).unbind("keydown");
+			}
+		};
+		var snake = new Snake("30*20",100,".col","select",".grade");
+	</script>
+</body>
+</html>
