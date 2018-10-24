@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Lava Lamp Menu Demo</title>
+    <link rel="stylesheet" href="css/lavalamp_test.css" type="text/css" media="screen">
+    <script type="text/javascript" src="js/jquery-1.1.3.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/jquery.lavalamp.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#1, #2, #3").lavaLamp({
+                fx: "backout", 
+                speed: 700,
+                click: function(event, menuItem) {
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="xgsm">
+<p>范例一特点：用背景图实现（带圆角，注意图的做法，两张或整合成），主要用于导航栏项目文字长短不一的情况（不定宽！）</p>
+</div>
+<div id="menu1">
+<ul class="topmenu1" id="1">
+    <li><a href="#">首　　页</a></li>
+	<li><a href="#">企业文化经营理念</a></li>
+	<li><a href="#">产品展示</a></li>
+	<li><a href="#">新闻中心</a></li>
+	<li><a href="#">阳光服务</a></li>
+	<li><a href="#">加盟代理</a></li>
+	<li><a href="#">在线咨询</a></li>
+</ul>
+</div>
+<div class="xgsm">
+<p>范例二特点：用背景图或背景色来实现，导航栏项目为四字。去掉LI中宽度的设置，可用于任何长度的文字。</p>
+</div>
+<div id="menu2">
+<ul class="topmenu2" id="2">
+    <li><a href="#">首　　页</a></li>
+	<li><a href="#">企业文化</a></li>
+	<li><a href="#">产品展示</a></li>
+	<li><a href="#">新闻中心</a></li>
+	<li><a href="#">阳光服务</a></li>
+	<li><a href="#">加盟代理</a></li>
+	<li><a href="#">在线咨询</a></li>
+</ul>
+</div>
+<div class="xgsm">
+<p>范例三特点：用下划线实现，导航栏文字字数为四字，去掉或重新设置A标记中的宽度，可用于任何长度的文字</p>
+</div>
+<div id="menu3">
+<ul class="topmenu3" id="3">
+    <li><a href="#">首　　页</a></li>
+	<li><a href="#">企业文化</a></li>
+	<li><a href="#">产品展示</a></li>
+	<li><a href="#">新闻中心</a></li>
+	<li><a href="#">阳光服务</a></li>
+	<li><a href="#">加盟代理</a></li>
+	<li><a href="#">在线咨询</a></li>
+</ul>
+</div>
+
+
+
+</body></html>
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script language="javascript">
+		$(document).ready(function() {
+
+			/* 	1st example	*/
+
+			/// wrap inner content of each anchor with first layer and append background layer
+			$("#menu1 li a").wrapInner( '<span class="out"></span>' ).append( '<span class="bg"></span>' );
+
+			// loop each anchor and add copy of text content
+			$("#menu1 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu1 li a").hover(function() {
+				// this function is fired when the mouse is moved over
+				$(".out",	this).stop().animate({'top':	'40px'},	250); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		250); // move down - show
+				$(".bg",	this).stop().animate({'top':	'0px'},		120); // move down - show
+
+			}, function() {
+				// this function is fired when the mouse is moved off
+				$(".out",	this).stop().animate({'top':	'0px'},		250); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	250); // move up - hide
+				$(".bg",	this).stop().animate({'top':	'-40px'},	120); // move up - hide
+			});
+					
+
+			/*	2nd example	*/
+			
+			$("#menu2 li a").wrapInner( '<span class="out"></span>' );
+			
+			$("#menu2 li a").each(function() {
+				$( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+			});
+
+			$("#menu2 li a").hover(function() {
+				$(".out",	this).stop().animate({'top':	'40px'},	300); // move down - hide
+				$(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+
+			}, function() {
+				$(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+				$(".over",	this).stop().animate({'top':	'-40px'},	300); // move up - hide
+			});
+
+		});
+
+	</script>
+</head>
+
+<body>
+<div class="xgsm">
+<p>一、理解特效导航栏：首先打开范例文件，观察特效导航栏的效果，看看实现这个特效的HTML代码是那一段。然后查看原文件夹中相关文件是否存在如：在JS文件夹中找脚本文件（也许是内嵌的），在CSS文件夹中找一下样式表（也许是内嵌的），在IMAGES文件中看一下用了那些图像文件。</p>
+<p>二、移植特效导航栏：如果想把一个好的特效导航栏用于自己的网页，移植的时候你要考虑这几个方面：⒈首先将该特效用到的文件复制到自己的站点文件夹相应的位置中（脚本/样式表/图像）。⒉将HTML代码段复制到自己的页面中⒊添加对应的样式代码⒋添加对应的脚本代码。总的来说分为二部分一是移文件，二是移代码。</p>
+</div>
+<div id="menu1" class="menu">
+	<ul>
+	<li><a href="#">首　　页</a></li>
+	<li><a href="#">企业文化</a></li>
+	<li><a href="#">产品展示</a></li>
+	<li><a href="#">新闻中心</a></li>
+	<li><a href="#">阳光服务</a></li>
+	<li><a href="#">加盟代理</a></li>
+	<li><a href="#">在线咨询</a></li>
+	</ul>
+	<div class="cls"></div>
+</div>
+
+<div id="menu2" class="menu">
+	<ul>
+	<li><a href="#">首　　页</a></li>
+	<li><a href="#">企业文化</a></li>
+	<li><a href="#">产品展示</a></li>
+	<li><a href="#">新闻中心</a></li>
+	<li><a href="#">阳光服务</a></li>
+	<li><a href="#">加盟代理</a></li>
+	<li><a href="#">在线咨询</a></li>
+	</ul>
+	<div class="cls"></div>
+</div>
+
+
+</body>
+</html>
