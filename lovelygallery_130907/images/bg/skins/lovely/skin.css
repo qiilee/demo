@@ -1,0 +1,208 @@
+/* lovelygallery lovely skin */
+
+
+
+.lg-lovely .lg-playvideo {
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	margin-top: -25px;
+}
+
+.lg-lovely .lg-playvideo,
+.lg-lovely .lg-nav-sides,
+.lg-lovely .lg-bottom-slidebuttons a,
+.lg-lovely .lg-nav-prev,
+.lg-lovely .lg-nav-next,
+.lg-lovely .lg-nav-start,
+.lg-lovely .lg-nav-stop,
+.lg-lovely .lg-fullscreen,
+.lg-lovely .lg-loading-container {
+	background-image: url(skin.png);	
+}
+
+.lg-lovely .lg-playvideo {
+	background-position: -300px -150px;
+}
+
+.lg-lovely .lg-playvideo:hover,
+.lg-lovely .lg-vpcontainer:hover .lg-playvideo {
+	background-position: -375px -150px;
+}
+
+.lg-lovely .lg-nav-prev {
+	background-position: 0px 0px;
+}
+
+.lg-lovely .lg-nav-prev:hover {
+	background-position: 0px -75px;
+}
+
+.lg-lovely .lg-nav-next {
+	background-position: -150px 0px;
+}
+
+.lg-lovely .lg-nav-next:hover {
+	background-position: -150px -75px;
+}
+
+.lg-lovely .lg-nav-start {
+	background-position: -300px 0px;
+}
+
+.lg-lovely .lg-nav-start:hover,
+.lg-lovely .lg-nav-start-active {
+	background-position: -300px -75px;
+}
+
+.lg-lovely .lg-nav-stop {
+	background-position: -450px 0px;
+}
+
+.lg-lovely .lg-nav-stop:hover,
+.lg-lovely .lg-nav-stop-active {
+	background-position: -450px -75px;
+}
+
+.lg-lovely .lg-bottom-slidebuttons a {
+	background-position: 0px -150px;
+}
+
+.lg-lovely .lg-bottom-slidebuttons a.lg-nav-active,
+.lg-lovely .lg-bottom-slidebuttons a:hover {
+	background-position: -75px -150px;
+}
+
+.lg-lovely .lg-nav-sideleft {
+	background-position: -150px -150px;	
+}
+
+.lg-lovely .lg-nav-sideright {
+	background-position: -225px -150px;	
+}
+
+
+
+.lg-lovely .lg-nav-prev,
+.lg-lovely .lg-nav-next {
+	width: 68px;
+	height: 68px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -34px;	
+	position: absolute;
+}
+
+.lg-lovely .lg-nav-prev {
+	left: 10px;	
+}
+
+.lg-lovely .lg-nav-next {
+	right: 10px;	
+}
+
+
+
+.lg-lovely .lg-bottom-slidebuttons,
+.lg-lovely .lg-bottom-slidebuttons a,
+.lg-lovely .lg-nav-start,
+.lg-lovely .lg-nav-stop,
+.lg-lovely .lg-nav-sides {
+	height: 20px;
+}
+
+.lg-lovely .lg-bottom-slidebuttons,
+.lg-lovely .lg-bottom-slidebuttons a,
+.lg-lovely .lg-nav-start,
+.lg-lovely .lg-nav-stop,
+.lg-lovely .lg-nav-sides {
+	display: inline-block;
+}
+
+.lg-lovely .lg-bottom-slidebuttons,
+.lg-lovely .lg-nav-start,
+.lg-lovely .lg-nav-stop,
+.lg-lovely .lg-nav-sides {
+	top: -30px;
+}
+
+.lg-lovely .lg-nav-start,
+.lg-lovely .lg-nav-stop {
+	width: 25px;
+}
+
+.lg-lovely .lg-bottom-slidebuttons a {
+	width: 20px;
+}
+
+.lg-lovely .lg-nav-sides {
+	width: 0px;	
+}
+
+
+
+.lg-lovely .lg-thumbnail-hover {
+	bottom: 30px;
+	padding: 2px;
+	margin-left: 1px;
+}
+
+.lg-lovely .lg-thumbnail-hover-bg {
+	background: #eee;
+}
+
+.lg-lovely .lg-thumbnail-hover span {
+	border: 5px solid #eee;
+	margin-left: -5px;
+}
+
+
+
+.lg-lovely .lg-thumbnail {
+	top: 10px;
+}
+
+.lg-lovely .lg-thumbnail-inner {
+	padding: 2px;
+	margin-left: -2px;
+	background: #fff;
+}
+
+.lg-lovely .lg-thumbnail-slide a {
+	margin-right: 2px;
+}
+
+.lg-lovely .lg-nothumb {
+	background: #eee;
+}
+
+
+
+.lg-lovely .lg-loading-container {
+	width: 40px;
+	height: 40px;
+	margin-left: -20px;
+	margin-top: -20px;
+	background-position: -450px -150px;	
+}
+
+.lg-lovely .lg-loading-indicator {
+	width: 22px;
+	height: 22px;
+	margin-top: 9px;
+	background-image: url(loading.gif);	
+}
+
+
+
+.lg-lovely .lg-fullscreen {
+	width: 30px;
+	height: 30px;
+	right: 10px;
+	top: 10px;
+	background-position: -525px -150px;
+}
+
+.lg-lovely .lg-fullscreen:hover {
+	background-position: -525px -190px;
+}

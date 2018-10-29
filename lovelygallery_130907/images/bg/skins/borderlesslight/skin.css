@@ -1,0 +1,217 @@
+/* lovelygallery borderlesslight skin */
+
+
+
+.lg-borderlesslight .lg-playvideo {
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	margin-top: -25px;
+}
+
+.lg-borderlesslight .lg-playvideo,
+.lg-borderlesslight .lg-nav-sides,
+.lg-borderlesslight .lg-bottom-slidebuttons a,
+.lg-borderlesslight .lg-nav-prev,
+.lg-borderlesslight .lg-nav-next,
+.lg-borderlesslight .lg-nav-start,
+.lg-borderlesslight .lg-nav-stop,
+.lg-borderlesslight .lg-fullscreen,
+.lg-borderlesslight .lg-loading-container {
+	background-image: url(skin.png);	
+}
+
+.lg-borderlesslight .lg-playvideo {
+	background-position: -300px -150px;
+}
+
+.lg-borderlesslight .lg-playvideo:hover,
+.lg-borderlesslight .lg-vpcontainer:hover .lg-playvideo {
+	background-position: -375px -150px;
+}
+
+.lg-borderlesslight .lg-nav-prev {
+	background-position: 0px 0px;
+}
+
+.lg-borderlesslight .lg-nav-prev:hover {
+	background-position: 0px -75px;
+}
+
+.lg-borderlesslight .lg-nav-next {
+	background-position: -150px 0px;
+}
+
+.lg-borderlesslight .lg-nav-next:hover {
+	background-position: -150px -75px;
+}
+
+.lg-borderlesslight .lg-nav-start {
+	background-position: -300px 0px;
+}
+
+.lg-borderlesslight .lg-nav-start:hover,
+.lg-borderlesslight .lg-nav-start-active {
+	background-position: -300px -75px;
+}
+
+.lg-borderlesslight .lg-nav-stop {
+	background-position: -450px 0px;
+}
+
+.lg-borderlesslight .lg-nav-stop:hover,
+.lg-borderlesslight .lg-nav-stop-active {
+	background-position: -450px -75px;
+}
+
+.lg-borderlesslight .lg-bottom-slidebuttons a {
+	background-position: 0px -150px;
+}
+
+.lg-borderlesslight .lg-bottom-slidebuttons a.lg-nav-active,
+.lg-borderlesslight .lg-bottom-slidebuttons a:hover {
+	background-position: -75px -150px;
+}
+
+.lg-borderlesslight .lg-nav-sideleft {
+	background-position: -150px -150px;	
+}
+
+.lg-borderlesslight .lg-nav-sideright {
+	background-position: -225px -150px;	
+}
+
+
+
+.lg-borderlesslight .lg-nav-prev,
+.lg-borderlesslight .lg-nav-next {
+	width: 50px;
+	height: 50px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -22px;	
+	position: absolute;
+}
+
+.lg-borderlesslight .lg-nav-prev {
+	left: 10px;	
+}
+
+.lg-borderlesslight .lg-nav-next {
+	right: 10px;	
+}
+
+
+
+.lg-borderlesslight .lg-bottom-slidebuttons,
+.lg-borderlesslight .lg-bottom-slidebuttons a,
+.lg-borderlesslight .lg-nav-start,
+.lg-borderlesslight .lg-nav-stop,
+.lg-borderlesslight .lg-nav-sides {
+	height: 36px;
+}
+
+.lg-borderlesslight .lg-bottom-slidebuttons,
+.lg-borderlesslight .lg-bottom-slidebuttons a,
+.lg-borderlesslight .lg-nav-start,
+.lg-borderlesslight .lg-nav-stop,
+.lg-borderlesslight .lg-nav-sides {
+	display: inline-block;
+}
+
+.lg-borderlesslight .lg-bottom-slidebuttons,
+.lg-borderlesslight .lg-nav-start,
+.lg-borderlesslight .lg-nav-stop,
+.lg-borderlesslight .lg-nav-sides {
+	top: -44px;
+}
+
+.lg-borderlesslight .lg-nav-start,
+.lg-borderlesslight .lg-nav-stop {
+	width: 24px;
+}
+
+.lg-borderlesslight .lg-bottom-slidebuttons a {
+	width: 20px;
+}
+
+.lg-borderlesslight .lg-nav-sides {
+	width: 13px;	
+}
+
+
+
+.lg-borderlesslight .lg-thumbnail-hover {
+	bottom: 45px;
+	padding: 3px;
+	margin-left: 1px;
+}
+
+.lg-borderlesslight .lg-thumbnail-hover-bg {
+	background: #eee;
+	box-shadow: 0px 2px 12px -4px black;
+	border-radius: 4px;
+}
+
+.lg-borderlesslight .lg-thumbnail-hover span {
+	border: 5px solid #eee;
+	margin-left: -5px;
+}
+
+
+
+.lg-borderlesslight .lg-thumbnail {
+	top: 15px;
+}
+
+.lg-borderlesslight .lg-thumbnail-inner {
+	padding: 2px;
+	margin-left: -2px;
+	background: #fff;
+	border-radius: 4px;
+}
+
+.lg-borderlesslight .lg-thumbnail-slide a {
+	margin-right: 2px;
+}
+
+.lg-borderlesslight .lg-nothumb {
+	background: #eee;
+}
+
+
+
+.lg-borderlesslight .lg-shadow {
+	display: block;
+}
+
+
+
+.lg-borderlesslight .lg-loading-container {
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	margin-top: -22px;
+	background-position: -450px -150px;	
+}
+
+.lg-borderlesslight .lg-loading-indicator {
+	width: 22px;
+	height: 22px;
+	margin-top: 11px;
+	background-image: url(loading.gif);	
+}
+
+
+
+.lg-borderlesslight .lg-fullscreen {
+	width: 30px;
+	height: 30px;
+	right: 10px;
+	top: 10px;
+	background-position: -525px -150px;
+}
+
+.lg-borderlesslight .lg-fullscreen:hover {
+	background-position: -525px -190px;
+}

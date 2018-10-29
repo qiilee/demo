@@ -1,0 +1,208 @@
+/* lovelygallery lovelypink skin */
+
+
+
+.lg-lovelypink .lg-playvideo {
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	margin-top: -25px;
+}
+
+.lg-lovelypink .lg-playvideo,
+.lg-lovelypink .lg-nav-sides,
+.lg-lovelypink .lg-bottom-slidebuttons a,
+.lg-lovelypink .lg-nav-prev,
+.lg-lovelypink .lg-nav-next,
+.lg-lovelypink .lg-nav-start,
+.lg-lovelypink .lg-nav-stop,
+.lg-lovelypink .lg-fullscreen,
+.lg-lovelypink .lg-loading-container {
+	background-image: url(skin.png);	
+}
+
+.lg-lovelypink .lg-playvideo {
+	background-position: -300px -150px;
+}
+
+.lg-lovelypink .lg-playvideo:hover,
+.lg-lovelypink .lg-vpcontainer:hover .lg-playvideo {
+	background-position: -375px -150px;
+}
+
+.lg-lovelypink .lg-nav-prev {
+	background-position: 0px 0px;
+}
+
+.lg-lovelypink .lg-nav-prev:hover {
+	background-position: 0px -75px;
+}
+
+.lg-lovelypink .lg-nav-next {
+	background-position: -150px 0px;
+}
+
+.lg-lovelypink .lg-nav-next:hover {
+	background-position: -150px -75px;
+}
+
+.lg-lovelypink .lg-nav-start {
+	background-position: -300px 0px;
+}
+
+.lg-lovelypink .lg-nav-start:hover,
+.lg-lovelypink .lg-nav-start-active {
+	background-position: -300px -75px;
+}
+
+.lg-lovelypink .lg-nav-stop {
+	background-position: -450px 0px;
+}
+
+.lg-lovelypink .lg-nav-stop:hover,
+.lg-lovelypink .lg-nav-stop-active {
+	background-position: -450px -75px;
+}
+
+.lg-lovelypink .lg-bottom-slidebuttons a {
+	background-position: 0px -150px;
+}
+
+.lg-lovelypink .lg-bottom-slidebuttons a.lg-nav-active,
+.lg-lovelypink .lg-bottom-slidebuttons a:hover {
+	background-position: -75px -150px;
+}
+
+.lg-lovelypink .lg-nav-sideleft {
+	background-position: -150px -150px;	
+}
+
+.lg-lovelypink .lg-nav-sideright {
+	background-position: -225px -150px;	
+}
+
+
+
+.lg-lovelypink .lg-nav-prev,
+.lg-lovelypink .lg-nav-next {
+	width: 68px;
+	height: 68px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -34px;	
+	position: absolute;
+}
+
+.lg-lovelypink .lg-nav-prev {
+	left: 10px;	
+}
+
+.lg-lovelypink .lg-nav-next {
+	right: 10px;	
+}
+
+
+
+.lg-lovelypink .lg-bottom-slidebuttons,
+.lg-lovelypink .lg-bottom-slidebuttons a,
+.lg-lovelypink .lg-nav-start,
+.lg-lovelypink .lg-nav-stop,
+.lg-lovelypink .lg-nav-sides {
+	height: 20px;
+}
+
+.lg-lovelypink .lg-bottom-slidebuttons,
+.lg-lovelypink .lg-bottom-slidebuttons a,
+.lg-lovelypink .lg-nav-start,
+.lg-lovelypink .lg-nav-stop,
+.lg-lovelypink .lg-nav-sides {
+	display: inline-block;
+}
+
+.lg-lovelypink .lg-bottom-slidebuttons,
+.lg-lovelypink .lg-nav-start,
+.lg-lovelypink .lg-nav-stop,
+.lg-lovelypink .lg-nav-sides {
+	top: -30px;
+}
+
+.lg-lovelypink .lg-nav-start,
+.lg-lovelypink .lg-nav-stop {
+	width: 25px;
+}
+
+.lg-lovelypink .lg-bottom-slidebuttons a {
+	width: 20px;
+}
+
+.lg-lovelypink .lg-nav-sides {
+	width: 0px;	
+}
+
+
+
+.lg-lovelypink .lg-thumbnail-hover {
+	bottom: 30px;
+	padding: 2px;
+	margin-left: 1px;
+}
+
+.lg-lovelypink .lg-thumbnail-hover-bg {
+	background: #eee;
+}
+
+.lg-lovelypink .lg-thumbnail-hover span {
+	border: 5px solid #eee;
+	margin-left: -5px;
+}
+
+
+
+.lg-lovelypink .lg-thumbnail {
+	top: 10px;
+}
+
+.lg-lovelypink .lg-thumbnail-inner {
+	padding: 2px;
+	margin-left: -2px;
+	background: #fff;
+}
+
+.lg-lovelypink .lg-thumbnail-slide a {
+	margin-right: 2px;
+}
+
+.lg-lovelypink .lg-nothumb {
+	background: #eee;
+}
+
+
+
+.lg-lovelypink .lg-loading-container {
+	width: 40px;
+	height: 40px;
+	margin-left: -20px;
+	margin-top: -20px;
+	background-position: -450px -150px;	
+}
+
+.lg-lovelypink .lg-loading-indicator {
+	width: 22px;
+	height: 22px;
+	margin-top: 9px;
+	background-image: url(loading.gif);	
+}
+
+
+
+.lg-lovelypink .lg-fullscreen {
+	width: 30px;
+	height: 30px;
+	right: 10px;
+	top: 10px;
+	background-position: -525px -150px;
+}
+
+.lg-lovelypink .lg-fullscreen:hover {
+	background-position: -525px -190px;
+}

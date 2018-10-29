@@ -1,0 +1,232 @@
+/* lovelygallery lightskin skin */
+
+
+
+.lg-lightskin {
+	padding: 5px;
+	background: #f7f7f7;
+	box-shadow: 0px 3px 15px -5px #000;
+	-moz-box-shadow: 0px 3px 15px -5px #000;
+	-webkit-box-shadow: 0px 3px 15px -5px #000;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+.lg-lightskin .lg-playvideo {
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	margin-top: -25px;
+}
+
+.lg-lightskin .lg-playvideo,
+.lg-lightskin .lg-nav-sides,
+.lg-lightskin .lg-bottom-slidebuttons a,
+.lg-lightskin .lg-nav-prev,
+.lg-lightskin .lg-nav-next,
+.lg-lightskin .lg-nav-start,
+.lg-lightskin .lg-nav-stop,
+.lg-lightskin .lg-fullscreen,
+.lg-lightskin .lg-loading-container {
+	background-image: url(skin.png);	
+}
+
+.lg-lightskin .lg-playvideo {
+	background-position: -300px -150px;
+}
+
+.lg-lightskin .lg-playvideo:hover,
+.lg-lightskin .lg-vpcontainer:hover .lg-playvideo {
+	background-position: -375px -150px;
+}
+
+.lg-lightskin .lg-nav-prev {
+	background-position: 0px 0px;
+}
+
+.lg-lightskin .lg-nav-prev:hover {
+	background-position: 0px -75px;
+}
+
+.lg-lightskin .lg-nav-next {
+	background-position: -150px 0px;
+}
+
+.lg-lightskin .lg-nav-next:hover {
+	background-position: -150px -75px;
+}
+
+.lg-lightskin .lg-nav-start {
+	background-position: -300px 0px;
+}
+
+.lg-lightskin .lg-nav-start:hover,
+.lg-lightskin .lg-nav-start-active {
+	background-position: -300px -75px;
+}
+
+.lg-lightskin .lg-nav-stop {
+	background-position: -450px 0px;
+}
+
+.lg-lightskin .lg-nav-stop:hover,
+.lg-lightskin .lg-nav-stop-active {
+	background-position: -450px -75px;
+}
+
+.lg-lightskin .lg-bottom-slidebuttons a {
+	background-position: 0px -150px;
+}
+
+.lg-lightskin .lg-bottom-slidebuttons a.lg-nav-active,
+.lg-lightskin .lg-bottom-slidebuttons a:hover {
+	background-position: -75px -150px;
+}
+
+.lg-lightskin .lg-nav-sideleft {
+	background-position: -150px -150px;	
+}
+
+.lg-lightskin .lg-nav-sideright {
+	background-position: -225px -150px;	
+}
+
+
+
+.lg-lightskin .lg-nav-prev,
+.lg-lightskin .lg-nav-next {
+	width: 27px;
+	height: 75px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -37px;	
+	position: absolute;
+}
+
+.lg-lightskin .lg-nav-prev {
+	left: 5px;	
+}
+
+.lg-lightskin .lg-nav-next {
+	right: 5px;	
+}
+
+
+
+.lg-lightskin .lg-bottom-slidebuttons,
+.lg-lightskin .lg-bottom-slidebuttons a,
+.lg-lightskin .lg-nav-start,
+.lg-lightskin .lg-nav-stop,
+.lg-lightskin .lg-nav-sides {
+	height: 28px;
+}
+
+.lg-lightskin .lg-bottom-slidebuttons,
+.lg-lightskin .lg-bottom-slidebuttons a,
+.lg-lightskin .lg-nav-start,
+.lg-lightskin .lg-nav-stop,
+.lg-lightskin .lg-nav-sides {
+	display: inline-block;
+}
+
+.lg-lightskin .lg-bottom-slidebuttons,
+.lg-lightskin .lg-nav-start,
+.lg-lightskin .lg-nav-stop,
+.lg-lightskin .lg-nav-sides {
+	top: -28px;
+}
+
+.lg-lightskin .lg-nav-start,
+.lg-lightskin .lg-nav-stop {
+	width: 54px;
+}
+
+.lg-lightskin .lg-bottom-slidebuttons a {
+	width: 18px;
+}
+
+.lg-lightskin .lg-nav-sides {
+	width: 44px;
+}
+
+
+
+.lg-lightskin .lg-thumbnail-hover {
+	padding: 4px;	
+}
+
+.lg-lightskin .lg-thumbnail-hover {
+	bottom: 40px;
+	margin-left: 1px;
+}
+
+.lg-lightskin .lg-thumbnail-hover-bg {
+	background: #f7f7f7;
+	box-shadow: 0px 2px 12px -4px black;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.lg-lightskin .lg-thumbnail-hover span {
+	border: 5px solid #f7f7f7;
+	margin-left: -5px;
+}
+
+
+
+.lg-lightskin .lg-thumbnail {
+	padding-top: 15px;
+}
+
+.lg-lightskin .lg-thumbnail-inner {
+	padding: 5px;
+	margin-left: -5px;
+	background: #f7f7f7;
+	box-shadow: 0px 1px 15px -5px #000;
+	-moz-box-shadow: 0px 1px 15px -5px #000;
+	-webkit-box-shadow: 0px 1px 15px -5px #000;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.lg-lightskin .lg-thumbnail-slide a {
+	margin-right: 5px;
+}
+
+.lg-lightskin .lg-nothumb {
+	background: #e3e3e3;
+}
+
+
+
+.lg-lightskin .lg-loading-container {
+	width: 40px;
+	height: 40px;
+	margin-left: -20px;
+	margin-top: -20px;
+	background-position: -450px -150px;	
+}
+
+.lg-lightskin .lg-loading-indicator {
+	width: 22px;
+	height: 22px;
+	margin-top: 9px;
+	background-image: url(loading.gif);	
+}
+
+
+
+.lg-lightskin .lg-fullscreen {
+	width: 30px;
+	height: 30px;
+	right: 10px;
+	top: 10px;
+	background-position: -525px -150px;
+}
+
+.lg-lightskin .lg-fullscreen:hover {
+	background-position: -525px -190px;
+}

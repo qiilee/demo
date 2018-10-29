@@ -1,0 +1,208 @@
+/* lovelygallery lovelypink skin */
+
+
+
+.lg-lovelyskyblue .lg-playvideo {
+	width: 50px;
+	height: 50px;
+	margin-left: -25px;
+	margin-top: -25px;
+}
+
+.lg-lovelyskyblue .lg-playvideo,
+.lg-lovelyskyblue .lg-nav-sides,
+.lg-lovelyskyblue .lg-bottom-slidebuttons a,
+.lg-lovelyskyblue .lg-nav-prev,
+.lg-lovelyskyblue .lg-nav-next,
+.lg-lovelyskyblue .lg-nav-start,
+.lg-lovelyskyblue .lg-nav-stop,
+.lg-lovelyskyblue .lg-fullscreen,
+.lg-lovelyskyblue .lg-loading-container {
+	background-image: url(skin.png);	
+}
+
+.lg-lovelyskyblue .lg-playvideo {
+	background-position: -300px -150px;
+}
+
+.lg-lovelyskyblue .lg-playvideo:hover,
+.lg-lovelyskyblue .lg-vpcontainer:hover .lg-playvideo {
+	background-position: -375px -150px;
+}
+
+.lg-lovelyskyblue .lg-nav-prev {
+	background-position: 0px 0px;
+}
+
+.lg-lovelyskyblue .lg-nav-prev:hover {
+	background-position: 0px -75px;
+}
+
+.lg-lovelyskyblue .lg-nav-next {
+	background-position: -150px 0px;
+}
+
+.lg-lovelyskyblue .lg-nav-next:hover {
+	background-position: -150px -75px;
+}
+
+.lg-lovelyskyblue .lg-nav-start {
+	background-position: -300px 0px;
+}
+
+.lg-lovelyskyblue .lg-nav-start:hover,
+.lg-lovelyskyblue .lg-nav-start-active {
+	background-position: -300px -75px;
+}
+
+.lg-lovelyskyblue .lg-nav-stop {
+	background-position: -450px 0px;
+}
+
+.lg-lovelyskyblue .lg-nav-stop:hover,
+.lg-lovelyskyblue .lg-nav-stop-active {
+	background-position: -450px -75px;
+}
+
+.lg-lovelyskyblue .lg-bottom-slidebuttons a {
+	background-position: 0px -150px;
+}
+
+.lg-lovelyskyblue .lg-bottom-slidebuttons a.lg-nav-active,
+.lg-lovelyskyblue .lg-bottom-slidebuttons a:hover {
+	background-position: -75px -150px;
+}
+
+.lg-lovelyskyblue .lg-nav-sideleft {
+	background-position: -150px -150px;	
+}
+
+.lg-lovelyskyblue .lg-nav-sideright {
+	background-position: -225px -150px;	
+}
+
+
+
+.lg-lovelyskyblue .lg-nav-prev,
+.lg-lovelyskyblue .lg-nav-next {
+	width: 68px;
+	height: 68px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -34px;	
+	position: absolute;
+}
+
+.lg-lovelyskyblue .lg-nav-prev {
+	left: 10px;	
+}
+
+.lg-lovelyskyblue .lg-nav-next {
+	right: 10px;	
+}
+
+
+
+.lg-lovelyskyblue .lg-bottom-slidebuttons,
+.lg-lovelyskyblue .lg-bottom-slidebuttons a,
+.lg-lovelyskyblue .lg-nav-start,
+.lg-lovelyskyblue .lg-nav-stop,
+.lg-lovelyskyblue .lg-nav-sides {
+	height: 20px;
+}
+
+.lg-lovelyskyblue .lg-bottom-slidebuttons,
+.lg-lovelyskyblue .lg-bottom-slidebuttons a,
+.lg-lovelyskyblue .lg-nav-start,
+.lg-lovelyskyblue .lg-nav-stop,
+.lg-lovelyskyblue .lg-nav-sides {
+	display: inline-block;
+}
+
+.lg-lovelyskyblue .lg-bottom-slidebuttons,
+.lg-lovelyskyblue .lg-nav-start,
+.lg-lovelyskyblue .lg-nav-stop,
+.lg-lovelyskyblue .lg-nav-sides {
+	top: -30px;
+}
+
+.lg-lovelyskyblue .lg-nav-start,
+.lg-lovelyskyblue .lg-nav-stop {
+	width: 25px;
+}
+
+.lg-lovelyskyblue .lg-bottom-slidebuttons a {
+	width: 20px;
+}
+
+.lg-lovelyskyblue .lg-nav-sides {
+	width: 0px;	
+}
+
+
+
+.lg-lovelyskyblue .lg-thumbnail-hover {
+	bottom: 30px;
+	padding: 2px;
+	margin-left: 1px;
+}
+
+.lg-lovelyskyblue .lg-thumbnail-hover-bg {
+	background: #eee;
+}
+
+.lg-lovelyskyblue .lg-thumbnail-hover span {
+	border: 5px solid #eee;
+	margin-left: -5px;
+}
+
+
+
+.lg-lovelyskyblue .lg-thumbnail {
+	top: 10px;
+}
+
+.lg-lovelyskyblue .lg-thumbnail-inner {
+	padding: 2px;
+	margin-left: -2px;
+	background: #fff;
+}
+
+.lg-lovelyskyblue .lg-thumbnail-slide a {
+	margin-right: 2px;
+}
+
+.lg-lovelyskyblue .lg-nothumb {
+	background: #eee;
+}
+
+
+
+.lg-lovelyskyblue .lg-loading-container {
+	width: 40px;
+	height: 40px;
+	margin-left: -20px;
+	margin-top: -20px;
+	background-position: -450px -150px;	
+}
+
+.lg-lovelyskyblue .lg-loading-indicator {
+	width: 22px;
+	height: 22px;
+	margin-top: 9px;
+	background-image: url(loading.gif);	
+}
+
+
+
+.lg-lovelyskyblue .lg-fullscreen {
+	width: 30px;
+	height: 30px;
+	right: 10px;
+	top: 10px;
+	background-position: -525px -150px;
+}
+
+.lg-lovelyskyblue .lg-fullscreen:hover {
+	background-position: -525px -190px;
+}
