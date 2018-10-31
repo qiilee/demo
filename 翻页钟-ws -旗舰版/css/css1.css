@@ -1,0 +1,13 @@
+/*时 分区*/
+#div0{height:361px;width:670px;background:url(../img/bg.jpg) no-repeat;padding:130px 0 0 176px;}/*bg*/
+img{display:block;width:70px;height:100px;float:left;}
+.img2{margin-left:10px;}
+.dot{width:10px;height:10px;margin-left:10px;}
+#dot1{margin-top:30px;}
+#dot2{margin:60px -10px 0;}
+/*秒 毫秒区*/
+#div00{width:200px;height:30px;margin-top:-258px;margin-left:-80px;}
+.small{width:20px;height:30px;margin:3px;}
+.smallDot{width:5px;height:5px;}
+#smallDot2{margin-top:20px;margin-left:-5px;}
+#smallDot1{margin-top:10px;}
