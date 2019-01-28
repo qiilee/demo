@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>music</title>
+
+    <!--jq类似文件需要-->
+
+    <script src="./jquery-1.11.3.js"></script>
+
+    <style type="text/css">
+      /*音乐*/
+
+      audio {
+        display: inline;
+        float: left;
+      }
+      .music:active {
+        text-decoration: none;
+      }
+      .music {
+        width: 2.5rem;
+        height: 2.5rem;
+        text-align: center;
+        background: url(https://topmdrt-static.oss-cn-shenzhen.aliyuncs.com/static/images/common/off.png);
+        background-size: 100%;
+        position: absolute;
+        top: 1.6rem;
+        right: 1rem;
+        float: left;
+        z-index: 10000;
+        border-radius: 50%;
+      }
+      .music-off {
+        background: url(https://topmdrt-static.oss-cn-shenzhen.aliyuncs.com/static/images/common/on.png);
+        background-size: 100% 100%;
+      }
+      .music-ani {
+        animation: musicRound 1s infinite linear;
+        -webkit-animation: musicRound 1s infinite linear;
+      }
+
+      @keyframes musicRound {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes musicRound {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      .disn {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--music-->
+
+    <div class="music music-ani"></div>
+
+    <audio
+      id="audio01"
+      src="http://topmdrt-static.oss-cn-shenzhen.aliyuncs.com/active_common/reliable_art/reliable_art.mp3"
+      loop="loop"
+    ></audio>
+
+    <!--end-->
+
+    <!--music文件放尾部，负责播放有影响-->
+
+    <script src="https://topmdrt-static.oss-cn-shenzhen.aliyuncs.com/static/js/common/music.js"></script>
+
+    <!--苹果系统播放兼容问题需要引入-->
+
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  </body>
+</html>

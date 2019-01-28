@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="scss/style.css">
+    <link rel="stylesheet" href="scss/swiper.css">
+    <link rel="stylesheet" href="scss/animate.css">
+</head>
+<body>
+<div class="btn animated fadeOutUp"></div>
+    <div class="container">
+        <div class="pic-slide swiper-container ">
+            <ul class="pic-wrapper swiper-wrapper">
+                <li class="pic-item swiper-slide">
+                    <div class="person animated fadeIn"></div>
+                      <div class="words words1 animated fadeIn">
+                          <div class="word1 animated swing"></div>
+                          <div class="word2 animated swing"></div>
+                          <div class="word3 animated swing"></div>
+                      </div>
+                    <div class="words3 words2 animated zoom">
+                        <div class="word4 animated fadeIn"></div>
+                        <div class="word5 animated fadeIn"></div>
+                        <div class="word6 animated fadeIn"></div>
+                    </div>
+                </li>
+                <li class="pic-item swiper-slide">
+                    <div class="person animated fadeIn"></div>
+                    <div class="box box1 animated fadeInRight ">
+                        <div class="img img1 animated swing"></div>
+                    </div>
+                    <div class="box box2 animated fadeIn">
+                        <div class="img img2 animated swing"></div>
+                        <div class="img img3 animated swing"></div>
+                    </div>
+                    <div class="img img4 animated zoomIn"></div>
+                </li>
+                <li class="pic-item swiper-slide">
+                    <div class="box box1 animated fadeInLeft ">
+                        <div class="img img1">
+                            <div class="img animated swing"></div>
+                        </div>
+                        <div class="box box2 animated fadeIn">
+                            <div class="img img2 animated twinkle"></div>
+                        </div>
+                    </div>
+                    <div class="img img3  animated fadeIn"></div>
+                    <div class="img img4 animated zoomIn"></div>
+                </li>
+                <li class="pic-item swiper-slide">
+                    <div class="img img1 animated fadeInRight"></div>
+                    <div class="img img2 animated fadeInRight"></div>
+                    <div class="img img3 animated fadeInRight"></div>
+                    <div class="img img4 animated zoomIn"></div>
+                    <div class="img img5"></div>
+                </li>
+                <li class="pic-item swiper-slide">
+                    <div class="img box1 animated fadeIn">
+                        <div class="img img1 animated fadeInDown"></div>
+                        <div class="img img2 animated fadeInDown"></div>
+                        <div class="img img4"></div>
+                    </div>
+                    <div class="img img3 animated zoomIn"></div>
+                </li>
+                <li class="pic-item swiper-slide">
+                    <div class="iphon iphon1 animated zoomIn"></div>
+                    <div class="iphon iphon2 animated fadeInRight"></div>
+                </li>
+                <li class="pic-item swiper-slide">
+                    <div class="end end1">
+                        <div class="img img1 animated zoomIn"></div>
+                        <img src="images/p7-2.png" alt="" class="animated fadeIn">
+                        <div class="img img2 animated fadeIn"></div>
+                    </div>
+                    <div class="img img3 animated fadeIn"></div>
+                    <div class="img img4 animated fadeIn"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/swiper.js"></script>
+    <script>
+         new Swiper(".pic-slide",{
+             onSlideChangeStart:function(swiper){
+                 console.log(swiper.activeIndex)
+             }
+         })
+    </script>
+</body>
+</html>
